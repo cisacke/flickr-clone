@@ -4,6 +4,8 @@
 ### Models
 
 ### Controllers
+* AlbumsController (create, new, show, index)
+
 Api::BlogsController (create, destroy, index, show)
 Api::PostsController (create, destroy, show, update)
 

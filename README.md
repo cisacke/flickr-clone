@@ -1,24 +1,26 @@
-# Flux-capacitr
+# Flickr Clone
 
 [Heroku link][heroku]
 
-[heroku]: http://flux-capacitr.herokuapp.com
+[heroku]: http://github.com/cisacke/flickr-clone-plan
 
 ## Minimum Viable Product
-Flux-capacitr is a clone of Tumblr built on Rails and Backbone. Users can:
+This Flickr clone is built on Rails and Backbone. Users can:
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
-- [x] Create accounts
-- [x] Create sessions (log in)
-- [x] Create blogs
-- [x] Create blog posts
-- [ ] View blogs and posts
-- [ ] Subscribe to blogs
-- [ ] View a feed of subscribed blogs
-- [ ] Tag blog posts
-- [ ] Search for blogs by title
-- [ ] Search for posts by tag
+- [ ] Create an account
+- [ ] Log in
+- [ ] Create albums
+- [ ] Upload photos to an album
+- [ ] Upload photo to photostream
+- [ ] View photos in a photostream
+- [ ] View photos in an album
+- [ ] Follow other users
+- [ ] 'Favorite' a photo and comment on it
+- [ ] View favorited photos
+- [ ] Search for users
+- [ ] Search for photos by keyword
 
 ## Design Docs
 * [View Wireframes][views]
@@ -29,20 +31,21 @@ Flux-capacitr is a clone of Tumblr built on Rails and Backbone. Users can:
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication, Blog Creation (~1 day)
-I will implement user authentication in Rails based on the practices learned at
-App Academy. By the end of this phase, users will be able to create blogs using
-a simple text form in a Rails view. The most important part of this phase will
-be pushing the app to Heroku and ensuring that everything works before moving on
-to phase 2.
+### Phase 1: User Authentication, Photo Upload, Push to Heroku (~1.5 days)
+First, I will implement user authentication. Users will be able to sign up and
+create a new session. Users will be able to upload pictures for four purposes:
+1. Profile picture.
+2. Cover photo.
+3. Single photostream photo.
+4. Multiple album photos.
+App will be pushed to Heroku by end of day.
 
 [Details][phase-one]
 
-### Phase 2: Viewing Blogs and Posts (~2 days)
-I will add API routes to serve blog and post data as JSON, then add Backbone
-models and collections that fetch data from those routes. By the end of this
-phase, users will be able to create blogs and view both blogs and posts, all
-inside a single Backbone app.
+### Phase 2: Albums (~2 days)
+Users can create albums. All users have two default albums - 'favorites' and 'photostream'. Single photos uploaded to the photostream go in the latter.
+Multiple photo uploads must be assigned to an album.
+
 
 [Details][phase-two]
 
@@ -88,4 +91,3 @@ collections, but they will fetch from the new `search` routes.
 [phase-three]: ./docs/phases/phase3.md
 [phase-four]: ./docs/phases/phase4.md
 [phase-five]: ./docs/phases/phase5.md
-

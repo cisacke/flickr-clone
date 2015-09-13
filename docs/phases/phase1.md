@@ -3,26 +3,28 @@
 ## Rails
 ### Models
 * User
-* Blog
-* Post
+* Photos
+* Albums
 
 ### Controllers
 * UsersController (create, new)
 * SessionsController (create, new, destroy)
-* BlogsController (create, new, show)
-* PostsController (create, new, show)
+* Api::PhotosController (create, new, show)
 
 ### Views
 * users/new.html.erb
 * session/new.html.erb
-* blogs/new.html.erb
-* blogs/show.html.erb
+* photos/show.json.jbuilder
 
 ## Backbone
 ### Models
-
+* album
+* photo
 ### Collections
-
+* albums
+* photos
 ### Views
-
+* albums show
+* photos index_item
+* photo form
 ## Gems/Libraries
