@@ -2,19 +2,23 @@
 
 ## Rails
 ### Models
+* Comments
+* Follows
+* Favorites
 
 ### Controllers
-Api::PostsController (feed)
+* Comments controller (create, new, edit, show)
+* Follows controller (create, destroy)
+* Favorites controller (create, destroy)
 
 ### Views
-posts/feed.json.jbuilder
+comments/show.json.jbuilder
 
 ## Backbone
 ### Models
-
+* Comment
 ### Collections
-
+* Comments
 ### Views
-* FeedShow (composite view, contains PostsIndex subview)
 
 ## Gems/Libraries

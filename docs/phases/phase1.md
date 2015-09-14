@@ -4,7 +4,6 @@
 ### Models
 * User
 * Photos
-* Albums
 
 ### Controllers
 * UsersController (create, new)
@@ -14,17 +13,15 @@
 ### Views
 * users/new.html.erb
 * session/new.html.erb
-* photos/show.json.jbuilder
+* photos/index.json.jbuilder
 
 ## Backbone
 ### Models
-* album
 * photo
 ### Collections
-* albums
 * photos
 ### Views
-* albums show
-* photos index_item
+* root (photostream index)
+* photos/index_item.js
 * photo form
 ## Gems/Libraries

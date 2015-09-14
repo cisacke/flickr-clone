@@ -31,60 +31,55 @@ This Flickr clone is built on Rails and Backbone. Users can:
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication, Photo Upload, Push to Heroku (~1.5 days)
+### Phase 1: User Authentication, Photo Upload, Push to Heroku (~2 days)
 First, I will implement user authentication. Users will be able to sign up and
-create a new session. Users will be able to upload pictures for four purposes:
+create a new session.
+
+Users will be able to upload pictures for four purposes:
 1. Profile picture.
 2. Cover photo.
 3. Single photostream photo.
 4. Multiple album photos.
+
 App will be pushed to Heroku by end of day.
 
 [Details][phase-one]
 
 ### Phase 2: Albums (~2 days)
-Users can create albums. All users have two default albums - 'favorites' and 'photostream'. Single photos uploaded to the photostream go in the latter.
+Users can create albums. All users have two default albums - 'favorites' and
+'photostream'. Single photos uploaded to the photostream go in the latter.
 Multiple photo uploads must be assigned to an album.
-
 
 [Details][phase-two]
 
-### Phase 3: Editing and Displaying Posts (~2 days)
-I plan to use third-party libraries to add functionality to the `PostForm` and
-`PostShow` views in this phase. First I'll need to add a Markdown editor to the
-`PostForm`, and make sure that the Markdown is properly escaped and formatted in
-the `PostShow` view. I also plan to integrate Filepicker for file upload so
-users can add images to blog posts.
+### Phase 3: View Pages (~2 days)
+Users can view the photos in their photostream, albums, and favorites. Users can
+view other user's photostream, albums, and favorites. Selecting a single photo
+takes a user to the photo show page.
 
 [Details][phase-three]
 
-### Phase 4: User Feeds (~1-2 days)
-I'll start by adding a `feed` route that uses the `current_user`'s
-`subscribed_blogs` association to serve a list of blog posts ordered
-chronologically. On the Backbone side, I'll make a `FeedShow` view whose `posts`
-collection fetches from the new route.  Ultimately, this will be the page users
-see after logging in.
+### Phase 4: Following Users, Favoriting Photos, Photo Comments (~2 days)
+Users can follow and unfollow other users. Users can 'favorite' photos.
+Favorited photos will be added to the 'favorites' album. Users can comment on
+photos. Comments will appear on the photo show page.
 
 [Details][phase-four]
 
-### Phase 5: Searching for Blogs and Posts (~2 days)
-I'll need to add `search` routes to both the Blogs and Posts controllers. On the
-Backbone side, there will be a `SearchResults` composite view has `BlogsIndex`
-and `PostsIndex` subviews. These views will use plain old `blogs` and `posts`
-collections, but they will fetch from the new `search` routes.
+### Phase 5: Search (~2 days)
+Users can search for people and photos by keyword.
 
 [Details][phase-five]
 
 ### Bonus Features (TBD)
-- [ ] "Like" button and counter for posts
-- [ ] Custom blog urls
-- [ ] Pagination/infinite scroll
-- [ ] Activity history (e.g. likes, reblogs, taggings)
-- [ ] Post types (image posts, quote posts, etc)
-- [ ] Reblogging
-- [ ] Multiple sessions/session management
-- [ ] User avatars
-- [ ] Typeahead search bar
+- [ ] Add a location to photos
+- [ ] Add a map page which shows photos by location
+- [ ] Search for photos by location
+- [ ] Tag photos
+- [ ] Search for photos by tag
+- [ ] Advanced photo editing - rotation, cropping etc.
+- [ ] Pagination/ infinite scrolling
+
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md

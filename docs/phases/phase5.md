@@ -4,19 +4,14 @@
 ### Models
 
 ### Controllers
-Api::BlogsController (search)
-Api::PostsController (search)
-
+* TBD
 ### Views
-
+* TBD
 ## Backbone
 ### Models
-
+* TBD
 ### Collections
-
+* TBD
 ### Views
-* BlogSearchItem
-* SearchShow (composite view, contains BlogsIndex and PostsIndex subviews)
-
+* TBD
 ## Gems/Libraries
-

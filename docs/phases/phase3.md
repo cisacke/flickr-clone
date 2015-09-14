@@ -13,9 +13,10 @@
 ### Collections
 
 ### Views
-* PostForm
+* album index page
+* album show page
+* favorites (collection: albums) index page
+* photostream (collection: albums) index page
+* photo show page
 
 ## Gems/Libraries
-* Filepicker
-* Markdown-js
-* Bootstrap Markdown

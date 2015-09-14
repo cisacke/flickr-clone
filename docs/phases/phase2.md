@@ -6,26 +6,17 @@
 ### Controllers
 * AlbumsController (create, new, show, index)
 
-Api::BlogsController (create, destroy, index, show)
-Api::PostsController (create, destroy, show, update)
-
 ### Views
-* blogs/show.json.jbuilder
+* albums/show.json.jbuilder
+* albums/index.json.jbuilder
 
 ## Backbone
 ### Models
-* Blog (parses nested `posts` association)
-* Post
+* Album
 
 ### Collections
-* Blogs
-* Posts
+* Albums
 
 ### Views
-* BlogForm
-* BlogShow (composite view, contains PostsIndex subview)
-* PostsIndex (composite view, contains PostsIndexItem subviews)
-* PostsIndexItem
-* PostShow
 
 ## Gems/Libraries
