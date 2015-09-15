@@ -13,6 +13,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    if params[:id]
+
+    else
+      render json: current_user
+    end
+  end
+
   private
 
     def user_params

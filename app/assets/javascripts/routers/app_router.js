@@ -1,10 +1,14 @@
 Capstone.Routers.AppRouter = Backbone.Router.extend({
   routes: {
-    "": "photostream"
-    "photostream": "photostream"
+    "": "root"
   },
 
-  photostream: function() {
-    
+  root: function() {
+    var photostream = new Capstone.Collections.Photostream()
+    photostream.fetch();
+    debugger
+    // var view = new Capstone.Views.Photostream({
+
+    // })
   }
 })
