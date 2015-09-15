@@ -2,6 +2,32 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body, html, ul, li, nav, h1, form, div, h5 {
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+
+  font: inherit;
+  text-decoration: inherit;
+  text-align: inherit;
+  color: inherit;
+}
+
+body, html {
+  font-family: sans-serif;
+  height: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+.group:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
 .new-session-nav {
   background: black;
   height: 50px;
@@ -10,16 +36,85 @@
 .new-session-nav-bar {
   background: black;
   height: 50px;
+  width: 80%;
+  min-width: 900px;
+  margin: auto;
+}
+
+.new-session-nav-bar li {
+  padding: 5px 20px;
 }
 
 .new-session-logo {
-  font: white;
-  background: blue;
+  height: 40px;
+  font-size: 30px;
+  color: #fff;
   float: left;
 }
 
 .new-session-sign-in {
-  font: white;
-  background: blue;
+  height: 25px;
+  line-height: 25px;
+  font-size: 18px;
+  color: #fff;
+  background: #03AACC;
   float: right;
+  margin: 8px;
+  border-radius: 5px;
+}
+
+.new-session-background-img {
+  background: gray;
+  opacity: 0.5;
+  min-height: 500px;
+  height: 90%;
+  color: white
+}
+
+.new-session-header {
+  text-align: center;
+  width: 500px;
+  font-size: 40px;
+  height: 140px;
+  margin: 0 auto;
+  padding: 100px 0 0 0;
+}
+
+.new-session-form {
+  background: #03AACC;
+  margin: 0 auto;
+  width: 300px;
+  height: 250px;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.new-session-form > h5 {
+  // text-align: center;
+  font-size: 30px;
+  margin: 10px 0 0 0;
+}
+
+.new-session-form > input {
+  margin: 10px 0 5px;
+}
+
+.new-session-form > button, input {
+  height: 30px;
+  width: 200px;
+  font-size: 20px;
+  border: 0;
+  padding: 0;
+  border-radius: 5px;
+}
+
+.new-session-form > button {
+  margin: 20px 0;
+  line-height: 30px;
+}
+
+.new-session-footer {
+  height: 50px;
+  background: black;
 }
