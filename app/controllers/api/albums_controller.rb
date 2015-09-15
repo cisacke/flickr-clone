@@ -1,5 +1,5 @@
 module Api
-  class AlbumsController < ApplicationController
+  class AlbumsController < ApiController
     # def photostream
     # end
   end
