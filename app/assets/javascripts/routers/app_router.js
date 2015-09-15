@@ -1,9 +1,10 @@
 Capstone.Routers.AppRouter = Backbone.Router.extend({
   routes: {
-    "": "root"
+    "": "photostream"
+    "photostream": "photostream"
   },
 
-  root: function() {
+  photostream: function() {
     
   }
 })

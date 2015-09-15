@@ -5,7 +5,8 @@
     pixie. photo uploading and sharing.
   </h1>
 
-  <form class="new-session-form" action="index.html" method="post">
+  <form class="new-session-form" action="<%= session_url %>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <h5>sign in</h5>
     <input type="text" name="user[email]" value=" email">
     <br>

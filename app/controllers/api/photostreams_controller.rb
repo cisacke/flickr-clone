@@ -1,7 +1,7 @@
 module Api
   class PhotostreamsController < ApiController
-    def index
-      @album = current_user.albums.find(1)
+    def show
+      @album = current_user.albums.find_by(title: "Photostream")
       # include photos
       render json: @album
     end
