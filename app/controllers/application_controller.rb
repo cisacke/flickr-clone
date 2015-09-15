@@ -25,4 +25,8 @@ class ApplicationController < ActionController::Base
   def require_not_signed_in
 
   end
+
+  def require_signed_in!
+    redirect_to new_session_url unless is_signed_in?
+  end
 end

@@ -1,2 +1,15 @@
-<%= render partial: "layouts/navbar", :locals => {text: "sign out"} %>
+<!-- <%= render partial: "layouts/navbar", :locals => {text: "sign out", link: new_session_url} %> -->
+<nav class="nav">
+  <ul class="nav-bar group">
+    <li class="logo">
+      pixie
+    </li>
+    <form action="<%= session_url %>" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="hidden" name="_method" value="delete">
+      <button class="sign-out">sign out</button>
+    </form>
+  </ul>
+</nav>
+
 <div id="main"></div>
