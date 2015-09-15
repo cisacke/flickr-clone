@@ -1,12 +1,16 @@
-<%= render partial: "layouts/navbar", :locals => {text: "sign up"} %>
+<%= render partial: "layouts/navbar", :locals => {text: "sign in"} %>
 
 <div class="new-session-background-img">
   <h1 class="new-session-header">
     pixie. photo uploading and sharing.
   </h1>
 
-  <form class="new-session-form" action="index.html" method="post">
-    <h5>sign in</h5>
+  <form class="new-user-form" action="index.html" method="post">
+    <h5>sign up</h5>
+    <input type="text" name="user[f_name]" value=" first name">
+    <br>
+    <input type="text" name="user[lname]" value=" last name">
+    <br>
     <input type="text" name="user[email]" value=" email">
     <br>
     <input type="password" name="user[password]" value="">
