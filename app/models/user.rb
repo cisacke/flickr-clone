@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  validates :fname, :lname, :email, :session_token, :password_digest, presence: true
+  validates :f_name, :l_name, :email, :session_token, :password_digest, presence: true
   validates :session_token, :email, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   end
 
   def password_digest
-    BCrypt::password.new(super)
+    BCrypt::Password.new(super)
   end
 
   def reset_session_token!

@@ -5,11 +5,12 @@
     pixie. photo uploading and sharing.
   </h1>
 
-  <form class="new-user-form" action="index.html" method="post">
+  <form class="new-user-form" action="<%= users_url %>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <h5>sign up</h5>
     <input type="text" name="user[f_name]" value=" first name">
     <br>
-    <input type="text" name="user[lname]" value=" last name">
+    <input type="text" name="user[l_name]" value=" last name">
     <br>
     <input type="text" name="user[email]" value=" email">
     <br>
