@@ -18,6 +18,15 @@ Capstone.Views.PhotostreamShow = Backbone.CompositeView.extend({
       model: this.model.user()
     });
     this.addSubview(".user-show", userShow);
+
+    this.model.photos().each(function(photo) {
+      var photoIndexView = new Capstone.Views.PhotoIndexItem({
+        model: photo
+      });
+      this.addSubview(".photostream-list", photoIndexView);
+    }.bind(this))
+
+
     return this;
   }
 });
