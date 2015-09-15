@@ -3,16 +3,24 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
     "": "root"
   },
 
+  initialize: function(options) {
+    this.$rootEl = options.$rootEl
+  },
+
   root: function() {
     var photostream = new Capstone.Models.Photostream()
     photostream.fetch();
 
-    var userId = photostream.escape("user_id")
-    var user = new Capstone.Models.User()
-    
-    // debugger
-    // var view = new Capstone.Views.Photostream({
+    var photostreamShow = new Capstone.Views.PhotostreamShow({
+      model: photostream
+    })
 
-    // })
+    this._swapView(photostreamShow)
+  },
+
+  _swapView: function(view) {
+    this._currentView && this._currentView.remove();
+    this._currentView = view
+    this.$rootEl.html(view.render().$el)
   }
 })

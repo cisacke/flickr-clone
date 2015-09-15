@@ -9,11 +9,23 @@ Capstone.Models.Photostream = Backbone.Model.extend({
     return this._photos;
   },
 
-  parse: function(resp) {
-    if (resp.photos) {
+  user: function() {
+    if (!this._user) {
+      this._user = new Capstone.Models.User()
+    }
+    return this._user;
+  },
 
+  parse: function(resp) {
+    // debugger
+    if (resp.photos) {
       this.photos().set(resp.photos);
       delete resp.photos;
+    }
+
+    if (resp.user) {
+      this.user().set(resp.user);
+      delete resp.user
     }
 
     return resp

@@ -4,3 +4,7 @@ json.photos do
     json.extract! photo, :title, :description, :album_id, :image
   end
 end
+
+json.user do
+  json.extract!(@photostream.user, :email, :f_name, :l_name)
+end

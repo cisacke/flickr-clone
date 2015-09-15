@@ -47,10 +47,10 @@ Backbone.CompositeView = Backbone.View.extend({
     this._subviews = this._subviews || _({});
 
     if (selector) {
-      this._subviews[selector] = this._subviews[seletor] || _([]);
+      this._subviews[selector] = this._subviews[selector] || _([]);
       return this._subviews[selector];
     } else {
       return this._subviews;
     }
   }
-})
+});
