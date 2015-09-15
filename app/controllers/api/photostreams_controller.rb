@@ -1,9 +1,9 @@
 module Api
   class PhotostreamsController < ApiController
     def show
-      @album = current_user.albums.find_by(title: "Photostream")
+      @photostream = current_user.albums.find_by(title: "Photostream")
       # include photos
-      render json: @album
+      render :show
     end
   end
 end
