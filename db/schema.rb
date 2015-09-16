@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916130141) do
+ActiveRecord::Schema.define(version: 20150916181557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,24 @@ ActiveRecord::Schema.define(version: 20150916130141) do
   end
 
   add_index "albums", ["user_id"], name: "index_albums_on_user_id", using: :btree
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
+
+  create_table "favorites_photos", force: :cascade do |t|
+    t.integer  "favorite_id", null: false
+    t.integer  "photo_id",    null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "favorites_photos", ["favorite_id"], name: "index_favorites_photos_on_favorite_id", using: :btree
+  add_index "favorites_photos", ["photo_id"], name: "index_favorites_photos_on_photo_id", using: :btree
 
   create_table "photos", force: :cascade do |t|
     t.string   "title",       null: false

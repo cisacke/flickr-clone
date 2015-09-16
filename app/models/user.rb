@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :albums, dependent: :destroy
   has_one :photostream, dependent: :destroy
+  has_one :favorite, dependent: :destroy
 
   attr_reader :password
   after_initialize :ensure_session_token
