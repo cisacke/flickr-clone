@@ -1,3 +1,37 @@
 // Place all the styles related to the Photos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.photo-show-wrapper {
+  width: 100%;
+  background: #242121;
+}
+
+.photo-show-image {
+  background-image: url(image_path("dummy-photo.jpg"));
+  margin: auto;
+  width: 700px;
+  height: 500px;
+  border-top: 50px solid #242121;
+  // top: -50px;
+}
+
+.photo-show-nav {
+  width: 100%;
+  color: white;
+  background: #242121;
+  height: 50px;
+}
+
+.photo-show-nav li {
+  padding: 10px 30px;
+  height: 30px;
+}
+
+.photo-show-nav li:first-of-type {
+  float:left;
+}
+
+.photo-show-nav li:last-of-type {
+  float:right;
+}

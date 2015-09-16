@@ -1,6 +1,7 @@
 Capstone.Routers.AppRouter = Backbone.Router.extend({
   routes: {
-    "": "root"
+    "": "root",
+    "photos/:id": "photoShow"
   },
 
   initialize: function(options) {
@@ -8,7 +9,6 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
   },
 
   root: function() {
-    // debugger
     var photostream = new Capstone.Models.Photostream()
     photostream.fetch();
 
@@ -16,7 +16,18 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
       model: photostream
     })
 
-    this._swapView(photostreamShow)
+    this._swapView(photostreamShow);
+  },
+
+  photoShow: function(id) {
+    var photo = new Capstone.Models.Photo({id: id});
+    photo.fetch();
+
+    var photoShow = new Capstone.Views.PhotoShow({
+      model: photo
+    })
+
+    this._swapView(photoShow);
   },
 
   _swapView: function(view) {
