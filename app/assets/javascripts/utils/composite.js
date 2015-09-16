@@ -1,11 +1,22 @@
+
 Backbone.CompositeView = Backbone.View.extend({
-  addSubview: function(selector, subview, prepend) {
-    this.subviews(selector).push(subview);
-    this.attachSubview(selector, subview.render())
+  addSubview: function (selector, subview, prepend) {
+    if (prepend) {
+      this.subviews(selector).unshift(subview);
+    } else {
+      this.subviews(selector).push(subview);
+    }
+    this.attachSubview(selector, subview, prepend);
+    subview.render();
   },
 
-  attachSubview: function(selector, subview, prepend) {
-    this.$(selector).append(subview.$el);
+  attachSubview: function (selector, subview, prepend) {
+    if (prepend) {
+      this.$(selector).prepend(subview.$el);
+    } else {
+      this.$(selector).append(subview.$el);
+    }
+
     subview.delegateEvents();
 
     if (subview.attachSubviews) {
@@ -13,44 +24,68 @@ Backbone.CompositeView = Backbone.View.extend({
     }
   },
 
-  attachSubviews: function() {
-    this.subviews().each(function(selectorSubview, selector) {
-      this.$(selector).empty();
-    }.bind(this))
-    this.eachSubview(this.attachSubview.bind(this))
+  attachSubviews: function () {
+    var view = this;
+    this.subviews().each(function (selectorSubviews, selector) {
+      view.$(selector).empty();
+      selectorSubviews.each(function (subview) {
+        view.attachSubview(selector, subview);
+      });
+    });
   },
 
   eachSubview: function(callback) {
     this.subviews().each(function (selectorSubviews, selector) {
       selectorSubviews.each(function (subview) {
-        callback(selector, subview);
+        callback(subview, selector);
       });
     });
   },
 
-  remove: function() {
-    Backbone.View.prototype.remove.call(this);
+  onRender: function() {
+    this.eachSubview(function (subview) {
+      subview.onRender && subview.onRender();
+    });
+  },
 
-    this.eachSubview(function(selector, subview) {
+  remove: function () {
+    Backbone.View.prototype.remove.call(this);
+    this.eachSubview(function (subview) {
       subview.remove();
     });
   },
 
-  removeSubview: function(seletor, subview) {
+  removeSubview: function (selector, subview) {
     subview.remove();
 
-    var subviews = this.subviews(selector);
-    subviews.splice(subviews.indexOf(subView), 1);
+    var selectorSubviews = this.subviews(selector);
+    selectorSubviews.splice(selectorSubviews.indexOf(subview), 1);
   },
 
-  subviews: function(selector) {
-    this._subviews = this._subviews || _({});
+  removeModelSubview: function (selector, model) {
+    var selectorSubviews = this.subviews(selector);
+    var i = selectorSubviews.findIndex(function (subview) {
+      return subview.model === model;
+    });
+    if (i === -1) { return; }
+
+    selectorSubviews.toArray()[i].remove();
+    selectorSubviews.splice(i, 1);
+  },
+
+  subviews: function (selector) {
+
+    this._subviews = this._subviews || {};
 
     if (selector) {
       this._subviews[selector] = this._subviews[selector] || _([]);
       return this._subviews[selector];
     } else {
-      return this._subviews;
+      return _(this._subviews);
     }
+  },
+
+  unshiftSubview: function (selector, subview) {
+    this.addSubview(selector, subview, true);
   }
 });

@@ -52,9 +52,11 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
   albumsIndex: function(id) {
     var user = new Capstone.Models.User({id: id});
     user.fetch();
+    var albums = user.albums()
 
     var albumIndex = new Capstone.Views.AlbumIndex({
-      user: user
+      user: user,
+      model: albums
     })
 
     this._swapView(albumIndex);
