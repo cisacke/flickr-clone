@@ -81,9 +81,9 @@
   height: 40px;
   width: 40px;
   border-radius: 20px;
-  overflow: hidden;
   margin: 5px;
   float: left;
+  background-image: url(image_path("mini-profile.jpg"));
 }
 
 .photo-user-info {
