@@ -1,3 +1,38 @@
 // Place all the styles related to the Albums controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.album-index-wrapper {
+  width: 100%;
+  background: #d6d6d6;
+}
+
+.album-index-list {
+  width: 80%;
+  min-width: 900px;
+  margin: auto;
+}
+
+.album-index-item {
+  float: left;
+}
+
+.album-index-item-photo {
+  position: relative;
+  height: 250px;
+  width: 250px;
+  background-image: url(image_path("album-photo-dummy.jpg"));
+  margin: 20px 40px 10px 0;
+}
+
+.album-index-item-info {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+.album-index-item-info div:first-of-type {
+  font-size: 20px;
+}

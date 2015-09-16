@@ -16,10 +16,11 @@ Capstone.Views.AlbumIndex = Backbone.CompositeView.extend({
     this.addSubview(".user-show", userShow);
 
     this.model.each(function(album) {
-      var albumIndexView = new Capstone.Views.AlbumIndexItem({
+      var albumIndex = new Capstone.Views.AlbumIndexItem({
         model: album
       })
-    })
+      this.addSubview(".album-index-list", albumIndex);
+    }.bind(this))
 
     return this;
   }
