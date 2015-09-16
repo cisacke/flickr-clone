@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def current_user
-    @user = current_users
+    @user = currently_signed_in
     render :show
   end
 

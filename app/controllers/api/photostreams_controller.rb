@@ -1,8 +1,8 @@
 module Api
   class PhotostreamsController < ApiController
     def show
-      @photostream = current_user.albums.find_by(title: "Photostream")
-      
+      @photostream = currently_signed_in.photostream
+
       render :show
     end
   end
