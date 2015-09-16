@@ -9,11 +9,13 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
   },
 
   root: function() {
-
-    var photostream = new Capstone.Models.Photostream()
-    photostream.fetch();
+    var user = new Capstone.Models.CurrentUser()
+    user.fetch();
+    var photostream = user.photostream()
+    photostream.fetch()
 
     var photostreamShow = new Capstone.Views.PhotostreamShow({
+      user: user,
       model: photostream
     })
 

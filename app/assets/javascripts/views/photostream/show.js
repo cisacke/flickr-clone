@@ -3,6 +3,7 @@ Capstone.Views.PhotostreamShow = Backbone.CompositeView.extend({
   className: "photostream-show",
 
   initialize: function(options) {
+    this.user = options.user
     this.listenTo(this.model, "sync", this.render)
   },
 
@@ -15,14 +16,15 @@ Capstone.Views.PhotostreamShow = Backbone.CompositeView.extend({
     this.$el.html(content);
 
     var userShow = new Capstone.Views.UserShow({
-      model: this.model.user()
+      model: this.user
     });
     this.addSubview(".user-show", userShow);
 
     this.model.photos().each(function(photo) {
       var photoIndexView = new Capstone.Views.PhotoIndexItem({
         model: photo,
-        photostream: this.model
+        photostream: this.model,
+        user: this.user
       });
       this.addSubview(".photostream-list", photoIndexView);
     }.bind(this))

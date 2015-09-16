@@ -4,12 +4,14 @@ Capstone.Views.PhotoIndexItem = Backbone.CompositeView.extend({
 
   initialize: function(options) {
     this.photostream = options.photostream
+    this.user = options.user
   },
 
   render: function() {
     var content = this.template({
       photo: this.model,
-      photostream: this.photostream
+      photostream: this.photostream,
+      user: this.user
     })
 
     this.$el.html(content);
