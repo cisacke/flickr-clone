@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true }
 
   has_many :albums, dependent: :destroy
-  has_one :photostream
+  has_one :photostream, dependent: :destroy
 
   attr_reader :password
   after_initialize :ensure_session_token

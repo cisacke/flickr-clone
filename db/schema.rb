@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916124745) do
+ActiveRecord::Schema.define(version: 20150916130141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20150916124745) do
   add_index "albums", ["user_id"], name: "index_albums_on_user_id", using: :btree
 
   create_table "photos", force: :cascade do |t|
-    t.integer  "album_id",    null: false
     t.string   "title",       null: false
     t.string   "description"
     t.string   "image"
@@ -35,7 +34,13 @@ ActiveRecord::Schema.define(version: 20150916124745) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "photos", ["album_id"], name: "index_photos_on_album_id", using: :btree
+  create_table "photostream_photos", force: :cascade do |t|
+    t.integer "photostream_id", null: false
+    t.integer "photo_id",       null: false
+  end
+
+  add_index "photostream_photos", ["photo_id"], name: "index_photostream_photos_on_photo_id", using: :btree
+  add_index "photostream_photos", ["photostream_id"], name: "index_photostream_photos_on_photostream_id", using: :btree
 
   create_table "photostreams", force: :cascade do |t|
     t.integer  "user_id",    null: false
