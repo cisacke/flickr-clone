@@ -3,7 +3,7 @@ Capstone.Models.User = Backbone.Model.extend({
 
   photostream: function() {
     if (!this._photostream) {
-      this._photostream = new Capstone.Models.Photostream([], {user: this})
+      this._photostream = new Capstone.Collections.Photostreams([], {user: this})
     }
 
     return this._photostream;

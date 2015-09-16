@@ -1,6 +1,7 @@
 Capstone.Routers.AppRouter = Backbone.Router.extend({
   routes: {
     "": "root",
+    "photos/new":"photosNew",
     "users/:id/albums": "albumsIndex",
     "photos/:id": "photoShow",
     "users/:id": "userShow"
@@ -60,6 +61,19 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
     })
 
     this._swapView(albumIndex);
+  },
+
+  photosNew: function() {
+    var user = new Capstone.Models.CurrentUser();
+    user.fetch();
+
+    var newPhoto = new Capstone.Models.Photo();
+    var photosNew = new Capstone.Views.PhotosNew({
+      model: newPhoto,
+      user: user
+    })
+
+    this._swapView(photosNew);
   },
 
   _swapView: function(view) {

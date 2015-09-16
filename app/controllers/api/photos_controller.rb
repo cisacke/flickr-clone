@@ -4,5 +4,16 @@ module Api
       photo = Photo.find(params[:id])
       render json: photo
     end
+
+    def create
+      photo = Photo.create!(photo_params)
+      render json: photo
+    end
+
+    private
+
+      def photo_params
+        params.require(:photo).permit(:title, :description, :image)
+      end
   end
 end
