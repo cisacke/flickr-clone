@@ -4,7 +4,8 @@ json.photostream do
 end
 json.photostream_photos do
   json.array!(@user.photostream.photos) do |photo|
-    json.extract! photo, :id, :title, :description, :image
+    json.extract! photo, :id, :title, :description
+    json.image_url asset_path(photo.image.url(:original))
   end
 end
 json.albums do

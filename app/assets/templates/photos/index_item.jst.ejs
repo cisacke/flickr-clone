@@ -1,5 +1,6 @@
-<a class="photostream-image"
-   href="#/photos/<%= photo.id %>"></a>
+<img class="photostream-image"
+     href="#/photos/<%= photo.id %>"
+     src="<%= photo.escape("image_url") %>"/>
 <nav class="photo-info group">
   <img class="photostream-image-profile-pic" />
   <ul class="photo-user-info">
