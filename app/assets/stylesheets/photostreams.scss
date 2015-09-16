@@ -5,12 +5,12 @@
 .user-photo-nav-bar {
   height: 50px;
   width: 100%;
-  background: black;
+  background: white;
 }
 
 .user-photo-nav {
   height: 50px;
-  background: black;
+  background: white;
   width: 80%;
   min-width: 900px;
   margin: auto;
@@ -38,4 +38,67 @@
   margin: 10px;
   border-radius: 5px;
   padding: 5px 10px;
+}
+
+.photostream-show {
+  background: #d6d6d6
+}
+
+.photostream-wrapper {
+  width: 100%;
+  // background: yellow;
+}
+
+.photostream-list {
+  width: 80%;
+  min-width: 900px;
+  margin: auto;
+  // background: red;
+}
+
+.photostream-list > li {
+  width: 700px;
+  height: 400px;
+  // background: green;
+  margin: 50px auto;
+}
+
+.photostream-image {
+  height: 350px;
+  width: 600px;
+  margin: 0 50px;
+  background-image: url(image_path("dummy-photo.jpg"));
+  display: block;
+}
+
+.photo-info {
+  height: 50px;
+  margin: 0 50px;
+  background: white;
+}
+
+.photostream-image-profile-pic {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 5px;
+  float: left;
+}
+
+.photo-user-info {
+  float: left;
+  height: 50px;
+  padding: 5px 0 0 0;
+}
+
+.photo-stats {
+  float: right;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 10px 0 0;
+}
+
+.photo-stats > li {
+  float: left;
 }

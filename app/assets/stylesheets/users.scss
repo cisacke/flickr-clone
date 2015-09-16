@@ -62,11 +62,11 @@
 .user-info .user-profile-pic {
   height: 80px;
   width: 80px;
-  background: #03AACC;
+  // background: #03AACC;
   margin: 10px;
   border-radius: 40px;
   float: left;
-  
+  background-image: url(image_path("default-profile.jpg"));
 }
 
 .user-info > h3 {

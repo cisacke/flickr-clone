@@ -1,1 +1,23 @@
-<%= photo.escape("title") %>
+<a class="photostream-image"
+   href="#/photos/<%= photo.id %>"></a>
+<nav class="photo-info group">
+  <img src="https://d13yacurqjgara.cloudfront.net/users/5485/screenshots/291969/pattern.jpg"
+       alt="profile picture"
+       class="photostream-image-profile-pic" />
+  <ul class="photo-user-info">
+    <li>
+    <%= photostream.user().escape("f_name") %> <%= photostream.user().escape("l_name") %>
+    </li>
+    <li>
+      <%= photo.escape("title") %>
+    </li>
+  </ul>
+  <ul class="photo-stats group">
+    <li>
+    * 193
+    </li>
+    <li>
+    # 23
+    </li>
+  </ul>
+</nav>
