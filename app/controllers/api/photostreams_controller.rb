@@ -1,7 +1,8 @@
 module Api
   class PhotostreamsController < ApiController
     def show
-      @photostream = currently_signed_in.photostream
+      # fail
+      @photostream = Photostream.find(params[:id])
 
       render :show
     end

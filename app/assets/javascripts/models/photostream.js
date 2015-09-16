@@ -1,5 +1,5 @@
 Capstone.Models.Photostream = Backbone.Model.extend({
-  url: "/api/photostream",
+  urlRoot: "/api/photostreams",
 
   photos: function() {
     if (!this._photos) {

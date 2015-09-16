@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :albums
     resources :photos
-    resource :photostream
+    resources :photostreams
   end
 end
