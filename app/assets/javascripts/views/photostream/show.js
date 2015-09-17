@@ -9,6 +9,7 @@ Capstone.Views.PhotostreamShow = Backbone.CompositeView.extend({
   initialize: function(options) {
     this.user = options.user
     this.listenTo(this.user, "sync", this.render)
+    this.listenTo(this.user.photostream().photos(), "sync add", this.render)
   },
 
   render: function() {

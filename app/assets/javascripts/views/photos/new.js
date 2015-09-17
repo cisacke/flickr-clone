@@ -22,7 +22,7 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
     e.preventDefault();
 
     var title = this.$("#input-photo-title").val();
-    var description = this.$("#input-photo-description");
+    var description = this.$("#input-photo-description").val();
     var file = this.$("#input-photo-image")[0].files[0];
 
     var data = new FormData();
@@ -34,7 +34,9 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
       success: function() {
         that.user.photostream().createPhotostreamAssociation({
           photo: that.model
-        })
+        });
+        that.user.photostream().photos().add(that.model);
+        // debugger
         // var pp = new Capstone.Models.PhotostreamPhoto({photostream_id: that.user.photostream().models[0].id, photo_id: that.model.id});
         // pp.save();
 

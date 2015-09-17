@@ -20,6 +20,7 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
     })
 
     this.$el.html(content);
+
     if (this.isFavorited()) {
       this.$(".favorite-button").text("added to favorites")
     } else {

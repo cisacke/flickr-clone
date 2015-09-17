@@ -7,3 +7,29 @@
     <li class="favorite-button"></li>
   </ul>
 </nav>
+
+<div class="photo-show-info-wrapper">
+  <div class="photo-show-eighty">
+    <div class="photo-show-info group">
+
+      <div class="photo-show-profile-pic">
+      </div>
+
+      <ul>
+        <li>
+          <%= user.escape("f_name") %> <%= user.escape("l_name") %>
+          <button class="follow-button">+ follow</button>
+        </li>
+        <li>
+          <%= photo.escape("title") %>
+        </li>
+        <li>
+          <%= photo.escape("description") %>
+        </li>
+      </ul>
+    </div>
+    <div class="photo-show-comments">
+
+    </div>
+  </div>
+</div>

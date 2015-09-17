@@ -118,3 +118,56 @@ input[type="file"] {
   right: -12px;
   top: -12px;
 }
+
+.photo-show-info-wrapper {
+  width: 100%;
+  background: white;
+}
+
+.photo-show-eighty {
+  width: 80%;
+  min-width: 900px;
+  margin: auto;
+}
+
+.photo-show-profile-pic, .photo-show-info ul {
+  float: left;
+}
+
+.photo-show-profile-pic {
+  margin: 20px;
+  height: 60px;
+  width: 60px;
+  border-radius: 30px;
+  background-image: url(image_path("mini-profile.jpg"));
+}
+
+.photo-show-info li {
+  padding: 5px 0 0 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.photo-show-info li:first-of-type {
+  margin: 30px 0 10px 0;
+  font-size: 24px;
+}
+
+.photo-show-info li:last-of-type {
+  font-size: 16px;
+  font-weight: normal;
+  border-bottom: 1px solid black;
+  padding: 5px 0 10px 0;
+}
+
+.follow-button {
+  font-size: 20px;
+  color: white;
+  font-weight: normal;
+  background: #03AACC;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 0 0 0 15px;
+  // line-height:
+}
