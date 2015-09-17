@@ -53,21 +53,18 @@
   width: 80%;
   min-width: 900px;
   margin: auto;
-  // background: red;
 }
 
 .photostream-list > li {
   width: 700px;
-  height: 400px;
-  // background: green;
+  height: auto;
   margin: 50px auto;
 }
 
 .photostream-image {
-  height: 350px;
+  height: auto;
   width: 600px;
-  margin: 0 50px;
-  // background-image: url(image_path("dummy-photo.jpg"));
+  padding: 0 50px;
   display: block;
 }
 

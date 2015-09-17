@@ -28,7 +28,11 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
     var photo = new Capstone.Models.Photo({id: id});
     photo.fetch();
 
+    var user = new Capstone.Models.CurrentUser()
+    user.fetch();
+
     var photoShow = new Capstone.Views.PhotoShow({
+      user: user,
       model: photo
     })
 

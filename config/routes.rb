@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     resources :photos
     resources :photostreams
     resources :photostream_photos, only: [:create, :destroy]
+    resources :favorite_photos, only: [:create, :destroy]
   end
 end
