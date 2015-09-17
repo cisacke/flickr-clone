@@ -1,20 +1,33 @@
-<h1>Add photo</h1>
 
-<form>
-  <label>
-    Title
-    <input type="text" name="photo[title]" id="input-photo-title">
-  </label>
-  <br>
-  <label>
-    Description
-    <input type="text" name="photo[description]" id="input-photo-description">
-  </label>
-  <br>
-  <label>
-    Image
-    <input type="file" name="photo[image]" id="input-photo-image">
-  </label>
-  <br>
-  <button>Save</button>
-</form>
+
+<div class="photo-add-form">
+  <div class="exit-photo-form">
+    x
+  </div>
+<h1>Add to photostream</h1>
+    <form>
+      <ul>
+        <li>
+          <label>
+            Title
+            <input type="text" name="photo[title]" id="input-photo-title" class="input-field">
+          </label>
+        </li>
+        <li>
+          <label>
+            Description
+            <input type="text" name="photo[description]" id="input-photo-description" class="input-field">
+          </label>
+        </li>
+        <li>
+          <label class="custom-file-upload">
+            Select Image
+            <input type="file" name="photo[image]" id="input-photo-image">
+          </label>
+        </li>
+
+        <button class="new-photo-save">Save</button>
+      </ul>
+    </form>
+
+</div>

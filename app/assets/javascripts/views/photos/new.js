@@ -1,5 +1,6 @@
 Capstone.Views.PhotosNew = Backbone.View.extend({
   template: JST['photos/new'],
+  className: "photo-add-wrapper",
   events: {
     "submit form": "submit"
   },

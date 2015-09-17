@@ -69,16 +69,10 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
   },
 
   photosNew: function() {
-    var user = new Capstone.Models.CurrentUser();
-    user.fetch();
+    debugger
 
-    var newPhoto = new Capstone.Models.Photo();
-    var photosNew = new Capstone.Views.PhotosNew({
-      model: newPhoto,
-      user: user
-    })
-
-    this._swapView(photosNew);
+    
+    // this._swapView(photosNew);
   },
 
   favoritesIndex: function(id) {

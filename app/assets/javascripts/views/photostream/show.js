@@ -1,6 +1,10 @@
 Capstone.Views.PhotostreamShow = Backbone.CompositeView.extend({
   template: JST['photostream/show'],
   className: "photostream-show",
+  events: {
+    "click .upload-photos-link": "photostreamUpload",
+    "click .exit-photo-form":"returnToPhotostream"
+  },
 
   initialize: function(options) {
     this.user = options.user
@@ -31,5 +35,23 @@ Capstone.Views.PhotostreamShow = Backbone.CompositeView.extend({
 
 
     return this;
+  },
+
+  returnToPhotostream: function() {
+    $("html, body").css("height", "auto");
+    $("html, body").css("overflow", "visible");
+    this.render();
+  },
+
+  photostreamUpload: function(){
+    $("html, body").css("height", "100%");
+    $("html, body").css("overflow", "hidden")
+
+    var newPhoto = new Capstone.Models.Photo();
+    var photosNew = new Capstone.Views.PhotosNew({
+      model: newPhoto,
+      user: this.user
+    })
+    this.$el.append(photosNew.render().el);
   }
 });

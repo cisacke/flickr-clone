@@ -36,3 +36,85 @@
 .photo-show-nav li:last-of-type {
   float:right;
 }
+
+.photo-add-wrapper {
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(160, 160, 160, 0.9);
+  // opacity: 0.9;
+}
+.photo-add-form {
+  border-radius: 5px;
+  width: 400px;
+  height: 400px;
+  position: relative;
+  top: 100px;
+  left: 30%;
+  background: white;
+  font-size: 16px;
+  color: black;
+  border: 2px solid black
+
+  // opacity: 1;
+}
+
+.photo-add-form label {
+  margin: 10px;
+  height: 50px;
+}
+
+.photo-add-form li {
+  height: 50px
+}
+
+.photo-add-form h1 {
+  margin: 15px 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+.photo-add-form input {
+  font-size: 16px;
+  // height: 25px;
+}
+
+form .input-field {
+  border: 1px solid black;
+  font-size: 16px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid black;
+  cursor: pointer;
+  width: 200px;
+  padding: 10px 100px 10px 0;
+  border-radius: 5px;
+}
+
+.new-photo-save {
+  border: 1px solid black;
+  margin: 0 0 0 168px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.exit-photo-form {
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  background: black;
+  position: absolute;
+  color: white;
+  text-align: center;
+  line-height: 30px;
+  font-size: 20px;
+  border-radius: 15px;
+  right: -12px;
+  top: -12px;
+}
