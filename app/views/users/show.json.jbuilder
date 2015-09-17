@@ -18,6 +18,7 @@ json.favorite do
 end
 json.favorite_photos do
   json.array!(@user.favorite.photos) do |photo|
-    json.extract! photo, :id, :title, :description, :image
+    json.extract! photo, :id, :title, :description
+    json.image_url asset_path(photo.image.url(:original))
   end
 end

@@ -11,7 +11,6 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
   },
 
   render: function() {
-    // debugger
     var content = this.template({
       photo: this.model,
       user: this.user
@@ -27,6 +26,5 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
                 photo_id: this.model.id}
     favoritePhoto.save(data);
     $(".add-to-favorites").html("favorited!")
-    debugger
   }
 })
