@@ -11,6 +11,7 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
   },
 
   render: function() {
+    // debugger
     var content = this.template({
       photo: this.model,
       user: this.user
