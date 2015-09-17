@@ -1,8 +1,8 @@
 module Api
   class PhotosController < ApiController
     def show
-      photo = Photo.find(params[:id])
-      render json: photo
+      @photo = Photo.find(params[:id])
+      render :show
     end
 
     def create

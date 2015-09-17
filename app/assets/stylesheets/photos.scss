@@ -8,8 +8,9 @@
 }
 
 .photo-show-image {
-  background-image: url(image_path("dummy-photo.jpg"));
+  // background-image: url(image_path("dummy-photo.jpg"));
   margin: auto;
+  display: block;
   width: 700px;
   height: 500px;
   border-top: 50px solid #242121;
