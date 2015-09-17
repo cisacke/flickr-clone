@@ -11,6 +11,7 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
     this.listenTo(this.user, "sync", this.render)
     this.listenTo(this.favoritePhoto, "sync", this.render)
     this.listenTo(this.model, "sync", this.render)
+    this.listenTo(this.user.favorite().photos(), "sync add", this.render)
   },
 
   render: function() {

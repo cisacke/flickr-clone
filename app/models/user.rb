@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true }
 
   has_many :albums, dependent: :destroy
+  has_many :comments,
+    foreign_key: :author_id,
+    dependent: :destroy
   has_one :photostream, dependent: :destroy
   has_one :favorite, dependent: :destroy
 
