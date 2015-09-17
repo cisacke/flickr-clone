@@ -31,7 +31,7 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
     var that = this;
     this.model.saveFormData(data, {
       success: function() {
-        that.user.photostream().models[0].createPhotostreamAssociation({
+        that.user.photostream().createPhotostreamAssociation({
           photo: that.model
         })
         // var pp = new Capstone.Models.PhotostreamPhoto({photostream_id: that.user.photostream().models[0].id, photo_id: that.model.id});
