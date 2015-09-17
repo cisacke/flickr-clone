@@ -8,5 +8,11 @@ Capstone.Models.Photostream = Backbone.Model.extend({
     }
 
     return resp
+  },
+
+  createPhotostreamAssociation: function(options) {
+    var data = {photostream_id: this.id, photo_id: options.photo.id}
+    var photostreamPhoto = new Capstone.Models.PhotostreamPhoto()
+    photostreamPhoto.save(data);
   }
 })
