@@ -15,6 +15,7 @@
 //= require underscore
 //= require backbone
 //= require capstone
+//= require serializejson
 //= require_tree ./utils
 //= require_tree ../templates
 //= require_tree ./models

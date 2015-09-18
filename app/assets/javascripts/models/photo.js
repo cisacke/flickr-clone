@@ -20,5 +20,22 @@ Capstone.Models.Photo = Backbone.Model.extend({
         options.error && options.error(model, resp, options);
       }
     });
+  },
+
+  comments: function() {
+    if (!this._comments) {
+      this._comments = new Capstone.Collections.Comments([], { photo: this })
+    }
+
+    return this._comments;
+  },
+
+  parse: function(resp) {
+    if (resp.comments) {
+      this.comments().set(resp.comments)
+      delete resp.comments
+    }
+
+    return resp
   }
 });
