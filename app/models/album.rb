@@ -3,4 +3,5 @@ class Album < ActiveRecord::Base
 
   belongs_to :user
   has_many :photos
+  has_many :album_photos, dependent: :destroy
 end
