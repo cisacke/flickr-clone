@@ -9,7 +9,7 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
     this.favoritePhoto = new Capstone.Models.FavoritePhoto()
     this.user = options.user
     this.listenTo(this.user, "sync", this.render)
-    this.listenTo(this.favoritePhoto, "sync", this.render)
+    this.listenTo(this.model, "sync add", this.render)
   },
 
   render: function() {
@@ -23,6 +23,13 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
     } else {
       this.$(".favorite-button").text("add to favorites")
     };
+
+    this.model.comments().each(function(comment) {
+      var commentIndexItem = new Capstone.Views.CommentIndexItem({
+        model: comment
+      })
+      this.addSubview(".photo-comments-wrapper", commentIndexItem);
+    }.bind(this))
 
     var newCommentForm = new Capstone.Views.CommentForm({
       user: this.user,

@@ -27,6 +27,7 @@ Capstone.Views.CommentForm = Backbone.View.extend({
 
     this.newComment.save(data, {success: function() {
       this.model.comments().add(this.model);
+      this.model.fetch();
     }.bind(this)})
   }
 })
