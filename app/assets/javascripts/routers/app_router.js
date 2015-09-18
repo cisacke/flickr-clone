@@ -70,7 +70,10 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
   },
 
   photosNew: function() {
-    debugger
+
+    var newPhotosForm = new Capstone.Views.PhotosForm()
+
+    this._swapView(newPhotosForm);
   },
 
   newAlbum: function() {
