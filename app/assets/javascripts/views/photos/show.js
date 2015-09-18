@@ -24,6 +24,12 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
     } else {
       this.$(".favorite-button").text("add to favorites")
     };
+
+    var newCommentForm = new Capstone.Views.CommentForm({
+      user: this.user
+    });
+    this.addSubview(".new-comment-form", newCommentForm);
+
     return this;
   },
 

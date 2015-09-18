@@ -1,3 +1,69 @@
 // Place all the styles related to the Comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.new-comment-form {
+  float: left;
+  // background: blue;
+  width: 50%;
+
+}
+
+.new-comment-form-index {
+  margin: 10px;
+  // background: yellow;
+}
+
+.comment-form-photo {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  background: gray;
+  margin: 15px 5px 10px 10px;
+  // display: inline;
+  float: left;
+}
+
+// .triangle {
+//   margin-top: 25px;
+//   width: 0;
+//   height: 0x;
+//   // background: black;
+//   float: left;
+//   border-top: 10px solid transparent;
+// 	border-bottom: 10px solid transparent;
+//   border-right:10px solid gray;
+// }
+
+.comment-form {
+  margin: 10px;
+  position: relative;
+  height: 175px;
+  width: 450px;
+}
+
+.comment-form textarea {
+  margin-top: 15px;
+  float: left;
+  width: 350px;
+  height: 100px;
+  border-radius: 5px;
+  position: relative;
+  // border: 2px solid gray;
+}
+
+.comment-form button {
+  position: absolute;
+  right: 30px;
+  bottom: 0;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  background: #03AACC;
+  color: white;
+}

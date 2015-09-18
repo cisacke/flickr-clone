@@ -2,9 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 .photo-show-wrapper {
   width: 100%;
   background: #242121;
+  display: inline-block;
 }
 
 .photo-show-image {
@@ -117,6 +119,11 @@ input[type="file"] {
   border-radius: 15px;
   right: -12px;
   top: -12px;
+}
+
+.photo-show-info {
+  width: 50%;
+  float: left;
 }
 
 .photo-show-info-wrapper {
