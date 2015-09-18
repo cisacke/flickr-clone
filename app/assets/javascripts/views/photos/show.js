@@ -10,8 +10,6 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
     this.user = options.user
     this.listenTo(this.user, "sync", this.render)
     this.listenTo(this.favoritePhoto, "sync", this.render)
-    this.listenTo(this.model, "sync", this.render)
-    this.listenTo(this.user.favorite().photos(), "sync add", this.render)
   },
 
   render: function() {
@@ -19,10 +17,9 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
       photo: this.model,
       user: this.user
     })
-
     this.$el.html(content);
-
     if (this.isFavorited()) {
+      // debugger
       this.$(".favorite-button").text("added to favorites")
     } else {
       this.$(".favorite-button").text("add to favorites")
@@ -31,9 +28,8 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
   },
 
   isFavorited: function() {
-    // included in user's favorites
     var favorited = false
-    this.user.favorite().photos().models.forEach(function(photo){
+    this.user.favorite().photos().each(function(photo){
       if (photo.id == this.model.id) {
         favorited = true
       };
@@ -45,7 +41,10 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
     var data = {favorite_id: this.user.favorite().id,
                 photo_id: this.model.id}
     this.user.favorite().photos().add(this.favoritePhoto);
-
-    this.favoritePhoto.save(data);
+    this.favoritePhoto.save(data, {success: function()
+      {
+        this.user.fetch()
+      }.bind(this)
+    });
   }
 })

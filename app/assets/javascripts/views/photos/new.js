@@ -20,6 +20,8 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
 
   submit: function(e) {
     e.preventDefault();
+    $("html, body").css("height", "auto");
+    $("html, body").css("overflow", "visible");
 
     var title = this.$("#input-photo-title").val();
     var description = this.$("#input-photo-description").val();
@@ -36,9 +38,7 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
           photo: that.model
         });
         that.user.photostream().photos().add(that.model);
-        // debugger
-        // var pp = new Capstone.Models.PhotostreamPhoto({photostream_id: that.user.photostream().models[0].id, photo_id: that.model.id});
-        // pp.save();
+        that.user.fetch();
 
         Backbone.history.navigate("", {trigger: true});
       }

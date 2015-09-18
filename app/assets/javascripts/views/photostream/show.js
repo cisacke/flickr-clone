@@ -13,7 +13,6 @@ Capstone.Views.PhotostreamShow = Backbone.CompositeView.extend({
   },
 
   render: function() {
-
     var content = this.template({
       user: this.user,
       photostream: this.model
