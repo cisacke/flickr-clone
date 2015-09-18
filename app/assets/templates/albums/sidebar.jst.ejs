@@ -1,6 +1,6 @@
-<ul>
+<ul class="album-side-bar-list">
   <% albums.each(function(album) { %>
-    <li>
+    <li data-album-id="<%= album.id %>">
       <%= album.escape("title") %>
     </li>
 

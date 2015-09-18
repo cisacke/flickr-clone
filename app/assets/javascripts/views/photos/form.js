@@ -4,13 +4,17 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
   events: {
     "change #input-photo-image":"fileInputChange",
     "submit form":"submit",
-    "click .preview-photo":"toggleSelector"
+    "click .preview-photo":"toggleSelector",
+    "click .album-side-bar-list li":"assignAlbum"
   },
 
   render: function() {
     var content = this.template()
 
     this.$el.html(content);
+
+    var albumSidebar = new Capstone.Views.AlbumSidebar()
+    this.addSubview(".album-side-bar", albumSidebar)
     return this;
   },
 
@@ -34,6 +38,11 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
         that._updatePreview("");
       };
     }
+  },
+
+  assignAlbum: function(e) {
+    this.$(".selected").attr("data-album_id", $(e.currentTarget).data("album-id"))
+    this.clearOut();
   },
 
   _updatePreview: function(src) {
@@ -72,15 +81,23 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
   },
 
   toggleSelector: function(e) {
+    // reset all js settings first
+    if (!e.shiftKey) {
+      this.clearOut
+    }
+
     // add pink border around the edge
     $(e.currentTarget).find(".preview-photo-thumbnail").css("border", "3px solid #f6546a");
     $(e.currentTarget).css("background", "gray")
     // add a 'selected' class to the element
     $(e.currentTarget).addClass("selected")
     // add an album show view side bar
-    var albumSidebar = new Capstone.Views.AlbumSidebar()
+  },
 
-    this.addSubview(".album-side-bar", albumSidebar)
+  clearOut: function() {
+    this.$(".preview-photo-thumbnail").css("border", "none");
+    this.$("ul").css("background", "white");
+    this.$("ul").removeClass("selected");
   }
 
 })
