@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .new-comment-form {
-  float: left;
+  float: right;
   // background: blue;
   width: 50%;
 
@@ -66,4 +66,36 @@
   font-weight: bold;
   background: #03AACC;
   color: white;
+}
+
+.photo-comments-wrapper {
+  width: 50%;
+  float: left;
+  // max-width: 450px;
+}
+
+.photo-comments-index-item {
+  // background: red;
+  margin: 20px 0;
+  min-width: 300px;
+  // float: left;
+}
+
+.comment-author-photo {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  background-color: gray;
+  float: left;
+  margin: 10px 10px 10px 20px;
+}
+
+.comment-info {
+  float: left;
+  width: 80%;
+
+}
+
+.comment-info p {
+  margin: 5px;
 }
