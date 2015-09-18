@@ -64,18 +64,28 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
     var files = this.$("#input-photo-image")[0].files;
     var titles = this.$(".input-photo-title");
     var descriptions = this.$(".input-photo-description");
+    var albumIds = this.$(".preview-photo");
 
     for (var i = 0; i < files.length; i++) {
+
       var photo = new Capstone.Models.Photo();
       var data = new FormData();
       data.append("photo[title]", $(titles[i]).val());
       data.append("photo[description]", $(descriptions[i]).val());
-      data.append("photo[image]", files[i])
+      data.append("photo[image]", files[i]);
+      var albumId = $(albumIds[i]).data("album_id")
 
       photo.saveFormData(data, {
-        success: function() {
+        success: function(model, resp, options) {
+          debugger
 
-        }
+        if (options.albumId) {
+            var albumPhoto = new Capstone.Models.AlbumPhoto();
+            data = {album_id: options.albumId,
+                    photo_id: model.id}
+            albumPhoto.save(data);
+          }
+        }, albumId: albumId
       })
     }
   },
@@ -83,7 +93,7 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
   toggleSelector: function(e) {
     // reset all js settings first
     if (!e.shiftKey) {
-      this.clearOut
+      this.clearOut();
     }
 
     // add pink border around the edge

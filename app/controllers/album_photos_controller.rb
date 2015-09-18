@@ -9,7 +9,7 @@ module Api
     private
 
       def album_photo_params
-        params.require(:photo_params).permit(:photo_id, :album_id)
+        params.require(:album_photo).permit(:photo_id, :album_id)
       end
   end
 end

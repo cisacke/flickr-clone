@@ -6,6 +6,7 @@ module Api
     end
 
     def create
+      album_id = params[:album_id]
       photo = Photo.create!(photo_params)
       render json: photo
     end
