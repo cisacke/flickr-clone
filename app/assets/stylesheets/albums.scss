@@ -37,3 +37,16 @@
 .album-index-item-info div:first-of-type {
   font-size: 20px;
 }
+
+.new-album {
+  width: 80%;
+  min-width: 900px;
+  margin: auto;
+}
+
+.new-album a {
+  float: right;
+  height: 25px;
+  width: 150px;
+  line-height: 25px;
+}

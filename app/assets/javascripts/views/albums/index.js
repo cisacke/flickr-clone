@@ -7,7 +7,9 @@ Capstone.Views.AlbumIndex = Backbone.CompositeView.extend({
   },
 
   render: function() {
-    var content = this.template({});
+    var content = this.template({
+      user: this.user
+    });
     this.$el.html(content);
 
     var userShow = new Capstone.Views.UserShow({
@@ -25,13 +27,3 @@ Capstone.Views.AlbumIndex = Backbone.CompositeView.extend({
     return this;
   }
 })
-
-
-// this.model.photos().each(function(photo) {
-//   var photoIndexView = new Capstone.Views.PhotoIndexItem({
-//     model: photo,
-//     photostream: this.model,
-//     user: this.user
-//   });
-//   this.addSubview(".photostream-list", photoIndexView);
-// }.bind(this))
