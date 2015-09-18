@@ -1,9 +1,10 @@
-Capstone.Views.PhotosForm = Backbone.View.extend({
+Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
   template: JST['photos/form'],
 
   events: {
     "change #input-photo-image":"fileInputChange",
-    "submit form":"submit"
+    "submit form":"submit",
+    "click .preview-photo":"toggleSelector"
   },
 
   render: function() {
@@ -50,7 +51,7 @@ Capstone.Views.PhotosForm = Backbone.View.extend({
 
   submit: function(e) {
     e.preventDefault();
-    
+
     var files = this.$("#input-photo-image")[0].files;
     var titles = this.$(".input-photo-title");
     var descriptions = this.$(".input-photo-description");
@@ -68,6 +69,18 @@ Capstone.Views.PhotosForm = Backbone.View.extend({
         }
       })
     }
+  },
+
+  toggleSelector: function(e) {
+    // add pink border around the edge
+    $(e.currentTarget).find(".preview-photo-thumbnail").css("border", "3px solid #f6546a");
+    $(e.currentTarget).css("background", "gray")
+    // add a 'selected' class to the element
+    $(e.currentTarget).addClass("selected")
+    // add an album show view side bar
+    var albumSidebar = new Capstone.Views.AlbumSidebar()
+
+    this.addSubview(".album-side-bar", albumSidebar)
   }
 
 })
