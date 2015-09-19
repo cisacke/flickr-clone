@@ -39,3 +39,7 @@
    clear: both;
    display: block;
  }
+
+ #main {
+   height: 100%;
+ }

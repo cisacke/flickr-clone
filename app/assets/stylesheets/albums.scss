@@ -50,3 +50,37 @@
   width: 150px;
   line-height: 25px;
 }
+
+.album-side-bar {
+  border: 2px solid gray;
+  margin: 20px;
+  width: 250px;
+  min-height: 400px;
+  color: white;
+  float: left;
+}
+
+.album-sidebar-list {
+  padding: 10px;
+}
+
+.album-sidebar-list li {
+  margin: 10px 0;
+}
+
+.album-sidebar-list li:hover {
+  background: gray;
+}
+
+.album-sidebar-photo {
+  height: 30px;
+  width: 30px;
+  background: purple;
+  float: left;
+}
+
+.album-sidebar-title {
+  float: left;
+  margin-left: 10px;
+  line-height: 30px;
+}

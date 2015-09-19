@@ -1,7 +1,14 @@
-<ul class="album-side-bar-list">
+<ul class="album-sidebar-list">
+  <p>Add to Album</p>
   <% albums.each(function(album) { %>
-    <li data-album-id="<%= album.id %>">
-      <%= album.escape("title") %>
+    <li data-album-id="<%= album.id %>" class="group">
+      <div class="album-sidebar-photo">
+
+      </div>
+
+      <p class="album-sidebar-title">
+        <%= album.escape("title") %>
+      </p>
     </li>
 
   <%  }) %>

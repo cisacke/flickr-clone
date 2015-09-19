@@ -94,16 +94,17 @@ input[type="file"] {
 .custom-file-upload {
   border: 1px solid black;
   cursor: pointer;
-  width: 200px;
+  margin-top: 10px;
+  margin-left: 20px;
   text-align: center;
-  padding: 10px;
+  padding: 5px 10px;
   border-radius: 5px;
 }
 
 .new-photo-save {
   border: 1px solid black;
   margin: 10px 0 10px 168px;
-  padding: 10px;
+  padding: 5px 10px;
   border-radius: 5px;
 }
 
@@ -199,4 +200,58 @@ input[type="file"] {
 
 #input-photo-description {
   padding: 0 5px;
+}
+
+.new-photos-form {
+  width: 100%;
+  background: black;
+  height: 100%;
+}
+
+.upload-wrapper {
+  width: 80%;
+  min-width: 900px;
+  background: black;
+  margin: auto;
+}
+
+.add-photos-form-wrapper {
+  // width: 100%;
+  background: #d6d6d6;
+  // height: 50px;
+}
+
+.add-photos-form {
+  width: 80%;
+  height: 50px;
+  background-color: #d6d6d6;
+  min-width: 900px;
+  margin: auto;
+}
+
+.add-photos-form label {
+  float: left;
+}
+
+.custom-file-uploads {
+  background: #03AACC;
+  color: white;
+  border: 1px solid black;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 10px 20px;
+}
+
+.new-photos-save {
+  border: 1px solid black;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 10px 20px;
+  float: right;
+}
+
+.preview-photos-wrapper {
+  float: left;
 }

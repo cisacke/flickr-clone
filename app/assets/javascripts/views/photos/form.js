@@ -1,5 +1,6 @@
 Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
   template: JST['photos/form'],
+  className: "new-photos-form",
 
   events: {
     "change #input-photo-image":"fileInputChange",
@@ -19,8 +20,6 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
   },
 
   fileInputChange: function(e) {
-
-    // debugger
     var files = e.currentTarget.files
     for (var i = 0; i < files.length; i++) {
       var file = files[i]
@@ -29,7 +28,6 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
 
       reader.onload = function(e) {
         that._updatePreview(e.target.result)
-        // console.log(e.timeStamp);
       }
 
       if (file) {
@@ -54,7 +52,7 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
 
     previewPhoto.append(thumbnail);
     previewPhoto.append(title);
-    previewPhoto.append(description);    // debugger
+    previewPhoto.append(description);
     this.$el.find(".preview-photos-wrapper").append(previewPhoto);
   },
 
@@ -91,17 +89,13 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
   },
 
   toggleSelector: function(e) {
-    // reset all js settings first
     if (!e.shiftKey) {
       this.clearOut();
     }
 
-    // add pink border around the edge
     $(e.currentTarget).find(".preview-photo-thumbnail").css("border", "3px solid #f6546a");
     $(e.currentTarget).css("background", "gray")
-    // add a 'selected' class to the element
     $(e.currentTarget).addClass("selected")
-    // add an album show view side bar
   },
 
   clearOut: function() {
