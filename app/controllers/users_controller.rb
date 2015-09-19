@@ -17,7 +17,11 @@ class UsersController < ApplicationController
 
   def current_user
     @user = currently_signed_in
-    render :show
+    if @user
+      render :show
+    else
+      render :json => ""
+    end
   end
 
   def show

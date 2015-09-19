@@ -11,15 +11,15 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
 
   initialize: function(options) {
     this.$rootEl = options.$rootEl
+    this.currentUser = options.currentUser
   },
 
   root: function() {
-    var user = new Capstone.Models.CurrentUser()
-    user.fetch();
-    var photostream = user.photostream()
+
+    var photostream = this.currentUser.photostream()
 
     var photostreamShow = new Capstone.Views.PhotostreamShow({
-      user: user,
+      user: this.currentUser,
       model: photostream
     })
 
@@ -30,11 +30,10 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
     var photo = new Capstone.Models.Photo({id: id});
     photo.fetch();
 
-    var user = new Capstone.Models.CurrentUser()
-    user.fetch();
+    var user = this.currentUser;
 
     var photoShow = new Capstone.Views.PhotoShow({
-      user: user,
+      user: this.currentUser,
       model: photo
     })
 

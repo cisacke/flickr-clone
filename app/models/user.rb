@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
     dependent: :destroy
   has_one :photostream, dependent: :destroy
   has_one :favorite, dependent: :destroy
+  has_many :photos, dependent: :destroy
 
   attr_reader :password
   after_initialize :ensure_session_token
