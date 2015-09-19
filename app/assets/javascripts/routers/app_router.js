@@ -11,11 +11,11 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
 
   initialize: function(options) {
     this.$rootEl = options.$rootEl
-    this.currentUser = options.currentUser
+    this.currentUser = Capstone.Models.currentUser;
+    this.currentUser.fetch();
   },
 
   root: function() {
-
     var photostream = this.currentUser.photostream()
 
     var photostreamShow = new Capstone.Views.PhotostreamShow({

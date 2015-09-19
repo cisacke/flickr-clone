@@ -93,9 +93,15 @@
 .comment-info {
   float: left;
   width: 80%;
-
+  position: relative;
 }
 
 .comment-info p {
   margin: 5px;
+}
+
+.delete-comment {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

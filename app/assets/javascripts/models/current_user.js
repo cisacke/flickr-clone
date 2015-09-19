@@ -51,3 +51,5 @@ Capstone.Models.CurrentUser = Backbone.Model.extend({
     return resp
   }
 })
+
+Capstone.Models.currentUser = new Capstone.Models.CurrentUser();

@@ -5,11 +5,9 @@ window.Capstone = {
   Routers: {},
   initialize: function() {
     var $rootEl = $("#main");
-    var currentUser = new Capstone.Models.CurrentUser();
-    currentUser.fetch();
+
     new Capstone.Routers.AppRouter({
-      $rootEl: $rootEl,
-      currentUser: currentUser
+      $rootEl: $rootEl
     });
     Backbone.history.start();
   }

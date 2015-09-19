@@ -3,6 +3,10 @@ Capstone.Views.CommentIndexItem = Backbone.View.extend({
   tagName: "li",
   className: "photo-comments-index-item group",
 
+  events: {
+    "click button":"deleteComment"
+  },
+
   render: function() {
     var content = this.template({
       comment: this.model,
@@ -10,5 +14,10 @@ Capstone.Views.CommentIndexItem = Backbone.View.extend({
     })
     this.$el.html(content);
     return this;
+  },
+
+  deleteComment: function() {
+    this.model.destroy();
+    Backbone.history.navigate("#/photos/" + this.model.escape("photo_id"), {trigger: true})
   }
 })

@@ -12,4 +12,8 @@
   <p>
     <%= comment.escape("body") %>
   </p>
+  <% if (Capstone.Models.currentUser.id == comment.escape("author_id")) { %>
+    <button class="delete-comment"> delete </button>
+  <% } %>
+
 </nav>
