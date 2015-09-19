@@ -28,6 +28,7 @@
  body, html {
    font-family: sans-serif;
    height: 100%;
+   background: black;
  }
 
  ul {
@@ -41,5 +42,5 @@
  }
 
  #main {
-   height: 100%;
+   /*height: 100%;*/
  }

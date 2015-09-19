@@ -5,8 +5,14 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
   events: {
     "change #input-photo-image":"fileInputChange",
     "submit form":"submit",
-    "click .preview-photo":"toggleSelector",
-    "click .album-side-bar-list li":"assignAlbum"
+    "click .preview-photo-thumbnail":"toggleSelector",
+    "click .album-sidebar-list li":"assignAlbum",
+    "scroll": "updateBackground"
+  },
+
+  updateBackground: function() {
+    debugger
+    $(".new-photos-form").css("background", "black")
   },
 
   render: function() {
@@ -48,7 +54,9 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
     var thumbnail = $(document.createElement("img")).addClass("preview-photo-thumbnail")
     thumbnail.attr("src", src);
     var title = $(document.createElement("input")).addClass("input-photo-title");
+    title.attr("placeholder", "title")
     var description = $(document.createElement("textarea")).addClass("input-photo-description")
+    description.attr("placeholder", "description")
 
     previewPhoto.append(thumbnail);
     previewPhoto.append(title);
@@ -75,14 +83,13 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
 
       photo.saveFormData(data, {
         success: function(model, resp, options) {
-          debugger
-
         if (options.albumId) {
             var albumPhoto = new Capstone.Models.AlbumPhoto();
             data = {album_id: options.albumId,
                     photo_id: model.id}
             albumPhoto.save(data);
           }
+        Backbone.history.navigate("#/users/" + Capstone.Models.currentUser.id + "/albums", {trigger: true})
         }, albumId: albumId
       })
     }
@@ -93,15 +100,15 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
       this.clearOut();
     }
 
-    $(e.currentTarget).find(".preview-photo-thumbnail").css("border", "3px solid #f6546a");
-    $(e.currentTarget).css("background", "gray")
+    $(e.currentTarget).css("border", "3px solid #f6546a");
     $(e.currentTarget).addClass("selected")
+
   },
 
   clearOut: function() {
     this.$(".preview-photo-thumbnail").css("border", "none");
-    this.$("ul").css("background", "white");
-    this.$("ul").removeClass("selected");
+    this.$("ul").css("background", "black");
+    this.$("img").removeClass("selected");
   }
 
 })
