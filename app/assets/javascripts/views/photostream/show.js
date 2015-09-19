@@ -45,7 +45,7 @@ Capstone.Views.PhotostreamShow = Backbone.CompositeView.extend({
 
   photostreamUpload: function(){
     $("html, body").css("height", "100%");
-    $("html, body").css("overflow", "hidden")
+    // $("html, body").css("overflow", "hidden")
 
     var newPhoto = new Capstone.Models.Photo();
     var photosNew = new Capstone.Views.PhotosNew({

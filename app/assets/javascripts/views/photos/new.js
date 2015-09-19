@@ -2,6 +2,7 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
   template: JST['photos/new'],
   className: "photo-add-wrapper",
   events: {
+    "change #input-photo-image":"fileInputChange",
     "submit form": "submit"
   },
 
@@ -17,6 +18,28 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
     this.$el.html(content);
     return this;
   },
+
+  fileInputChange: function(e) {
+
+    var that = this;
+    var file = e.currentTarget.files[0];
+    var reader = new FileReader();
+
+    reader.onloadend = function() {
+      that._updatePreview(reader.result);
+    }
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      that._updatePreview("");
+    }
+  },
+
+  _updatePreview: function(src) {
+    this.$el.find(".photostream-thumbnail").attr("src", src);
+  },
+
 
   submit: function(e) {
     e.preventDefault();
