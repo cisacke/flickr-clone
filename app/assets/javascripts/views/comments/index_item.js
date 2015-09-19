@@ -5,9 +5,9 @@ Capstone.Views.CommentIndexItem = Backbone.View.extend({
 
   render: function() {
     var content = this.template({
-      comment: this.model
+      comment: this.model,
+      author: this.author
     })
-
     this.$el.html(content);
     return this;
   }
