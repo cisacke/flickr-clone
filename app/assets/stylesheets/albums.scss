@@ -22,8 +22,15 @@
   position: relative;
   height: 250px;
   width: 250px;
-  background-image: url(image_path("album-photo-dummy.jpg"));
   margin: 20px 40px 10px 0;
+}
+
+.album-index-item-thumbnail {
+  position: absolute;
+  height: 250px;
+  width: 250px;
+  top: 0;
+  left: 0;
 }
 
 .album-index-item-info {
@@ -83,4 +90,13 @@
   float: left;
   margin-left: 10px;
   line-height: 30px;
+}
+
+.album-photo-preview {
+  width: 100px;
+  height: 100px;
+}
+
+.ui-draggable-helper {
+  z-index: 1000;
 }

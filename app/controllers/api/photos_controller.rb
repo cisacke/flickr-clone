@@ -10,6 +10,11 @@ module Api
       render json: photo
     end
 
+    def index
+      @photos = currently_signed_in.photos
+      render :index
+    end
+
     private
 
       def photo_params

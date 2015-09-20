@@ -10,7 +10,7 @@ json.photostream_photos do
 end
 json.albums do
   json.array!(@user.albums) do |album|
-    json.extract! album, :id, :title, :description, :user_id
+    json.extract! album, :id, :title, :description, :user_id, :image_url
   end
 end
 json.favorite do

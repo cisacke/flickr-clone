@@ -70,7 +70,7 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
 
   photosNew: function() {
 
-    var newPhotosForm = new Capstone.Views.PhotosForm()
+    var newPhotosForm = new Capstone.Views.PhotosForm({})
 
     this._swapView(newPhotosForm);
   },
@@ -78,9 +78,12 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
   newAlbum: function() {
     var user = new Capstone.Models.CurrentUser();
     user.fetch();
+    var photos = new Capstone.Collections.Photos();
+    photos.fetch()
 
     var newAlbum = new Capstone.Views.AlbumNew({
-      user: user
+      user: user,
+      collection: photos
     })
 
     this._swapView(newAlbum);

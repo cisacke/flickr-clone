@@ -14,7 +14,7 @@ module Api
     private
 
       def album_params
-        params.require(:album).permit(:title, :description)
+        params.require(:album).permit(:title, :description, :image_url)
       end
   end
 end
