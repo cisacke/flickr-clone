@@ -44,11 +44,3 @@
  #main {
    /*height: 100%;*/
  }
-
- .droppable {
-   height: 100px;
-   width: 100px;
-   background: transparent;
-   border: 2px solid white;
-   position: relative;
- }

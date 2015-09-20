@@ -100,3 +100,17 @@
 .ui-draggable-helper {
   z-index: 1000;
 }
+
+.album-cover-photo-preview {
+  height: 100px;
+  width: 100px;
+  background: transparent;
+  border: 2px solid white;
+  position: relative;
+}
+
+.album-selected-photos {
+  height: 500px;
+  width: 500px;
+  border: 2px solid white;
+}

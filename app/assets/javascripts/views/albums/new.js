@@ -10,12 +10,7 @@ Capstone.Views.AlbumNew = Backbone.CompositeView.extend({
     this.user = options.user
     this.newAlbum = new Capstone.Models.Album()
     this.listenTo(this.user, "sync", this.render)
-    this.listenTo(this, "over", this.callback)
     this.listenTo(this.collection, "sync", this.render)
-  },
-
-  callback: function(event, ui) {
-    // debugger
   },
 
   render: function() {
@@ -39,16 +34,26 @@ Capstone.Views.AlbumNew = Backbone.CompositeView.extend({
        }
        }
     );
-    this.$(".droppable").droppable({
+    this.$(".album-cover-photo-preview").droppable({
       drop: function(event, ui) {
-
         $(this).find("img").remove();
         $(this).append($(ui.helper).clone());
         $(this).find("img").removeClass("ui-draggable-helper")
         $(this).find("img").css("position", "absolute");
         $(this).find("img").css("top", 0);
         $(this).find("img").css("left", 0);
+      }
+    });
 
+    this.$(".album-selected-photos").droppable({
+      drop: function(event, ui) {
+        $(this).append($(ui.helper).clone());
+        $(this).find("img").removeClass("ui-draggable-dragging");
+        $(this).find("img").removeClass("ui-draggable");
+        $(this).find("img").removeAttr("style");
+        $(this).find("img").removeClass("ui-draggable-handle");
+        $(this).find("img").removeClass("ui-draggable-helper");
+        $(this).find("img").css("float", "left");
       }
     });
     return this;
