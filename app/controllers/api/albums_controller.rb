@@ -11,6 +11,11 @@ module Api
 
     end
 
+    def index
+      @albums = currently_signed_in.albums
+      render json: @albums
+    end
+
     private
 
       def album_params

@@ -7,20 +7,21 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
     "submit form":"submit",
     "click .preview-photo":"toggleSelector",
     "click .album-sidebar-list li":"assignAlbum",
-    "scroll": "updateBackground"
   },
 
-  updateBackground: function() {
-    debugger
-    $(".new-photos-form").css("background", "black")
+  initialize: function() {
+    this.albums = new Capstone.Collections.Albums();
+    this.albums.fetch();
+    this.listenTo(this.albums, "sync", this.render)
   },
 
   render: function() {
     var content = this.template()
-
     this.$el.html(content);
 
-    var albumSidebar = new Capstone.Views.AlbumSidebar()
+    var albumSidebar = new Capstone.Views.AlbumSidebar({
+      collection: this.albums
+    })
     this.addSubview(".album-side-bar", albumSidebar)
     return this;
   },
@@ -45,8 +46,11 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
   },
 
   assignAlbum: function(e) {
-    this.$(".selected").attr("data-album_id", $(e.currentTarget).data("album-id"));
-    var miniThumbnail = $(document.createElement("div")).addClass("mini-thumbnail");
+    var albumId = $(e.currentTarget).data("album-id")
+    this.$(".selected").attr("data-album_id", albumId);
+    var album = this.albums.where({id: albumId})
+    var miniThumbnail = $(document.createElement("img")).addClass("mini-thumbnail");
+    miniThumbnail.attr("src", album[0].escape("image_url"))
     this.$(".selected").append(miniThumbnail);
     this.clearOut();
   },

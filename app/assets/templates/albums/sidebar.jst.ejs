@@ -2,9 +2,8 @@
   <p>Add to Album</p>
   <% albums.each(function(album) { %>
     <li data-album-id="<%= album.id %>" class="group">
-      <div class="album-sidebar-photo">
-
-      </div>
+      <img src="<%= album.escape("image_url") %>"
+           class="album-sidebar-photo"/>
 
       <p class="album-sidebar-title">
         <%= album.escape("title") %>
