@@ -5,7 +5,7 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
   events: {
     "change #input-photo-image":"fileInputChange",
     "submit form":"submit",
-    "click .preview-photo-thumbnail":"toggleSelector",
+    "click .preview-photo":"toggleSelector",
     "click .album-sidebar-list li":"assignAlbum",
     "scroll": "updateBackground"
   },
@@ -45,7 +45,9 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
   },
 
   assignAlbum: function(e) {
-    this.$(".selected").attr("data-album_id", $(e.currentTarget).data("album-id"))
+    this.$(".selected").attr("data-album_id", $(e.currentTarget).data("album-id"));
+    var miniThumbnail = $(document.createElement("div")).addClass("mini-thumbnail");
+    this.$(".selected").append(miniThumbnail);
     this.clearOut();
   },
 
@@ -100,15 +102,15 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
       this.clearOut();
     }
 
-    $(e.currentTarget).css("border", "3px solid #f6546a");
+    $(e.currentTarget).find("img").css("border", "3px solid #f6546a");
     $(e.currentTarget).addClass("selected")
 
   },
 
   clearOut: function() {
-    this.$(".preview-photo-thumbnail").css("border", "none");
+    $("img").css("border", "none");
     this.$("ul").css("background", "black");
-    this.$("img").removeClass("selected");
+    this.$("ul").removeClass("selected");
   }
 
 })

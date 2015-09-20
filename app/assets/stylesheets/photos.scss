@@ -259,21 +259,21 @@ input[type="file"] {
 
 .preview-photos-wrapper {
   float: left;
-  max-width: 800px;
+  max-width: 820px;
   padding: 10px;
   margin-top: 20px;
 }
 
 .preview-photo {
   float: left;
-  height: 220px;
+  height: 250px;
   width: 200px;
   position: relative;
 }
 
 .input-photo-description {
   position: absolute;
-  bottom: 15px;
+  bottom: 55px;
   left: 0;
   left: 25px;
   width: 150px;
@@ -290,7 +290,7 @@ input[type="file"] {
   height: 20px;
   width: 150px;
   position: absolute;
-  bottom: 60px;
+  bottom: 100px;
   left: 25px;
   background: black;
   padding: 2px;
@@ -298,4 +298,13 @@ input[type="file"] {
 
 ::-webkit-input-placeholder {
   color: white;
+}
+
+.mini-thumbnail {
+  height: 30px;
+  width: 30px;
+  background: yellow;
+  position: absolute;
+  bottom: 15px;
+  left: 25px;
 }
