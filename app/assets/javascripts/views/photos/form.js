@@ -46,9 +46,11 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
   },
 
   assignAlbum: function(e) {
+    this.$(".selected").find(".mini-thumbnail").remove();
+
     var albumId = $(e.currentTarget).data("album-id")
     this.$(".selected").attr("data-album_id", albumId);
-    var album = this.albums.where({id: albumId})
+    var album = this.albums.where({id: albumId});
     var miniThumbnail = $(document.createElement("img")).addClass("mini-thumbnail");
     miniThumbnail.attr("src", album[0].escape("image_url"))
     this.$(".selected").append(miniThumbnail);
@@ -106,7 +108,7 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
       this.clearOut();
     }
 
-    $(e.currentTarget).find("img").css("border", "3px solid #f6546a");
+    $(e.currentTarget).find(".preview-photo-thumbnail").css("border", "3px solid #f6546a");
     $(e.currentTarget).addClass("selected")
 
   },

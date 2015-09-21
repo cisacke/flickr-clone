@@ -16,6 +16,11 @@ module Api
       render json: @albums
     end
 
+    def show
+      @album = Album.find(params[:id])
+      render :show
+    end
+
     private
 
       def album_params

@@ -1,8 +1,8 @@
 <li class="album-index-item-photo">
+<a href="#/albums/<%= album.id %>"><img src="<%= album.escape("image_url")%>"
+     alt="album-cover-photo"
+     class="album-index-item-thumbnail" /></a>
 
-  <img src="<%= album.escape("image_url")%>"
-       alt="album-cover-photo"
-       class="album-index-item-thumbnail" />
   <nav class="album-index-item-info">
     <div>
       <%=album.escape("title")%>

@@ -16,7 +16,7 @@
   margin: auto;
 }
 
-.user-photo-nav li {
+.user-photo-nav a {
   font-size: 16px;
   color: white;
   float: left;
@@ -46,6 +46,8 @@
 
 .photostream-wrapper {
   width: 100%;
+  background: #d6d6d6;
+  min-height: 600px;
   // background: yellow;
 }
 
