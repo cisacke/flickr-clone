@@ -11,6 +11,7 @@ Capstone.Views.AlbumNew = Backbone.CompositeView.extend({
     this.newAlbum = new Capstone.Models.Album()
     this.listenTo(this.user, "sync", this.render)
     this.listenTo(this.collection, "sync", this.render)
+    this._ids = []
   },
 
   render: function() {
@@ -47,20 +48,25 @@ Capstone.Views.AlbumNew = Backbone.CompositeView.extend({
 
     this.$(".album-selected-photos").droppable({
       drop: function(event, ui) {
-        $(this).append($(ui.helper).clone());
-        $(this).find("img").removeClass("ui-draggable-dragging");
-        $(this).find("img").removeClass("ui-draggable");
-        $(this).find("img").removeAttr("style");
-        $(this).find("img").removeClass("ui-draggable-handle");
-        $(this).find("img").removeClass("ui-draggable-helper");
-        $(this).find("img").css("float", "left");
-      }
+        var photoId = $(ui.helper).data("photo-id");
+        if (this._ids.indexOf(photoId) === -1) {
+          this._ids.push(photoId);
+          $(event.target).append($(ui.helper).clone());
+          $(event.target).find("img").removeAttr("style");
+          $(event.target).find("img").removeClass("ui-draggable-helper");
+          $(event.target).find("img").css("float", "left");
+        } else {
+          // duplicate photo in album
+        }
+
+      }.bind(this)
     });
     return this;
   },
 
   createNewAlbum: function(e) {
     e.preventDefault();
+    debugger
     var data = $(e.currentTarget).serializeJSON();
     data.album.image_url = $(this.el).find(".droppable").find("img").attr("src");
 
