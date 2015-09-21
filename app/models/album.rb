@@ -3,6 +3,6 @@ class Album < ActiveRecord::Base
 
   belongs_to :user
   has_many :photos, through: :album_photos, source: :photo
-  has_many :album_photos, dependent: :destroy
+  has_many :album_photos, dependent: :destroy, inverse_of: :album
 
 end

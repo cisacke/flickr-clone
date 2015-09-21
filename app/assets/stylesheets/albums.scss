@@ -110,7 +110,73 @@
 }
 
 .album-selected-photos {
-  height: 500px;
-  width: 500px;
+  height: 536px;
+  min-width: 620px;
   border: 2px solid white;
+  float: left;
+  background: #ccc;
+  margin: 0 10px;
+}
+
+.new-album-wrapper {
+  background: white;
+}
+
+.new-album-eighty {
+  // background: yellow;
+  width: 80%;
+  min-width: 900px;
+  margin: auto;
+  padding-top: 20px;
+}
+
+.new-album-form-preview {
+  width: 200px;
+  background: #ccc;
+  float: left;
+  padding: 20px;
+  border: 1px solid white;
+}
+
+.new-album-form input,
+.new-album-form textarea {
+  margin-top: 20px;
+  width: 200px;
+  border-radius: 5px;
+}
+
+.new-album-form textarea {
+  height: 275px;
+}
+
+.new-album-form button {
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 5px;
+  background: white;
+}
+
+.new-album-form {
+
+}
+
+.photos-index {
+  height: 120px;
+  border: 3px solid black;
+  width: 840px;
+  overflow: hidden;
+  margin-top: 20px;
+
+  // background: orange;
+  // border: 5px solid black;
+}
+
+.photos-index img {
+  display: block;
+  float: left;
+  margin: 10px;
+
+}
+
+.photos-index-container {
 }

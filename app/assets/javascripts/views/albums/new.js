@@ -1,5 +1,6 @@
 Capstone.Views.AlbumNew = Backbone.CompositeView.extend({
   template: JST['albums/new'],
+  className: "new-album-wrapper",
 
   events: {
     "submit form":"createNewAlbum",
@@ -68,7 +69,8 @@ Capstone.Views.AlbumNew = Backbone.CompositeView.extend({
     e.preventDefault();
     debugger
     var data = $(e.currentTarget).serializeJSON();
-    data.album.image_url = $(this.el).find(".droppable").find("img").attr("src");
+    data.album.image_url = $(this.el).find(".album-cover-photo-preview").find("img").attr("src");
+    data.album.photo_ids = this._ids;
 
     this.newAlbum.save(data, {success: function() {
       this.user.albums().add(this.newAlbum)

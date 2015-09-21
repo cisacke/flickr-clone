@@ -1,26 +1,35 @@
-<h1>new album!</h1>
-<%= user.escape("f_name") %>
-<form>
-  <input type="text" name="album[title]" placeholder="new album">
-  <br>
-  <textarea name="album[description]" rows="8" cols="40">
+<div class="new-album-eighty">
+  <main class="new-album-form-and-photos group">
 
-  </textarea>
+    <nav class="new-album-form-preview">
+      <div class="album-cover-photo-preview">
 
-  <br>
-  <button>Save</button>
+      </div>
+
+      <form class="new-album-form">
+        <input type="text" name="album[title]" placeholder="title">
+        <br>
+        <textarea name="album[description]" rows="8" cols="40">
+
+        </textarea>
+
+        <br>
+        <button>Save</button>
+
+      </form>
+    </nav>
+
+    <div class="album-selected-photos group">
+
+    </div>
+  </main>
 
 
-</form>
+  <div class="photos-index">
 
-<div class="photos-index">
+  </div>
 
-</div>
 
-<div class="album-cover-photo-preview">
 
-</div>
-
-<div class="album-selected-photos group">
 
 </div>
