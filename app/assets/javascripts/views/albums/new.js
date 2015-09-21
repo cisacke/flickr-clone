@@ -4,7 +4,8 @@ Capstone.Views.AlbumNew = Backbone.CompositeView.extend({
 
   events: {
     "submit form":"createNewAlbum",
-    "drop .droppable":"callback"
+    "click .click-left": "clickLeft",
+    "click .click-right": "clickRight"
   },
 
   initialize: function(options) {
@@ -13,6 +14,29 @@ Capstone.Views.AlbumNew = Backbone.CompositeView.extend({
     this.listenTo(this.user, "sync", this.render)
     this.listenTo(this.collection, "sync", this.render)
     this._ids = []
+    this._margin = 0
+    this._photos = 0
+  },
+
+  clickLeft: function(e) {
+    if (this._margin < 0) {
+      // debugger
+      var margin = this._margin + 720
+      this._margin = margin
+      this.$(".photos-index-container").css("margin-left", margin);
+    }
+  },
+
+  clickRight: function(e) {
+    this._photos = Math.floor((this.$(".photos-index-container").find("img").length) / 7)
+    // debugger
+    var margin = this._margin - 720
+    this._margin = margin
+    if ((this._photos * -720) <= this._margin ) {
+      this.$(".photos-index-container").css("margin-left", margin);
+    } else {
+      this._margin += 720
+    }
   },
 
   render: function() {
@@ -38,13 +62,22 @@ Capstone.Views.AlbumNew = Backbone.CompositeView.extend({
     );
     this.$(".album-cover-photo-preview").droppable({
       drop: function(event, ui) {
-        $(this).find("img").remove();
-        $(this).append($(ui.helper).clone());
-        $(this).find("img").removeClass("ui-draggable-helper")
-        $(this).find("img").css("position", "absolute");
-        $(this).find("img").css("top", 0);
-        $(this).find("img").css("left", 0);
-      }
+        var photo = $(ui.helper).clone();
+        if (this._ids.indexOf($(photo).data("photo-id")) === -1 ) {
+          this._ids.push($(photo).data("photo-id"));
+          $(photo).removeAttr("style");
+          $(photo).css("float", "left");
+          $(photo).css("padding", "10px");
+          $(this.el).find(".album-selected-photos").append(photo);
+        }
+
+        $(event.target).find("img").remove();
+        $(event.target).append($(ui.helper).clone());
+        $(event.target).find("img").removeClass("ui-draggable-helper")
+        $(event.target).find("img").css("position", "absolute");
+        $(event.target).find("img").css("top", 0);
+        $(event.target).find("img").css("left", 0);
+      }.bind(this)
     });
 
     this.$(".album-selected-photos").droppable({
@@ -56,6 +89,7 @@ Capstone.Views.AlbumNew = Backbone.CompositeView.extend({
           $(event.target).find("img").removeAttr("style");
           $(event.target).find("img").removeClass("ui-draggable-helper");
           $(event.target).find("img").css("float", "left");
+          $(event.target).find("img").css("padding", "10px")
         } else {
           // duplicate photo in album
         }
