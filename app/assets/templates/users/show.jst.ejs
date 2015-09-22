@@ -1,3 +1,4 @@
+<img src="<%= user.escape("cover") %>" alt="cover photo" class="user-cover-pic"/>
 
   <li class="user-info group">
     <div class="user-profile-pic"></div>
@@ -13,10 +14,12 @@
   <li class="user-stats">
     # photos | joined 2015
   </li>
-  <div class="change-cover-photo group">
-    <label class="custom-file-upload">
-      Edit
-      <input type="file" name="user[cover]" id="input-photo-image"
-             class="change-cover-photo-button">
-    </label>
-  </div>
+  <% if (edit === true) { %>
+    <div class="change-cover-photo group">
+      <label class="custom-file-upload">
+        Edit
+        <input type="file" name="user[cover]" id="input-photo-image"
+               class="change-cover-photo-button">
+      </label>
+    </div>
+  <%  } %>

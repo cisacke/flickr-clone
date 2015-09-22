@@ -12,6 +12,12 @@ class User < ActiveRecord::Base
   has_one :favorite, dependent: :destroy
   has_many :photos, dependent: :destroy
 
+  has_attached_file :cover, default_url: "missing.png"
+  validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/
+
+  has_attached_file :avatar, default_url: "missing.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
   attr_reader :password
   after_initialize :ensure_session_token
 

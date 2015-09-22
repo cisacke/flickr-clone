@@ -46,14 +46,19 @@
   min-width: 900px;
   height: 300px;
   margin: auto;
-  background: yellow;
+  background: transparent;
+}
+
+.user-cover-pic {
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
 }
 
 .user-info {
   position: absolute;
   height: 100px;
   width: 400px;
-  background: gray;
   bottom: 5px;
   left: 5px;
 }

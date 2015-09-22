@@ -1,4 +1,7 @@
 json.extract!(@user, :f_name, :l_name, :email, :id)
+json.avatar json.image_url asset_path(@user.avatar.url(:original))
+json.cover json.image_url asset_path(@user.cover.url(:original))
+
 json.photostream do
   json.extract!(@user.photostream, :id, :user_id)
 end

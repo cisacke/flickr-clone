@@ -29,10 +29,19 @@ class UsersController < ApplicationController
     render :show
   end
 
+  def update
+    @user = currently_signed_in
+    if @user.update(user_params)
+      render json: @user
+    else
+      render :json => "error"
+    end
+  end
+
   private
 
     def user_params
-      params.require(:user).permit(:f_name, :l_name, :email, :password)
+      params.require(:user).permit(:f_name, :l_name, :email, :password, :avatar, :cover)
     end
 
 end

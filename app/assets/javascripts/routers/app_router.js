@@ -21,7 +21,8 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
 
     var photostreamShow = new Capstone.Views.PhotostreamShow({
       user: this.currentUser,
-      model: photostream
+      model: photostream,
+      edit: true
     })
 
     this._swapView(photostreamShow);
@@ -61,7 +62,8 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
 
     var photostreamShow = new Capstone.Views.PhotostreamShow({
       user: user,
-      model: photostream
+      model: photostream,
+      edit: false
     })
 
     this._swapView(photostreamShow);
