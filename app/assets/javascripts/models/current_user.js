@@ -71,6 +71,14 @@ Capstone.Models.CurrentUser = Backbone.Model.extend({
       }
     });
   },
+
+  favoritePhotos: function() {
+    if (!this._favoritePhotos) {
+      this._favoritePhotos = new Capstone.Collections.FavoritePhotos([], { favoritePhoto: this })
+    }
+
+    return this._favoritePhotos;
+  }
 })
 
 Capstone.Models.currentUser = new Capstone.Models.CurrentUser();

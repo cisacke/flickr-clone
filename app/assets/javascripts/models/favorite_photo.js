@@ -1,3 +1,3 @@
 Capstone.Models.FavoritePhoto = Backbone.Model.extend({
-  url: "api/favorite_photos"
+  urlRoot: "/api/favorite_photos"
 })
