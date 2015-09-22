@@ -36,19 +36,17 @@
 }
 
 .user-show {
-  background: gray;
-  height: 200px;
+  height: 300px;
   width: 100%;
 }
 
 .user-show-bar {
-  background: gray;
   position: relative;
   width: 80%;
   min-width: 900px;
-  height: 200px;
+  height: 300px;
   margin: auto;
-  // min-width: 700px;
+  background: yellow;
 }
 
 .user-info {
@@ -98,4 +96,31 @@
   height: 25px;
   line-height: 25px;
   text-align: right;
+}
+
+.change-cover-photo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 360px;
+  height: 160px;
+  background: transparent;
+  padding: 20px;
+}
+
+.change-cover-photo label {
+  border: 2px solid black;
+  width: 60px;
+  font-size: 22px;
+  float: right;
+  padding: 5px;
+  text-align: center;
+  color: white;
+  background: black;
+  letter-spacing: 2px;
+  display: none;
+}
+
+.change-cover-photo:hover label{
+  display: block;
 }

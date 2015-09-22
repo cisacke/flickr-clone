@@ -1,14 +1,22 @@
-<li class="user-info group">
-  <div class="user-profile-pic"></div>
-  <h3><%= user.escape("f_name") %> <%= user.escape("l_name") %></h3>
-</li>
-<a class="upload-album-photos-link"
-   href="#/photos/new">
-  add photos to albums
-</a>
-<li class="upload-photos-link">
-  add to photostream
-</li>
-<li class="user-stats">
-  # photos | joined 2015
-</li>
+
+  <li class="user-info group">
+    <div class="user-profile-pic"></div>
+    <h3><%= user.escape("f_name") %> <%= user.escape("l_name") %></h3>
+  </li>
+  <a class="upload-album-photos-link"
+     href="#/photos/new">
+    add photos to albums
+  </a>
+  <li class="upload-photos-link">
+    add to photostream
+  </li>
+  <li class="user-stats">
+    # photos | joined 2015
+  </li>
+  <div class="change-cover-photo group">
+    <label class="custom-file-upload">
+      Edit
+      <input type="file" name="user[cover]" id="input-photo-image"
+             class="change-cover-photo-button">
+    </label>
+  </div>

@@ -43,12 +43,15 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
 
   submit: function(e) {
     e.preventDefault();
+
     $("html, body").css("height", "auto");
     $("html, body").css("overflow", "visible");
 
     var title = this.$("#input-photo-title").val();
     var description = this.$("#input-photo-description").val();
     var file = this.$("#input-photo-image")[0].files[0];
+    // var xhr = new XMLHttpRequest();
+    // if (xhr.upload && file.type)
 
     var data = new FormData();
     data.append("photo[title]", title);
