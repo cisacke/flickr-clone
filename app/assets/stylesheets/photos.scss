@@ -26,6 +26,14 @@
   height: 50px;
 }
 
+.photo-show-nav ul {
+  width: 80%;
+  min-width: 900px;
+  background: #242121;
+  margin: auto;
+  height: 50px;
+}
+
 .photo-show-nav li {
   padding: 10px 30px;
   height: 30px;
@@ -135,8 +143,17 @@ input[type="file"] {
 
 .photo-show-eighty {
   width: 80%;
-  max-width: 900px;
+  min-width: 900px;
   margin: auto;
+  background: white;
+  min-height: 200px;
+}
+
+.photo-show-eighty-wrapper {
+  width: 80%;
+  min-width: 900px;
+  margin: auto;
+  background: #242121;
 }
 
 .photo-show-profile-pic, .photo-show-info ul {

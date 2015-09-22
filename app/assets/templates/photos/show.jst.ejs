@@ -1,39 +1,40 @@
+<div class="photo-show-eighty-wrapper">
+  <img class="photo-show-image"
+        src="<%=photo.escape("image_url")%>"/>
+</div>
 
-<img class="photo-show-image"
-      src="<%=photo.escape("image_url")%>"/>
-
-<nav class="photo-show-nav group">
-  <ul>
-    <li>back to photostream</li>
-    <li class="favorite-button"></li>
-  </ul>
-</nav>
-
-<div class="photo-show-info-wrapper">
-  <div class="photo-show-eighty group">
-    <div class="photo-show-info group">
-
-      <div class="photo-show-profile-pic">
-      </div>
-
-      <ul>
-        <li>
-          <%= photo.escape("f_name") %> <%= photo.escape("l_name") %>
-          <button class="follow-button">+ follow</button>
-        </li>
-        <li>
-          <%= photo.escape("title") %>
-        </li>
-        <li>
-          <%= photo.escape("description") %>
-        </li>
-      </ul>
-    </div>
-    <ul class="photo-comments-wrapper group">
-
+  <nav class="photo-show-nav group">
+    <ul>
+      <li>back to photostream</li>
+      <li class="favorite-button"></li>
     </ul>
-    <div class="new-comment-form group">
+  </nav>
 
+  <div class="photo-show-info-wrapper">
+    <div class="photo-show-eighty group">
+      <div class="photo-show-info group">
+
+        <div class="photo-show-profile-pic">
+        </div>
+
+        <ul>
+          <li>
+            <%= photo.escape("f_name") %> <%= photo.escape("l_name") %>
+            <button class="follow-button">+ follow</button>
+          </li>
+          <li>
+            <%= photo.escape("title") %>
+          </li>
+          <li>
+            <%= photo.escape("description") %>
+          </li>
+        </ul>
+      </div>
+      <ul class="photo-comments-wrapper group">
+
+      </ul>
+      <div class="new-comment-form group">
+
+      </div>
     </div>
   </div>
-</div>

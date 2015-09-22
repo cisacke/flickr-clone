@@ -1,3 +1,31 @@
 // Place all the styles related to the FavoritePhotos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.favorite-index-item {
+  background: #d6d6d6;
+  min-height: 600px;
+  width: 80%;
+  min-width: 900px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.favorite-wrapper {
+  background: #d6d6d6;
+  width: 100%;
+}
+
+#main {
+  width: 100%;
+  background: #d6d6d6;
+}
+
+.favorite-index-item img {
+  max-height: 300px;
+  max-width: 200px;
+}
+
+.favorite-index-item div {
+  float: left;
+}

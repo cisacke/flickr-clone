@@ -81,6 +81,12 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
     var albumIds = this.$(".preview-photo");
 
     for (var i = 0; i < files.length; i++) {
+      // var xhr = new XMLHttpRequest();
+      // if (xhr.upload && files[i].type == "image/jpeg") {
+      //   var o = $id("progress");
+      //   var progress = o.appendChild(document.createElement("p"));
+      //   progress.appendChild(document.createTextNode("upload " + file.name));
+      // }
 
       var photo = new Capstone.Models.Photo();
       var data = new FormData();

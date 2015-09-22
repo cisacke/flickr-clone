@@ -4,7 +4,8 @@
   </h3>
 
   <div class="album-show-cover-photo">
-    <img src="<%= album.escape("image_url") %>" alt="" />
+    <img src="<%= album.escape("image_url") %>" alt=""
+          class="album-show-cover-image"/>
     <div>
 
     </div>
@@ -14,7 +15,8 @@
   <ul class="group">
     <% if(album.get("photos")) { %>
       <% album.get("photos").forEach(function(photo) { %>
-        <li><img src="<%= photo.image_url %>" alt="album-photo" /></li>
+        <li><a href="#/photos/<%= photo.id %>"><img src="<%= photo.image_url %>" alt="album-photo"
+                 class="album-show-photo-image"/></a></li>
       <% }) %>
     <%  } %>
   </ul>
