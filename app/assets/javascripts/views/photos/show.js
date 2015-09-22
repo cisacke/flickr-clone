@@ -51,8 +51,16 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
 
   toggleFavorites: function(e) {
     if (!$(e.currentTarget).hasClass("toggling")) {
-      // debugger
+      debugger
+
+      if (this.model.escape("is_favorite") === "true") {
+        debugger
+      }
+
+
+
       if (this.isFavorited()) {
+        debugger
         $(e.currentTarget).addClass("toggling");
         var delFavoritePhoto = this.user.favoritePhotos().findWhere({photo_id: this.model.id});
         this.user.favoritePhotos().remove(delFavoritePhoto);
@@ -64,13 +72,14 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
         })
 
       } else {
+        debugger
         $(e.currentTarget).addClass("toggling");
         var favoritePhoto = new Capstone.Models.FavoritePhoto()
         var data = {favorite_id: this.user.favorite().id,
                     photo_id: this.model.id}
         // this.user.favorite().photos().add(this.favoritePhoto);
         favoritePhoto.save(data, {success: function(model, resp, options) {
-            this.user.favoritePhotos().set(model);
+            this.user.favoritePhotos().add(model);
             this.user.fetch();
             $(e.currentTarget).removeClass("toggling");
           }.bind(this)

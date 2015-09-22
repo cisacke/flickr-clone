@@ -18,6 +18,7 @@ module Api
 
     def show
       @album = Album.find(params[:id])
+      
       render :show
     end
 
