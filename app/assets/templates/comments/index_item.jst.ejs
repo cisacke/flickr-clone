@@ -1,7 +1,7 @@
 <!-- inside the <li> item -->
 
 <div class="comment-author-photo">
-
+  <img src="<%= comment.escape("author_avatar") %>" alt="author comment photo" />
 </div>
 
 <nav class="comment-info">
@@ -13,7 +13,11 @@
     <%= comment.escape("body") %>
   </p>
   <% if (Capstone.Models.currentUser.id == comment.escape("author_id")) { %>
-    <button class="delete-comment"> delete </button>
+    <button class="delete-comment">
+      <div>
+
+      </div>
+    </button>
   <% } %>
 
 </nav>

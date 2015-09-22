@@ -18,9 +18,9 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
     })
     this.$el.html(content);
     if (this.isFavorited()) {
-      this.$(".favorite-button").text("added to favorites")
+      this.$(".favorite-button-pic").addClass("favorited")
     } else {
-      this.$(".favorite-button").text("add to favorites")
+      this.$(".favorite-button-pic").addClass("add-to-favorites")
     };
 
     this.model.comments().each(function(comment) {

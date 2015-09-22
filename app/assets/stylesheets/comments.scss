@@ -22,18 +22,13 @@
   margin: 15px 5px 10px 10px;
   // display: inline;
   float: left;
+  overflow: hidden;
 }
 
-// .triangle {
-//   margin-top: 25px;
-//   width: 0;
-//   height: 0x;
-//   // background: black;
-//   float: left;
-//   border-top: 10px solid transparent;
-// 	border-bottom: 10px solid transparent;
-//   border-right:10px solid gray;
-// }
+.comment-form-photo img {
+  height: 100%;
+  width: 100%;
+}
 
 .comment-form {
   margin: 10px;
@@ -85,9 +80,14 @@
   height: 30px;
   width: 30px;
   border-radius: 15px;
-  background-color: gray;
   float: left;
   margin: 10px 10px 10px 20px;
+  overflow: hidden;
+}
+
+.comment-author-photo img {
+  width: 100%;
+  height: 100%;
 }
 
 .comment-info {
@@ -101,7 +101,24 @@
 }
 
 .delete-comment {
+  width: 25px;
+  height: 25px;
   position: absolute;
   top: 0;
   right: 0;
+  background: white;
+}
+
+.delete-comment div {
+  background: url(image_path("trash.png"));
+  background-color: white;
+  background-size: 100% auto;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  display: none;
+}
+
+.photo-comments-index-item:hover div {
+  display: block;
 }

@@ -5,8 +5,12 @@
 
   <nav class="photo-show-nav group">
     <ul>
-      <li>back to photostream</li>
-      <li class="favorite-button"></li>
+      <li><a href="#">back to photostream</a></li>
+      <li class="favorite-button">
+        <div class="favorite-button-pic">
+
+        </div>
+      </li>
     </ul>
   </nav>
 
@@ -15,6 +19,7 @@
       <div class="photo-show-info group">
 
         <div class="photo-show-profile-pic">
+          <img src="<%= photo.escape("author_avatar") %>" alt="profile pic"/>
         </div>
 
         <ul>
