@@ -4,6 +4,13 @@
     <li class="logo">
       <a href="#">pixie</a>
     </li>
+    <div class="upload">
+      <a class="upload-album-photos-link"
+         href="#/photos/new">
+        Upload
+      </a>
+
+    </div>
     <form action="<%= session_url %>" method="post">
       <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
       <input type="hidden" name="_method" value="delete">

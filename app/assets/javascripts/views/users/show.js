@@ -4,7 +4,8 @@ Capstone.Views.UserShow = Backbone.View.extend({
   className: "user-show-bar",
 
   events: {
-    "change #input-photo-image":"updateCoverPhoto"
+    "change #input-photo-image":"updateCoverPhoto",
+    "change #input-user-avatar":"updateAvatar"
   },
 
   initialize: function(options) {
@@ -30,6 +31,22 @@ Capstone.Views.UserShow = Backbone.View.extend({
 
     var data = new FormData();
     data.append("user[cover]", file);
+    var that = this;
+    this.model.saveCoverPhoto(data, {
+      success: function() {
+        that.model.fetch();
+        Backbone.history.navigate("", {trigger: true});
+      }
+    });
+  },
+
+  updateAvatar: function(e) {
+    e.preventDefault();
+
+    var file = this.$("#input-user-avatar")[0].files[0];
+
+    var data = new FormData();
+    data.append("user[avatar]", file);
     var that = this;
     this.model.saveCoverPhoto(data, {
       success: function() {

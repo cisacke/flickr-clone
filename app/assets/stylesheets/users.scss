@@ -36,7 +36,7 @@
 }
 
 .user-show {
-  height: 300px;
+  height: 250px;
   width: 100%;
 }
 
@@ -44,53 +44,68 @@
   position: relative;
   width: 80%;
   min-width: 900px;
-  height: 300px;
+  height: 250px;
   margin: auto;
   background: transparent;
+  overflow: hidden;
 }
 
 .user-cover-pic {
   width: 100%;
-  height: 100%;
-  opacity: 0.8;
 }
 
 .user-info {
   position: absolute;
   height: 100px;
   width: 400px;
-  bottom: 5px;
-  left: 5px;
+  bottom: 15px;
+  left: 15px;
 }
 
 .user-info .user-profile-pic {
-  height: 80px;
-  width: 80px;
-  margin: 10px;
-  border-radius: 40px;
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
   float: left;
-  background-image: url(image_path("default-profile.jpg"));
+  overflow: hidden;
+  // background-image: url(image_path("default-profile.jpg"));
+}
+
+.user-profile-pic img {
+  width: 100%;
+  height: 100%;
+}
+
+.user-profile-pic {
+  position: relative;
 }
 
 .user-info > h3 {
-  margin: 10px 0;
+  margin: 10px;
   float: left;
-  font-size: 30px;
+  font-size: 32px;
+  color: white;
+  text-shadow: 1px 1px 3px black;
 }
 
-.upload-photos-link {
-  cursor: pointer;
+.upload {
   position: absolute;
+  right: 120px;
+  top: 15px;
+}
+
+li.upload-photos-link {
+  cursor: pointer;
   height: 25px;
-  bottom: 30px;
-  right: 20px;
+  color: black;
+  float: right;
+  width: 150px;
+  padding: 20px;
 }
 
 .upload-album-photos-link {
-  position: absolute;
   height: 25px;
-  bottom: 55px;
-  right: 20px;
+  color: white;
 }
 
 .user-stats {
@@ -108,7 +123,7 @@
   top: 0;
   right: 0;
   width: 360px;
-  height: 160px;
+  height: 120px;
   background: transparent;
   padding: 20px;
 }
@@ -126,6 +141,21 @@
   display: none;
 }
 
-.change-cover-photo:hover label{
+.change-cover-photo:hover label.custom-file-upload {
   display: block;
+}
+
+.user-profile-pic label {
+  background: black;
+  color: white;
+  padding: 0 2px;
+  margin: 0;
+  position: absolute;
+  top: 5px;
+  left: 30px;
+  display: none;
+}
+
+.user-profile-pic:hover label {
+  display: inline;
 }

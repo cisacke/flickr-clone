@@ -1,16 +1,19 @@
 <img src="<%= user.escape("cover") %>" alt="cover photo" class="user-cover-pic"/>
 
   <li class="user-info group">
-    <div class="user-profile-pic"></div>
+    <div class="user-profile-pic">
+      <img src="<%= user.escape("avatar") %>" alt="user avatar" />
+      <% if (edit) { %>
+        <label class="custom-file-upload">
+          edit
+          <input type="file" name="user[avatar]" id="input-user-avatar"
+                 class="change-avatar-button">
+        </label>
+      <%  } %>
+    </div>
     <h3><%= user.escape("f_name") %> <%= user.escape("l_name") %></h3>
   </li>
-  <a class="upload-album-photos-link"
-     href="#/photos/new">
-    add photos to albums
-  </a>
-  <li class="upload-photos-link">
-    add to photostream
-  </li>
+
   <li class="user-stats">
     # photos | joined 2015
   </li>
@@ -21,5 +24,6 @@
         <input type="file" name="user[cover]" id="input-photo-image"
                class="change-cover-photo-button">
       </label>
+
     </div>
   <%  } %>
