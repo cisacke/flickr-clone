@@ -41,9 +41,19 @@ Capstone.Views.AlbumNew = Backbone.CompositeView.extend({
   removePhotoPreview: function(e) {
     var id = $(e.currentTarget).data("photo-id");
     var idx = this._ids.indexOf(id);
-    debugger
     this._ids.splice(idx, 1);
-    this.$(".album-selected-photos").find("ul").data("photo-id", id).remove();
+    console.log(this._ids)
+    debugger
+    var target = this.$(".album-selected-photos").find("ul").filter(function() {
+      return $(this).attr('data-photo-id').match(id);
+    })
+
+    if (target.data("photo-id") === this.$(".album-cover-photo-preview").find("img").data("photo-id")) {
+      this.$(".album-cover-photo-preview").find("img").remove();
+      target.remove();
+    } else {
+      target.remove();
+    }
   },
 
   render: function() {
@@ -59,6 +69,14 @@ Capstone.Views.AlbumNew = Backbone.CompositeView.extend({
       collection: this.collection
     })
     this.addSubview(".photos-index", photosIndex)
+
+    this.addDrag();
+    this.addDrop();
+
+    return this;
+  },
+
+  addDrag: function() {
     $(".album-photo-preview").draggable(
       {helper: 'clone',
        revert: "invalid",
@@ -67,48 +85,64 @@ Capstone.Views.AlbumNew = Backbone.CompositeView.extend({
        }
        }
     );
+  },
+
+  addPhotoThumbnail: function(photo, photoId) {
+    $(photo).removeAttr("style");
+    $(photo).css("float", "left");
+    $(photo).css("padding", "10px");
+    $(photo).removeClass("ui-draggable-helper");
+
+    var ul = $(document.createElement("ul"))
+    var div = $(document.createElement("div"))
+    div.text("x");
+    ul.attr("data-photo-id", photoId);
+    div.attr("data-photo-id", photoId);
+
+    $(ul).append(div);
+    $(ul).append(photo)
+
+    this._ids.push($(photo).data("photo-id"));
+
+    $(this.el).find(".album-selected-photos").append(ul);
+  },
+
+  swapAlbumCover: function(event, ui) {
+    $(event.target).find("img").remove();
+    var photo = $(ui.helper).clone();
+
+    photo.removeClass("ui-draggable-helper");
+    photo.css("position", "absolute");
+    photo.css("top", 0);
+    photo.css("left", 0);
+
+    $(event.target).append(photo);
+  },
+
+  addDrop: function() {
     this.$(".album-cover-photo-preview").droppable({
       drop: function(event, ui) {
         var photo = $(ui.helper).clone();
-        if (this._ids.indexOf($(photo).data("photo-id")) === -1 ) {
-          this._ids.push($(photo).data("photo-id"));
-          $(photo).removeAttr("style");
-          $(photo).css("float", "left");
-          $(photo).css("padding", "10px");
-          $(this.el).find(".album-selected-photos").append(photo);
+        var photoId = $(photo).data("photo-id");
+
+        if (this._ids.indexOf(photoId) === -1 ) {
+          this.addPhotoThumbnail(photo, photoId);
         }
 
-        $(event.target).find("img").remove();
-        $(event.target).append($(ui.helper).clone());
-        $(event.target).find("img").removeClass("ui-draggable-helper")
-        $(event.target).find("img").css("position", "absolute");
-        $(event.target).find("img").css("top", 0);
-        $(event.target).find("img").css("left", 0);
+        this.swapAlbumCover(event, ui);
       }.bind(this)
     });
 
     this.$(".album-selected-photos").droppable({
       drop: function(event, ui) {
-        var photoId = $(ui.helper).data("photo-id");
-        if (this._ids.indexOf(photoId) === -1) {
-          this._ids.push(photoId);
-          var ul = $(document.createElement("ul"))
-          var div = $(document.createElement("div"))
-          div.text("x");
-          ul.attr("data-photo-id", photoId);
-          div.attr("data-photo-id", photoId);
-          var img = $(ui.helper).clone();
-          $(img).removeAttr("style");
-          $(img).removeClass("ui-draggable-helper");
-          $(img).css("padding", "10px")
-          $(ul).append(div);
-          $(ul).append(img)
-          $(event.target).append(ul);
-        }
+        var photo = $(ui.helper).clone();
 
+        var photoId = $(photo).data("photo-id");
+        if (this._ids.indexOf(photoId) === -1) {
+          this.addPhotoThumbnail(photo, photoId)
+        }
       }.bind(this)
     });
-    return this;
   },
 
   createNewAlbum: function(e) {
