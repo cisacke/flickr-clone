@@ -13,6 +13,7 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
     this.albums = new Capstone.Collections.Albums();
     this.albums.fetch();
     this.listenTo(this.albums, "sync", this.render)
+    this._idx = 0
   },
 
   render: function() {
@@ -30,11 +31,14 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
     var files = e.currentTarget.files
     for (var i = 0; i < files.length; i++) {
       var file = files[i]
+      file.id = i;
       var reader = new FileReader();
+      reader.id = i;
       var that = this
 
       reader.onload = function(e) {
-        that._updatePreview(e.target.result)
+        that._updatePreview(e.target.result, e.target.id)
+        that._idx += 1
       }
 
       if (file) {
@@ -57,14 +61,14 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
     this.clearOut();
   },
 
-  _updatePreview: function(src) {
+  _updatePreview: function(src, idx) {
     var previewPhoto = $(document.createElement("ul")).addClass("preview-photo");
     var thumbnail = $(document.createElement("img")).addClass("preview-photo-thumbnail")
-    thumbnail.attr("src", src);
+    thumbnail.attr("src", src).attr("id", idx);
     var title = $(document.createElement("input")).addClass("input-photo-title");
-    title.attr("placeholder", "title")
+    title.attr("placeholder", "title").attr("id", idx);
     var description = $(document.createElement("textarea")).addClass("input-photo-description")
-    description.attr("placeholder", "description")
+    description.attr("placeholder", "description").attr("id", idx);
 
     previewPhoto.append(thumbnail);
     previewPhoto.append(title);
@@ -87,11 +91,14 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
       //   var progress = o.appendChild(document.createElement("p"));
       //   progress.appendChild(document.createTextNode("upload " + file.name));
       // }
+      var title = $(titles).filter(function() {return $(this).attr("id").match(i)})
+      var description = $(descriptions).filter(function() {return $(this).attr("id").match(i)})
+      debugger
 
       var photo = new Capstone.Models.Photo();
       var data = new FormData();
-      data.append("photo[title]", $(titles[i]).val());
-      data.append("photo[description]", $(descriptions[i]).val());
+      data.append("photo[title]", title.val());
+      data.append("photo[description]", description.val());
       data.append("photo[image]", files[i]);
       var albumId = $(albumIds[i]).data("album_id")
 

@@ -11,6 +11,7 @@ Capstone.Views.PhotostreamShow = Backbone.CompositeView.extend({
     this.edit = options.edit
     this.listenTo(this.user, "sync", this.render)
     this.listenTo(this.user.photostream().photos(), "sync add", this.render)
+    this.listenTo(Capstone.Models.currentUser, "sync change add remove", this.render)
   },
 
   render: function() {

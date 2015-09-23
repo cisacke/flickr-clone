@@ -16,6 +16,12 @@ module Api
       render :index
     end
 
+    def destroy
+      @photo = Photo.find(params[:id])
+      @photo.destroy
+      render json: @photo
+    end
+
     def new_favorite
       @favorite_photo = FavoritesPhoto.new({ photo_id: params[:photo_id],
                                              favorite_id: params[:favorite_id]})

@@ -6,6 +6,15 @@
   <nav class="photo-show-nav group">
     <ul>
       <li><a href="#">back to photostream</a></li>
+      <% if (photo.get("author_id")) { %>
+        <% if (photo.get("author_id").id == Capstone.Models.currentUser.id) { %>
+          <li class="delete-photo-button">
+            <div class="delete-photo-button-pic">
+
+            </div>
+          </li>
+        <%  } %>
+      <%  } %>
       <li class="favorite-button">
         <div class="favorite-button-pic">
 
@@ -27,12 +36,20 @@
             <%= photo.escape("f_name") %> <%= photo.escape("l_name") %>
             <button class="follow-button">+ follow</button>
           </li>
-          <li>
+          <li class="photo-show-title">
             <%= photo.escape("title") %>
           </li>
-          <li>
-            <%= photo.escape("description") %>
-          </li>
+          <% if (photo.get("author_id")) { %>
+            <% if ((photo.escape("description") === "") && (Capstone.Models.currentUser.id == photo.get("author_id").id)) { %>
+              <li class="add a description">
+                add a description
+              </li>
+            <%  } else { %>
+              <li>
+                <%= photo.escape("description") %>
+              </li>
+            <%  } %>
+          <%  } %>
         </ul>
       </div>
       <ul class="photo-comments-wrapper group">

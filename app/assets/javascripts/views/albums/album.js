@@ -1,7 +1,7 @@
 Capstone.Album = Backbone.CompositeView.extend({
   clickLeft: function(e) {
     if (this._margin < 0) {
-      var margin = this._margin + 720
+      var margin = this._margin + 840
       this._margin = margin
       this.$(".photos-index-container").css("margin-left", margin);
     }
@@ -9,12 +9,12 @@ Capstone.Album = Backbone.CompositeView.extend({
 
   clickRight: function(e) {
     this._photos = Math.floor((this.$(".photos-index-container").find("img").length) / 7)
-    var margin = this._margin - 720
+    var margin = this._margin - 840
     this._margin = margin
-    if ((this._photos * -720) <= this._margin ) {
+    if ((this._photos * -840) <= this._margin ) {
       this.$(".photos-index-container").css("margin-left", margin);
     } else {
-      this._margin += 720
+      this._margin += 840
     }
   },
 

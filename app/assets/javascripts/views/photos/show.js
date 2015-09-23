@@ -2,7 +2,8 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
   template: JST['photos/show'],
   className: "photo-show-wrapper",
   events: {
-    "click .favorite-button":"toggleFavorites"
+    "click .favorite-button":"toggleFavorites",
+    "click .delete-photo-button-pic":"deletePicture"
   },
 
   initialize: function(options) {
@@ -55,5 +56,14 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
       }.bind(this)
       })
     }
+  },
+
+  deletePicture: function() {
+    this.model.destroy({
+      success: function() {
+        Capstone.Models.currentUser.fetch();
+        Backbone.history.navigate("#", {trigger:true})
+      }
+    });
   }
 })
