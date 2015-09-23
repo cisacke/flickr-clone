@@ -5,7 +5,8 @@ Capstone.Views.AlbumNew = Backbone.CompositeView.extend({
   events: {
     "submit form":"createNewAlbum",
     "click .click-left": "clickLeft",
-    "click .click-right": "clickRight"
+    "click .click-right": "clickRight",
+    "click .album-selected-photos div":"removePhotoPreview"
   },
 
   initialize: function(options) {
@@ -20,7 +21,6 @@ Capstone.Views.AlbumNew = Backbone.CompositeView.extend({
 
   clickLeft: function(e) {
     if (this._margin < 0) {
-      // debugger
       var margin = this._margin + 720
       this._margin = margin
       this.$(".photos-index-container").css("margin-left", margin);
@@ -29,7 +29,6 @@ Capstone.Views.AlbumNew = Backbone.CompositeView.extend({
 
   clickRight: function(e) {
     this._photos = Math.floor((this.$(".photos-index-container").find("img").length) / 7)
-    // debugger
     var margin = this._margin - 720
     this._margin = margin
     if ((this._photos * -720) <= this._margin ) {
@@ -37,6 +36,14 @@ Capstone.Views.AlbumNew = Backbone.CompositeView.extend({
     } else {
       this._margin += 720
     }
+  },
+
+  removePhotoPreview: function(e) {
+    var id = $(e.currentTarget).data("photo-id");
+    var idx = this._ids.indexOf(id);
+    debugger
+    this._ids.splice(idx, 1);
+    this.$(".album-selected-photos").find("ul").data("photo-id", id).remove();
   },
 
   render: function() {
@@ -85,13 +92,18 @@ Capstone.Views.AlbumNew = Backbone.CompositeView.extend({
         var photoId = $(ui.helper).data("photo-id");
         if (this._ids.indexOf(photoId) === -1) {
           this._ids.push(photoId);
-          $(event.target).append($(ui.helper).clone());
-          $(event.target).find("img").removeAttr("style");
-          $(event.target).find("img").removeClass("ui-draggable-helper");
-          $(event.target).find("img").css("float", "left");
-          $(event.target).find("img").css("padding", "10px")
-        } else {
-          // duplicate photo in album
+          var ul = $(document.createElement("ul"))
+          var div = $(document.createElement("div"))
+          div.text("x");
+          ul.attr("data-photo-id", photoId);
+          div.attr("data-photo-id", photoId);
+          var img = $(ui.helper).clone();
+          $(img).removeAttr("style");
+          $(img).removeClass("ui-draggable-helper");
+          $(img).css("padding", "10px")
+          $(ul).append(div);
+          $(ul).append(img)
+          $(event.target).append(ul);
         }
 
       }.bind(this)

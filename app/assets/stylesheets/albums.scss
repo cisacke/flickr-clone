@@ -118,6 +118,32 @@
   float: left;
   background: #ccc;
   margin: 0 10px;
+  padding-top: 10px;
+}
+
+.album-selected-photos ul {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  float: left;
+}
+
+.album-selected-photos ul:hover div {
+  display: block;
+}
+
+.album-selected-photos div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background: black;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  display: none;
+  cursor: pointer;
 }
 
 .new-album-wrapper {
