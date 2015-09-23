@@ -103,14 +103,19 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
 
   favoritesIndex: function(id) {
     var user = new Capstone.Models.User({id: id});
-    user.fetch();
-    var favorites = user.favorite();
+    user.fetch({
+      success: function(model, resp, options) {
+        var favorite = new Capstone.Models.Favorite({id: user.escape("favorite_id")})
+        favorite.fetch();
+        var userFavorites = new Capstone.Views.FavoritesIndex({
+          user: model,
+          model: favorite
+        })
 
-    var userFavorites = new Capstone.Views.FavoritesIndex({
-      user: user,
-      model: favorites
+        this._swapView(userFavorites)
+      }.bind(this)
     });
-    this._swapView(userFavorites)
+
   },
 
   _swapView: function(view) {

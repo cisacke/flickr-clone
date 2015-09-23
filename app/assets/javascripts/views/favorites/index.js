@@ -4,10 +4,12 @@ Capstone.Views.FavoritesIndex = Backbone.CompositeView.extend({
 
   initialize: function(options) {
     this.user = options.user;
+    this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.user, "sync", this.render);
   },
 
   render: function() {
+
     var content = this.template({
       user: this.user
     });

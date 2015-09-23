@@ -42,8 +42,7 @@ Capstone.Views.AlbumNew = Backbone.CompositeView.extend({
     var id = $(e.currentTarget).data("photo-id");
     var idx = this._ids.indexOf(id);
     this._ids.splice(idx, 1);
-    console.log(this._ids)
-    debugger
+
     var target = this.$(".album-selected-photos").find("ul").filter(function() {
       return $(this).attr('data-photo-id').match(id);
     })

@@ -16,12 +16,4 @@ json.albums do
     json.extract! album, :id, :title, :description, :user_id, :image_url
   end
 end
-json.favorite do
-  json.extract!(@user.favorite, :id, :user_id)
-end
-json.favorite_photos do
-  json.array!(@user.favorite.photos) do |photo|
-    json.extract! photo, :id, :title, :description
-    json.image_url asset_path(photo.image.url(:original))
-  end
-end
+json.favorite_id @user.favorite.id
