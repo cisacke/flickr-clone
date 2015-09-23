@@ -10,5 +10,15 @@
     <div>
       # photos
     </div>
+    <ul class="group">
+      <% if (album.user_id === Capstone.Models.currentUser.id) { %>
+        <li class="edit-album"><a href="#/albums/<%= album.id %>/edit">edit</a></li>
+        <li>
+          <div class="delete-album">
+
+          </div>
+        </li>
+      <%  } %>
+    </ul>
   </nav>
 </li>

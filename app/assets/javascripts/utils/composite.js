@@ -1,4 +1,3 @@
-
 Backbone.CompositeView = Backbone.View.extend({
   addSubview: function (selector, subview, prepend) {
     if (prepend) {

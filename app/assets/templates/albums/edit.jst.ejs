@@ -1,0 +1,55 @@
+<div class="new-album-eighty">
+  <main class="new-album-form-and-photos group">
+
+    <nav class="new-album-form-preview">
+      <div class="album-cover-photo-preview">
+        <img src="<%= album.escape("image_url") %>"
+             alt=""/>
+      </div>
+
+      <form class="new-album-form">
+        <input type="text"
+               name="album[title]"
+               placeholder="title"
+               value="<%= album.escape("title") %>">
+        <br>
+        <textarea name="album[description]" rows="8" cols="40">
+          <%= album.escape("description") %>
+        </textarea>
+
+        <br>
+        <button>Save</button>
+
+      </form>
+    </nav>
+
+    <div class="album-selected-photos group">
+      <% if (album.get("photos")) { %>
+        <% album.get("photos").forEach(function(photo) { %>
+          <ul data-photo-id="<%= photo.id %>">
+            <div data-photo-id="<%= photo.id %>">
+              x
+            </div>
+            <img src="<%= photo.image_url %>"
+                 alt=""
+                 data-photo-id="<%= photo.id %>" />
+          </ul>
+        <%  }) %>
+      <%  } %>
+    </div>
+  </main>
+
+  <main class="photos-index-wrapper">
+    <div class="click-left">
+      <
+    </div>
+
+    <div class="photos-index">
+
+    </div>
+
+    <div class="click-right">
+      >
+    </div>
+  </main>
+</div>

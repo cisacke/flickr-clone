@@ -18,8 +18,23 @@ module Api
 
     def show
       @album = Album.find(params[:id])
-      
+
       render :show
+    end
+
+    def destroy
+      @album = Album.find(params[:id])
+      @album.destroy
+      render json: @album
+    end
+
+    def update
+      @album = Album.find(params[:id])
+      if @album.update(album_params)
+        render json: @album
+      else
+        render :json => error
+      end
     end
 
     private

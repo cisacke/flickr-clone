@@ -7,6 +7,7 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
     "users/:id/favorites":"favoritesIndex",
     "photos/:id": "photoShow",
     "users/:id": "userShow",
+    "albums/:id/edit": "albumEdit",
     "albums/:id": "albumShow"
   },
 
@@ -51,6 +52,21 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
     })
 
     this._swapView(albumShow);
+  },
+
+  albumEdit: function(id) {
+    var album = new Capstone.Models.Album({id: id});
+    album.fetch();
+
+    var photos = new Capstone.Collections.Photos();
+    photos.fetch()
+
+    var albumEdit = new Capstone.Views.AlbumEdit({
+      model: album,
+      collection: photos
+    })
+
+    this._swapView(albumEdit);
   },
 
   userShow: function(id) {
