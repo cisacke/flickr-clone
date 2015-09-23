@@ -36,19 +36,42 @@
             <%= photo.escape("f_name") %> <%= photo.escape("l_name") %>
             <button class="follow-button">+ follow</button>
           </li>
-          <li class="photo-show-title">
-            <%= photo.escape("title") %>
-          </li>
+          <% if (photo.get("author_id")) { %>
+            <% if (Capstone.Models.currentUser.id == photo.get("author_id").id) { %>
+                <li class="photo-show-title edit-title">
+                  <p>
+                    <%= photo.escape("title") %>
+                  </p>
+                </li>
+              <% } else { %>
+                <li class="photo-show-title">
+                  <p>
+                    <%= photo.escape("title") %>
+                  </p>
+                </li>
+              <%  } %>
+            <%  } %>
+
           <% if (photo.get("author_id")) { %>
             <% if ((photo.escape("description") === "") && (Capstone.Models.currentUser.id == photo.get("author_id").id)) { %>
-              <li class="add a description">
-                add a description
+              <li class="add-a-description re-add-description">
+                <p>
+                  add a description
+                </p>
+              </li>
+            <%  } else if (Capstone.Models.currentUser.id == photo.get("author_id").id) { %>
+              <li class="add-a-description re-add-description">
+                <p>
+                  <%= photo.escape("description") %>
+                </p>
               </li>
             <%  } else { %>
               <li>
-                <%= photo.escape("description") %>
+                <p>
+                  <%= photo.escape("description") %>
+                </p>
               </li>
-            <%  } %>
+          <%    } %>
           <%  } %>
         </ul>
       </div>

@@ -3,7 +3,11 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
   className: "photo-show-wrapper",
   events: {
     "click .favorite-button":"toggleFavorites",
-    "click .delete-photo-button-pic":"deletePicture"
+    "click .delete-photo-button-pic":"deletePicture",
+    "click .edit-title":"addTitle",
+    "click .add-a-description":"addDescription",
+    "keypress .edited-description":"editDescription",
+    "keypress .edited-title":"editTitle"
   },
 
   initialize: function(options) {
@@ -38,6 +42,58 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
     this.addSubview(".new-comment-form", newCommentForm);
 
     return this;
+  },
+
+  addDescription: function(e) {
+    $(this.el).find(".edited-title").remove();
+    this.$(".photo-show-title").find("p").remove()
+    var p = $(document.createElement("p"));
+    p.text(this.model.escape("title"));
+    this.$(".photo-show-title").addClass("edit-title")
+    this.$(".photo-show-title").append(p);
+
+    $(e.currentTarget).find("p").remove();
+    $(e.currentTarget).removeClass("add-a-description")
+    var input = $(document.createElement("textarea"))
+    input.attr("name", "photo[description]");
+    input.css("border", "1px solid black")
+    input.val(this.model.escape("description"))
+    input.addClass("edited-description")
+    $(e.currentTarget).append(input);
+  },
+
+  editDescription: function(e) {
+    if(e.which == 13) {
+      e.preventDefault();
+      this.model.set("description", $(e.currentTarget).val())
+      this.model.save();
+    }
+  },
+
+  editTitle: function(e) {
+    if (e.which == 13) {
+      e.preventDefault();
+      this.model.set("title", $(e.currentTarget).val());
+      this.model.save();
+    }
+  },
+
+  addTitle: function(e) {
+    $(this.el).find(".edited-description").remove();
+    this.$(".add-a-description").find("p").remove()
+    var p = $(document.createElement("p"));
+    p.text(this.model.escape("description"));
+    this.$(".re-add-description").addClass("add-a-description")
+    this.$(".re-add-description").append(p);
+
+    $(e.currentTarget).find("p").remove();
+    $(e.currentTarget).removeClass("edit-title")
+    var input = $(document.createElement("input"));
+    input.attr("name", "photo[title]");
+    input.css("border", "1px solid black")
+    input.val(this.model.escape("title"))
+    input.addClass("edited-title")
+    $(e.currentTarget).append(input);
   },
 
   toggleFavorites: function(e) {

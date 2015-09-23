@@ -22,6 +22,15 @@ module Api
       render json: @photo
     end
 
+    def update
+      @photo = Photo.find(params[:id])
+      if @photo.update(photo_params)
+        render json: @photo
+      else
+        render :json => "error"
+      end
+    end
+
     def new_favorite
       @favorite_photo = FavoritesPhoto.new({ photo_id: params[:photo_id],
                                              favorite_id: params[:favorite_id]})
