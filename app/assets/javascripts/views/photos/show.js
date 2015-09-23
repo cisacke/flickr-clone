@@ -8,7 +8,7 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
   initialize: function(options) {
     this.user = options.user
     this.listenTo(this.user, "sync", this.render)
-    this.listenTo(this.model, "sync add", this.render)
+    this.listenTo(this.model, "sync add change", this.render)
   },
 
   render: function() {
@@ -17,7 +17,7 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
       user: this.user
     })
     this.$el.html(content);
-    if (this.isFavorited()) {
+    if (this.model.escape("is_favorite") === "true") {
       this.$(".favorite-button-pic").addClass("favorited")
     } else {
       this.$(".favorite-button-pic").addClass("add-to-favorites")
@@ -39,53 +39,21 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
     return this;
   },
 
-  isFavorited: function() {
-    var favorited = false
-    this.user.favorite().photos().each(function(photo){
-      if (photo.id == this.model.id) {
-        favorited = true
-      };
-    }.bind(this));
-    return favorited;
-  },
-
   toggleFavorites: function(e) {
     if (!$(e.currentTarget).hasClass("toggling")) {
-      debugger
 
-      if (this.model.escape("is_favorite") === "true") {
-        debugger
-      }
-
-
-
-      if (this.isFavorited()) {
-        debugger
-        $(e.currentTarget).addClass("toggling");
-        var delFavoritePhoto = this.user.favoritePhotos().findWhere({photo_id: this.model.id});
-        this.user.favoritePhotos().remove(delFavoritePhoto);
-        delFavoritePhoto.destroy({
-          success: function() {
-            $(e.currentTarget).removeClass("toggling");
-            this.user.fetch();
-          }.bind(this)
-        })
-
-      } else {
-        debugger
-        $(e.currentTarget).addClass("toggling");
-        var favoritePhoto = new Capstone.Models.FavoritePhoto()
-        var data = {favorite_id: this.user.favorite().id,
-                    photo_id: this.model.id}
-        // this.user.favorite().photos().add(this.favoritePhoto);
-        favoritePhoto.save(data, {success: function(model, resp, options) {
-            this.user.favoritePhotos().add(model);
-            this.user.fetch();
-            $(e.currentTarget).removeClass("toggling");
-          }.bind(this)
-        });
-      }
+    $(e.currentTarget).addClass("toggling");
+    var method = (this.model.escape("is_favorite") === "true") ? "DELETE" : "POST";
+    $.ajax({
+      url: "/api/photos/favorite",
+      type: method,
+      data: {photo_id: this.model.id,
+            favorite_id: this.user.favorite().id},
+      success: function(model, resp, options) {
+        $(e.currentTarget).removeClass("toggling");
+        Backbone.history.navigate("#/photos/" + this.model.id, {trigger: true});
+      }.bind(this)
+      })
     }
-
   }
 })

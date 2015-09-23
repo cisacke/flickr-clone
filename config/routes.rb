@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   root to: "static_pages#root"
-
   get '/users/current_user', to: 'users#current_user'
   resources :users
   resource :session
 
   namespace :api, defaults: {format: :json} do
+    post 'photos/favorite', to: "photos#new_favorite"
+    delete 'photos/favorite', to: "photos#delete_favorite"
     resources :albums
     resources :photos
     resources :photostreams
