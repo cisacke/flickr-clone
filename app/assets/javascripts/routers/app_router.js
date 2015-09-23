@@ -1,6 +1,7 @@
 Capstone.Routers.AppRouter = Backbone.Router.extend({
   routes: {
     "": "root",
+    "_=_":"root",
     "photos/new":"photosNew",
     "albums/new":"newAlbum",
     "users/:id/albums": "albumsIndex",

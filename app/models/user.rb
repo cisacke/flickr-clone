@@ -25,6 +25,27 @@ class User < ActiveRecord::Base
     SecureRandom::urlsafe_base64
   end
 
+  def self.find_or_create_by_auth_hash(auth_hash)
+    user = User.find_by(
+      provider: auth_hash[:provider],
+      uid: auth_hash[:uid]
+    )
+
+    unless user
+      user = User.create!(
+        provider: auth_hash[:provider],
+        uid: auth_hash[:uid],
+        f_name: auth_hash[:info][:name].split.first,
+        l_name: auth_hash[:info][:name].split.last,
+        email: auth_hash[:info][:name],
+        password: SecureRandom::urlsafe_base64)
+        Photostream.create!(user_id: user.id)
+        Favorite.create!(user_id: user.id)
+    end
+
+    user
+  end
+
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email);
     return nil unless user

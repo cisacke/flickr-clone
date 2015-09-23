@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: "static_pages#root"
   get '/users/current_user', to: 'users#current_user'
+  get '/auth/facebook/callback', to: 'oauth_callbacks#facebook'
   resources :users
   resource :session
 
