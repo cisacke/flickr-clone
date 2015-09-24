@@ -111,6 +111,7 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
             favorite_id: this.user.escape("favorite_id")},
       success: function(model, resp, options) {
         $(e.currentTarget).removeClass("toggling");
+        this.user.fetch();
         Backbone.history.navigate("#/photos/" + this.model.id, {trigger: true});
       }.bind(this)
       })

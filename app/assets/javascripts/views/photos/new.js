@@ -25,8 +25,15 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
     var file = e.currentTarget.files[0];
     var reader = new FileReader();
 
-    reader.onloadend = function() {
-      that._updatePreview(reader.result);
+
+    reader.onloadend = function(_file) {
+      var image = new Image();
+      image.src = _file.target.result;
+      image.onload = function() {
+        var x = this.width;
+        var y = this.height;
+        that._updatePreview(reader.result, x, y);
+      }
     }
 
     if (file) {
@@ -36,13 +43,18 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
     }
   },
 
-  _updatePreview: function(src) {
+  _updatePreview: function(src, x, y) {
+    // debugger
     this.$el.find(".photostream-thumbnail").attr("src", src);
+    this.$el.find(".photostream-thumbnail").attr("data-x", x);
+    this.$el.find(".photostream-thumbnail").attr("data-y", y)
   },
 
 
   submit: function(e) {
     e.preventDefault();
+
+    debugger
 
     $("html, body").css("height", "auto");
     $("html, body").css("overflow", "visible");
@@ -64,7 +76,7 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
           photo: that.model
         });
         that.user.photostream().photos().add(that.model);
-        that.user.fetch();
+        Capstone.Models.currentUser.fetch();
 
         Backbone.history.navigate("", {trigger: true});
       }

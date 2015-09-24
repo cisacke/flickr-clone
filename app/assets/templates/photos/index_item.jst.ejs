@@ -13,10 +13,24 @@
   </ul>
   <ul class="photo-stats group">
     <li>
-    * 193
+      <div class="photo-num-likes">
+
+      </div>
     </li>
     <li>
-    # 23
+      <p>
+        <%= photo.escape("num_faves") %>
+      </p>
+    </li>
+    <li>
+      <div class="photo-num-comments">
+
+      </div>
+    </li>
+    <li>
+      <p>
+        <%= photo.escape("num_comments") %>
+      </p>
     </li>
   </ul>
 </nav>

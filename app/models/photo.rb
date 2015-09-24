@@ -3,6 +3,7 @@ class Photo < ActiveRecord::Base
 
   has_many :photostream_photos, dependent: :destroy
   has_many :favorites_photos, dependent: :destroy
+  has_many :favorites, through: :favorites_photos, source: :favorite
   has_many :comments, dependent: :destroy
   has_many :albums, through: :album_photos, source: :album
   has_many :album_photos, dependent: :destroy, inverse_of: :photo

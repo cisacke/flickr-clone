@@ -8,10 +8,14 @@ json.photostream do
   json.extract!(@user.photostream, :id, :user_id)
 end
 json.photostream_photos do
-  json.array!(@user.photostream.photos.order(created_at: :desc)) do |photo|
+  json.array!(@user.photostream.photos
+          .includes(:user, :favorites, :comments)
+          .order(created_at: :desc)) do |photo|
     json.extract! photo, :id, :title, :description, :user_id
     json.extract! photo.user, :f_name, :l_name
     json.image_url asset_path(photo.image.url(:original))
+    json.num_faves photo.favorites.to_a.count
+    json.num_comments photo.comments.to_a.count
   end
 end
 json.albums do

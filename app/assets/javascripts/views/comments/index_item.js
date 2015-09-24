@@ -18,6 +18,7 @@ Capstone.Views.CommentIndexItem = Backbone.View.extend({
 
   deleteComment: function() {
     this.model.destroy();
+    
     Backbone.history.navigate("#/photos/" + this.model.escape("photo_id"), {trigger: true})
   }
 })

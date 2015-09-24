@@ -30,7 +30,6 @@ Capstone.Views.PhotostreamShow = Backbone.CompositeView.extend({
     this.addSubview(".user-show", userShow);
 
     var photos = this.private ? this.model.photos().models : this.model.photos().where({user_id: this.user.id})
-    // debugger
     photos.forEach(function(photo) {
       var photoIndexView = new Capstone.Views.PhotoIndexItem({
         model: photo,
