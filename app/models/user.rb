@@ -22,10 +22,10 @@ class User < ActiveRecord::Base
   has_many :followers, through: :follower_users, source: :follower
   has_many :follows, through: :followed_users, source: :followed
 
-  has_attached_file :cover, default_url: "missing.png"
+  has_attached_file :cover, default_url: "default_cover.png"
   validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/
 
-  has_attached_file :avatar, default_url: "missing.png"
+  has_attached_file :avatar, default_url: "default_avatar.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   attr_reader :password

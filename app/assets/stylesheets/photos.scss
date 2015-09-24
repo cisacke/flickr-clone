@@ -136,6 +136,11 @@ input[type="file"] {
   float: left;
 }
 
+.photo-show-title, .add-a-description {
+  max-width: 300px;
+}
+
+
 .photo-show-info-wrapper {
   width: 100%;
   background: white;
@@ -192,15 +197,16 @@ input[type="file"] {
   padding: 5px 0 10px 0;
 }
 
-.follow-button {
-  font-size: 20px;
+div h3.follow-button {
+  font-size: 16px;
   color: white;
   font-weight: normal;
   background: #03AACC;
   border-radius: 5px;
   border: 1px solid black;
   padding: 5px;
-  margin: 0 0 0 15px;
+  margin-top:15px;
+  cursor: pointer;
   // line-height:
 }
 

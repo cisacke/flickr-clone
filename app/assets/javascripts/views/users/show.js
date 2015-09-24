@@ -61,34 +61,7 @@ Capstone.Views.UserShow = Backbone.View.extend({
     });
   },
 
-  // toggleFollow: function(e) {
-  //
-  // },
-
   toggleFollow: function(e) {
-    // if (!$(e.currentTarget).hasClass("toggling")) {
-    //   user = new Capstone.Models.User({id: Capstone.Models.currentUser.id})
-    //   user.fetch({
-    //     success: function(model, response, options) {
-    //       if (this.model.escape("is_followed") === "true") {
-    //         this.model.photostream().photos().where({user_id: this.model.id}).forEach(function(photo) {
-    //           model.photostream().deletePhotostreamAssociation({
-    //             photo: photo
-    //           })
-    //         })
-    //       } else {
-    //         this.model.photostream().photos().where({user_id: this.model.id}).forEach(function(photo) {
-    //           // debugger
-    //           model.photostream().createPhotostreamAssociation({
-    //             photo: photo
-    //           })
-    //         })
-    //
-    //       }
-    //     }.bind(this)
-    //   })
-    //
-
     if (!$(e.currentTarget).hasClass("toggling")) {
 
     $(e.currentTarget).addClass("toggling");
@@ -103,8 +76,7 @@ Capstone.Views.UserShow = Backbone.View.extend({
                         photo_id: photo.id},
                   success: function(model, resp, options) {
                     $(e.currentTarget).removeClass("toggling");
-                    Backbone.history.navigate("#/photos/" + this.model.id, {trigger: true});
-                  }.bind(this)
+                  }
                   })
                 })
     }
@@ -117,6 +89,7 @@ Capstone.Views.UserShow = Backbone.View.extend({
                followed_id: this.model.id},
         success: function(model, resp, options) {
           $(e.currentTarget).removeClass("toggling");
+          Capstone.Models.currentUser.fetch();
           Backbone.history.navigate("#/users/" + this.model.id, {trigger: true})
         }.bind(this)
       })

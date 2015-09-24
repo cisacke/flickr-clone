@@ -33,8 +33,7 @@
 
         <ul>
           <li>
-            <%= photo.escape("f_name") %> <%= photo.escape("l_name") %>
-            <button class="follow-button">+ follow</button>
+            <a href="#/users/<%= photo.get("author_id") ? photo.get("author_id").id : "" %>"><%= photo.escape("f_name") %> <%= photo.escape("l_name") %></a>
           </li>
           <% if (photo.get("author_id")) { %>
             <% if (Capstone.Models.currentUser.id == photo.get("author_id").id) { %>

@@ -2,10 +2,10 @@
   <img class="photostream-image"
        src="<%= photo.escape("image_url") %>"/></a>
 <nav class="photo-info group">
-  <img class="photostream-image-profile-pic" />
+  <img class="photostream-image-profile-pic" src="<%= user.escape("avatar") %>" />
   <ul class="photo-user-info">
     <li>
-    <%= user.escape("f_name") %> <%= user.escape("l_name") %>
+    <%= photo.escape("f_name") %> <%= photo.escape("l_name") %>
     </li>
     <li>
       <%= photo.escape("title") %>

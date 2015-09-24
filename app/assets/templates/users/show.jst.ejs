@@ -13,12 +13,12 @@
     </div>
     <h3><%= user.escape("f_name") %> <%= user.escape("l_name") %></h3>
     <% if(!(user.id === Capstone.Models.currentUser.id)) { %>
-      <h3 class="toggle-follow"></h3>
+      <h3 class="toggle-follow follow-button"></h3>
     <%  } %>
   </li>
 
   <li class="user-stats">
-    # photos | joined 2015
+    <%= user.escape("num_photos") %>  <%= user.escape("num_photos") == 1 ? "photo" : "photos" %> | joined <%= user.escape("joined") %>
   </li>
   <% if (edit === true) { %>
     <div class="change-cover-photo group">

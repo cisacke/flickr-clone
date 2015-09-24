@@ -9,6 +9,7 @@ Capstone.Views.PhotostreamShow = Backbone.CompositeView.extend({
   initialize: function(options) {
     this.user = options.user
     this.edit = options.edit
+    this.private = options.private
     this.listenTo(this.user, "sync", this.render)
     this.listenTo(this.user.photostream().photos(), "sync add", this.render)
     this.listenTo(Capstone.Models.currentUser, "sync change add remove", this.render)
@@ -28,7 +29,9 @@ Capstone.Views.PhotostreamShow = Backbone.CompositeView.extend({
     });
     this.addSubview(".user-show", userShow);
 
-    this.model.photos().each(function(photo) {
+    var photos = this.private ? this.model.photos().models : this.model.photos().where({user_id: this.user.id})
+    // debugger
+    photos.forEach(function(photo) {
       var photoIndexView = new Capstone.Views.PhotoIndexItem({
         model: photo,
         photostream: this.model,
