@@ -75,7 +75,7 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
       success: function() {
         $.ajax({
           url: "/api/photos/photostream",
-          type: method,
+          type: "POST",
           data: {photostream_id: that.user.photostream().id,
                 photo_id: that.photo.id},
         });
