@@ -14,12 +14,14 @@
     </a>
   </ul>
 </nav>
-
 <div class="album-index-wrapper">
   <nav class="new-album group">
+
+  <% if (Capstone.Models.currentUser.id == user.id) { %>
     <a href="#/albums/new">
       Create new album
     </a>
+  <%  } %>
   </nav>
   <ul class="album-index-list group">
 

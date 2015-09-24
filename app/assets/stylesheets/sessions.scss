@@ -39,11 +39,21 @@
   padding: 5px 10px;
 }
 
+.new-session-wrapper {
+  width: 100%;
+  background: black;
+}
+
 .new-session-background-img {
-  background: gray;
-  min-height: 700px;
-  height: 90%;
-  color: white
+  // background: gray;
+  background-image: url(image_path("sign-in"));
+  background-size: auto 100%;
+  height: 840px;
+  color: white;
+  width: 80%;
+  // max-width: 1400px;
+  min-width: 900px;
+  margin: auto;
 }
 
 .new-session-header {
@@ -84,7 +94,7 @@
 }
 
 .new-session-form > button {
-  margin: 20px 0;
+  margin-top: 15px;
   line-height: 30px;
 }
 

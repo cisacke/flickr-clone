@@ -51,11 +51,6 @@ Capstone.Views.AlbumShow = Backbone.View.extend({
       }
     }
 
-    // album == this.model
-
-    // for every third image, create a new div
-    // always create <img> tag: set src and width percentage
-
     return this;
   },
 

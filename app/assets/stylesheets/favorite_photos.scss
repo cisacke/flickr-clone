@@ -3,12 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .favorite-index-item {
-  background: #d6d6d6;
+  background: white;
   min-height: 600px;
   width: 80%;
   min-width: 900px;
   margin: 0 auto;
-  padding-top: 20px;
+  // padding-top: 20px;
 }
 
 .favorite-wrapper {
@@ -22,8 +22,8 @@
 }
 
 .favorite-index-item img {
-  max-height: 300px;
-  max-width: 200px;
+  box-sizing: border-box;
+  padding: 3px 3px 0 3px;
 }
 
 .favorite-index-item div {

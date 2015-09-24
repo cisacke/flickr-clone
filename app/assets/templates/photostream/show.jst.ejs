@@ -18,8 +18,10 @@
 
 <nav class="photostream-wrapper">
   <ul class="photostream-list group">
+  <% if (Capstone.Models.currentUser.id == user.id) { %>
     <li class="upload-photos-link">
       add to photostream
     </li>
+  <%  } %>
   </ul>
 </nav>

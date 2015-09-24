@@ -1,15 +1,14 @@
 <main class="album-show-eighty">
   <h3>
-    < Back to albums list
+    <a href="#/users/<%= album.get("userId") ? album.get("userId").id : "" %>/albums">< Back to albums list</a>
   </h3>
 
   <div class="album-show-cover-photo">
     <img src="<%= album.escape("image_url") %>" alt=""
           class="album-show-cover-image"/>
     <div>
-
+      <%= album.escape("title") %>
     </div>
-    <h3><%= album.escape("title") %></h3>
   </div>
 
   <ul class="album-photos-wrapper group">

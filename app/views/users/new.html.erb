@@ -1,24 +1,26 @@
 <%= render partial: "layouts/navbar", :locals => {text: "sign in", link: new_session_url} %>
 
-<div class="new-session-background-img">
-  <h1 class="new-session-header">
-    pixie. photo uploading and sharing.
-  </h1>
+<div class="new-session-wrapper">
+  <div class="new-session-background-img">
+    <h1 class="new-session-header">
+      pixie. photo uploading and sharing.
+    </h1>
 
-  <form class="new-user-form" action="<%= users_url %>" method="post">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <h5>sign up</h5>
-    <input type="text" name="user[f_name]" value=" first name">
-    <br>
-    <input type="text" name="user[l_name]" value=" last name">
-    <br>
-    <input type="text" name="user[email]" value=" email">
-    <br>
-    <input type="password" name="user[password]" value="">
-    <br>
-    <button>sign in</button>
-  </form>
+    <form class="new-user-form" action="<%= users_url %>" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <h5>sign up</h5>
+      <input type="text" name="user[f_name]" value=" first name">
+      <br>
+      <input type="text" name="user[l_name]" value=" last name">
+      <br>
+      <input type="text" name="user[email]" value=" email">
+      <br>
+      <input type="password" name="user[password]" value="">
+      <br>
+      <button>sign in</button>
+    </form>
 
+  </div>
 </div>
 
 <%= render partial: "layouts/footer" %>
