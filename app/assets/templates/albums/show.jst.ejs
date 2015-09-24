@@ -12,13 +12,8 @@
     <h3><%= album.escape("title") %></h3>
   </div>
 
-  <ul class="group">
-    <% if(album.get("photos")) { %>
-      <% album.get("photos").forEach(function(photo) { %>
-        <li><a href="#/photos/<%= photo.id %>"><img src="<%= photo.image_url %>" alt="album-photo"
-                 class="album-show-photo-image"/></a></li>
-      <% }) %>
-    <%  } %>
+  <ul class="album-photos-wrapper group">
+
   </ul>
 
 </main>
