@@ -62,6 +62,8 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
     var title = this.$("#input-photo-title").val();
     var description = this.$("#input-photo-description").val();
     var file = this.$("#input-photo-image")[0].files[0];
+    var x_pixels = this.$("img").data("x");
+    var y_pixels = this.$("img").data("y");
     // var xhr = new XMLHttpRequest();
     // if (xhr.upload && file.type)
 
@@ -69,6 +71,8 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
     data.append("photo[title]", title);
     data.append("photo[description]", description);
     data.append("photo[image]", file);
+    data.append("photo[x_pixels]", x_pixels);
+    data.append("photo[y_pixels]", y_pixels)
     var that = this;
     this.model.saveFormData(data, {
       success: function() {

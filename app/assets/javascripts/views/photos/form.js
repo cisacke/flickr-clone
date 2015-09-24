@@ -37,7 +37,13 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
       var that = this
 
       reader.onload = function(e) {
-        that._updatePreview(e.target.result, e.target.id)
+        var image = new Image();
+        image.src = e.target.result;
+        image.onload = function() {
+          var x = this.width;
+          var y = this.height;
+          that._updatePreview(e.target.result, e.target.id, x, y)
+        }
         that._idx += 1
       }
 
@@ -61,12 +67,14 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
     this.clearOut();
   },
 
-  _updatePreview: function(src, idx) {
+  _updatePreview: function(src, idx, x, y) {
     var previewPhoto = $(document.createElement("ul")).addClass("preview-photo");
     var thumbnail = $(document.createElement("img")).addClass("preview-photo-thumbnail")
     thumbnail.attr("src", src).attr("id", idx);
     var title = $(document.createElement("input")).addClass("input-photo-title");
     title.attr("placeholder", "title").attr("id", idx);
+    title.attr("data-x", x);
+    title.attr("data-y", y);
     var description = $(document.createElement("textarea")).addClass("input-photo-description")
     description.attr("placeholder", "description").attr("id", idx);
 
@@ -84,6 +92,7 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
     var descriptions = this.$(".input-photo-description");
     var albumIds = this.$(".preview-photo");
 
+
     for (var i = 0; i < files.length; i++) {
       // var xhr = new XMLHttpRequest();
       // if (xhr.upload && files[i].type == "image/jpeg") {
@@ -100,6 +109,8 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
       data.append("photo[title]", title.val());
       data.append("photo[description]", description.val());
       data.append("photo[image]", files[i]);
+      data.append("photo[x_pixels]", title.data("x"));
+      data.append("photo[y_pixels]", title.data("y"));
       var albumId = $(albumIds[i]).data("album_id")
 
       photo.saveFormData(data, {
