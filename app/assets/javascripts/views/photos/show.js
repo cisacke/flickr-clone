@@ -45,12 +45,12 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
   },
 
   addDescription: function(e) {
-    $(this.el).find(".edited-title").remove();
-    this.$(".photo-show-title").find("p").remove()
-    var p = $(document.createElement("p"));
-    p.text(this.model.escape("title"));
-    this.$(".photo-show-title").addClass("edit-title")
-    this.$(".photo-show-title").append(p);
+    // $(this.el).find(".edited-title").remove();
+    // this.$(".photo-show-title").find("p").remove()
+    // var p = $(document.createElement("p"));
+    // p.text(this.model.escape("title"));
+    // this.$(".photo-show-title").addClass("edit-title")
+    // this.$(".photo-show-title").append(p);
 
     $(e.currentTarget).find("p").remove();
     $(e.currentTarget).removeClass("add-a-description")
@@ -66,7 +66,7 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
     if(e.which == 13) {
       e.preventDefault();
       this.model.set("description", $(e.currentTarget).val())
-      this.model.save();
+      this.model.save()
     }
   },
 
@@ -74,17 +74,20 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
     if (e.which == 13) {
       e.preventDefault();
       this.model.set("title", $(e.currentTarget).val());
-      this.model.save();
+      this.model.save({error: function() {
+        debugger
+      }
+    });
     }
   },
 
   addTitle: function(e) {
-    $(this.el).find(".edited-description").remove();
-    this.$(".add-a-description").find("p").remove()
-    var p = $(document.createElement("p"));
-    p.text(this.model.escape("description"));
-    this.$(".re-add-description").addClass("add-a-description")
-    this.$(".re-add-description").append(p);
+    // $(this.el).find(".edited-description").remove();
+    // this.$(".add-a-description").find("p").remove()
+    // var p = $(document.createElement("p"));
+    // p.text(this.model.escape("description"));
+    // this.$(".re-add-description").addClass("add-a-description")
+    // this.$(".re-add-description").append(p);
 
     $(e.currentTarget).find("p").remove();
     $(e.currentTarget).removeClass("edit-title")

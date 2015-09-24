@@ -61,13 +61,53 @@ Capstone.Views.UserShow = Backbone.View.extend({
     });
   },
 
+  // toggleFollow: function(e) {
+  //
+  // },
+
   toggleFollow: function(e) {
+    // if (!$(e.currentTarget).hasClass("toggling")) {
+    //   user = new Capstone.Models.User({id: Capstone.Models.currentUser.id})
+    //   user.fetch({
+    //     success: function(model, response, options) {
+    //       if (this.model.escape("is_followed") === "true") {
+    //         this.model.photostream().photos().where({user_id: this.model.id}).forEach(function(photo) {
+    //           model.photostream().deletePhotostreamAssociation({
+    //             photo: photo
+    //           })
+    //         })
+    //       } else {
+    //         this.model.photostream().photos().where({user_id: this.model.id}).forEach(function(photo) {
+    //           // debugger
+    //           model.photostream().createPhotostreamAssociation({
+    //             photo: photo
+    //           })
+    //         })
+    //
+    //       }
+    //     }.bind(this)
+    //   })
+    //
+
     if (!$(e.currentTarget).hasClass("toggling")) {
-      if (this.model.escape("is_followed") === true) {
-        // remove photos from photostream
-      } else {
-        // add photos to photostream
-      }
+
+    $(e.currentTarget).addClass("toggling");
+    var method = (this.model.escape("is_followed") === "true") ? "DELETE" : "POST";
+    this.model.photostream()
+              .photos()
+              .where({user_id: this.model.id}).forEach(function(photo) {
+                $.ajax({
+                  url: "/api/photos/photostream",
+                  type: method,
+                  data: {photostream_id: Capstone.Models.currentUser.photostream().id,
+                        photo_id: photo.id},
+                  success: function(model, resp, options) {
+                    $(e.currentTarget).removeClass("toggling");
+                    Backbone.history.navigate("#/photos/" + this.model.id, {trigger: true});
+                  }.bind(this)
+                  })
+                })
+    }
 
       var method = (this.model.escape("is_followed") === "true") ? "DELETE" : "POST";
       $.ajax({
@@ -80,6 +120,6 @@ Capstone.Views.UserShow = Backbone.View.extend({
           Backbone.history.navigate("#/users/" + this.model.id, {trigger: true})
         }.bind(this)
       })
-    }
+    // }
   }
 })

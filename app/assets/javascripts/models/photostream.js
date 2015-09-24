@@ -16,6 +16,10 @@ Capstone.Models.Photostream = Backbone.Model.extend({
     photostreamPhoto.save(data);
   },
 
+  deletePhotostreamAssociation: function(options) {
+    var data = {photostream}
+  },
+
   photos: function() {
     if (!this._photos) {
       this._photos = new Capstone.Collections.Photos([], { photostream: this })

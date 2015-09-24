@@ -27,7 +27,7 @@ module Api
       if @photo.update(photo_params)
         render json: @photo
       else
-        render :json => "error"
+        render json: ["Invalid Update"], status: 404
       end
     end
 
@@ -46,6 +46,24 @@ module Api
                                              favorite_id: params[:favorite_id]})
       @favorite_photo[0].destroy
       render json: @favorite_photo
+    end
+
+    def new_photostream
+      @photostream = PhotostreamPhoto.new({ photostream_id: params[:photostream_id],
+                                            photo_id: params[:photo_id] })
+
+      if @photostream.save
+        render json: @photostream
+      else
+        render json: ["error"]
+      end
+    end
+
+    def delete_photostream
+      @photostream = PhotostreamPhoto.where({ photostream_id: params[:photostream_id],
+                                            photo_id: params[:photo_id] })
+      @photostream[0].destroy
+      render json: @photostream
     end
 
     private
