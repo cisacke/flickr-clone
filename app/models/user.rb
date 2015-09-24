@@ -11,6 +11,16 @@ class User < ActiveRecord::Base
   has_one :photostream, dependent: :destroy
   has_one :favorite, dependent: :destroy
   has_many :photos, dependent: :destroy
+  has_many :follower_users,
+    class_name: "Following",
+    foreign_key: :followed_id
+
+  has_many :followed_users,
+    class_name: "Following",
+    foreign_key: :follower_id
+
+  has_many :followers, through: :follower_users, source: :follower
+  has_many :follows, through: :followed_users, source: :followed
 
   has_attached_file :cover, default_url: "missing.png"
   validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/

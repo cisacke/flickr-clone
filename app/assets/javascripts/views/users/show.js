@@ -5,14 +5,14 @@ Capstone.Views.UserShow = Backbone.View.extend({
 
   events: {
     "change #input-photo-image":"updateCoverPhoto",
-    "change #input-user-avatar":"updateAvatar"
+    "change #input-user-avatar":"updateAvatar",
+    "click .toggle-follow":"toggleFollow"
   },
 
   initialize: function(options) {
     this.listenTo(this.model, "sync", this.render)
     this.edit = options.edit
   },
-
 
   render: function() {
     var content = this.template({
@@ -21,6 +21,11 @@ Capstone.Views.UserShow = Backbone.View.extend({
     });
 
     this.$el.html(content);
+    if (this.model.escape("is_followed") === "true") {
+      this.$(".toggle-follow").text("Unfollow")
+    } else {
+      this.$(".toggle-follow").text("Follow")
+    }
     return this;
   },
 
@@ -54,7 +59,27 @@ Capstone.Views.UserShow = Backbone.View.extend({
         Backbone.history.navigate("", {trigger: true});
       }
     });
+  },
+
+  toggleFollow: function(e) {
+    if (!$(e.currentTarget).hasClass("toggling")) {
+      if (this.model.escape("is_followed") === true) {
+        // remove photos from photostream
+      } else {
+        // add photos to photostream
+      }
+
+      var method = (this.model.escape("is_followed") === "true") ? "DELETE" : "POST";
+      $.ajax({
+        url: "/user/follow",
+        type: method,
+        data: {follower_id: Capstone.Models.currentUser.id,
+               followed_id: this.model.id},
+        success: function(model, resp, options) {
+          $(e.currentTarget).removeClass("toggling");
+          Backbone.history.navigate("#/users/" + this.model.id, {trigger: true})
+        }.bind(this)
+      })
+    }
   }
-
-
 })

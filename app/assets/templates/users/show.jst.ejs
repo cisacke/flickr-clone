@@ -12,6 +12,9 @@
       <%  } %>
     </div>
     <h3><%= user.escape("f_name") %> <%= user.escape("l_name") %></h3>
+    <% if(!(user.id === Capstone.Models.currentUser.id)) { %>
+      <h3 class="toggle-follow"></h3>
+    <%  } %>
   </li>
 
   <li class="user-stats">

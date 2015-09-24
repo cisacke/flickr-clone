@@ -17,6 +17,8 @@ class UsersController < ApplicationController
 
   def current_user
     @user = currently_signed_in
+    @current_user = currently_signed_in
+
     if @user
       render :show
     else
@@ -26,6 +28,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @current_user = currently_signed_in
     render :show
   end
 
@@ -36,6 +39,23 @@ class UsersController < ApplicationController
     else
       render :json => "error"
     end
+  end
+
+  def new_follow
+    @following = Following.new(follower_id: params[:follower_id],
+                               followed_id: params[:followed_id])
+    if @following.save
+      render json: @following
+    else
+      render :json => "error"
+    end
+  end
+
+  def delete_follow
+    @following = Following.where(follower_id: params[:follower_id],
+                                 followed_id: params[:followed_id])
+    @following[0].destroy
+    render json: @following
   end
 
   private

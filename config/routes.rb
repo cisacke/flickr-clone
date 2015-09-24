@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   root to: "static_pages#root"
   get '/users/current_user', to: 'users#current_user'
   get '/auth/facebook/callback', to: 'oauth_callbacks#facebook'
+  
+  post 'user/follow', to: "users#new_follow"
+  delete 'user/follow', to: "users#delete_follow"
+
   resources :users
   resource :session
 
