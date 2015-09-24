@@ -24,7 +24,7 @@ Capstone.Models.Photo = Backbone.Model.extend({
 
   comments: function() {
     if (!this._comments) {
-      this._comments = new Capstone.Collections.Comments([], { photo: this })
+      this._comments = new Capstone.Collections.Comments([], { photo: this });
     }
 
     return this._comments;
@@ -32,10 +32,10 @@ Capstone.Models.Photo = Backbone.Model.extend({
 
   parse: function(resp) {
     if (resp.comments) {
-      this.comments().set(resp.comments)
-      delete resp.comments
+      this.comments().set(resp.comments);
+      delete resp.comments;
     }
 
-    return resp
+    return resp;
   }
 });

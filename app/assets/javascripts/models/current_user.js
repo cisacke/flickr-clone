@@ -3,7 +3,7 @@ Capstone.Models.CurrentUser = Backbone.Model.extend({
 
   photostream: function() {
     if (!this._photostream) {
-      this._photostream = new Capstone.Models.Photostream([], {user: this})
+      this._photostream = new Capstone.Models.Photostream([], {user: this});
     }
 
     return this._photostream;
@@ -11,10 +11,10 @@ Capstone.Models.CurrentUser = Backbone.Model.extend({
 
   albums: function() {
     if (!this._albums) {
-      this._albums = new Capstone.Collections.Albums([], {user: this})
+      this._albums = new Capstone.Collections.Albums([], {user: this});
     }
 
-    return this._albums
+    return this._albums;
   },
 
   parse: function(resp) {
@@ -32,7 +32,7 @@ Capstone.Models.CurrentUser = Backbone.Model.extend({
       delete resp.albums;
     }
 
-    return resp
+    return resp;
   },
 
   saveCoverPhoto: function(formData, options) {
@@ -48,7 +48,8 @@ Capstone.Models.CurrentUser = Backbone.Model.extend({
       success: function(resp){
         model.set(model.parse(resp));
         model.trigger('sync', model, resp, options);
-        options.success && options.success(model, resp, options);
+        options.success &&
+          options.success(model, resp, options);
       },
       error: function(resp){
         options.error && options.error(model, resp, options);
@@ -56,6 +57,6 @@ Capstone.Models.CurrentUser = Backbone.Model.extend({
     });
   },
 
-})
+});
 
 Capstone.Models.currentUser = new Capstone.Models.CurrentUser();

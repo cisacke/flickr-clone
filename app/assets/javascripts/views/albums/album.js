@@ -1,20 +1,20 @@
 Capstone.Album = Backbone.CompositeView.extend({
   clickLeft: function(e) {
     if (this._margin < 0) {
-      var margin = this._margin + 840
-      this._margin = margin
+      var margin = this._margin + 840;
+      this._margin = margin;
       this.$(".photos-index-container").css("margin-left", margin);
     }
   },
 
   clickRight: function(e) {
-    this._photos = Math.floor((this.$(".photos-index-container").find("img").length) / 7)
-    var margin = this._margin - 840
-    this._margin = margin
+    this._photos = Math.floor((this.$(".photos-index-container").find("img").length) / 7);
+    var margin = this._margin - 840;
+    this._margin = margin;
     if ((this._photos * -840) <= this._margin ) {
       this.$(".photos-index-container").css("margin-left", margin);
     } else {
-      this._margin += 840
+      this._margin += 840;
     }
   },
 
@@ -25,7 +25,7 @@ Capstone.Album = Backbone.CompositeView.extend({
 
     var target = this.$(".album-selected-photos").find("ul").filter(function() {
       return $(this).attr('data-photo-id').match(id);
-    })
+    });
 
     if (target.data("photo-id") === this.$(".album-cover-photo-preview").find("img").data("photo-id")) {
       this.$(".album-cover-photo-preview").find("img").remove();
@@ -41,7 +41,7 @@ Capstone.Album = Backbone.CompositeView.extend({
       {helper: 'clone',
        revert: "invalid",
        start: function(e, ui) {
-         $(ui.helper).addClass("ui-draggable-helper")
+         $(ui.helper).addClass("ui-draggable-helper");
        }
        }
     );
@@ -67,7 +67,7 @@ Capstone.Album = Backbone.CompositeView.extend({
 
         var photoId = $(photo).data("photo-id");
         if (this._ids.indexOf(photoId) === -1) {
-          this.addPhotoThumbnail(photo, photoId)
+          this.addPhotoThumbnail(photo, photoId);
         }
       }.bind(this)
     });
@@ -79,14 +79,14 @@ Capstone.Album = Backbone.CompositeView.extend({
     $(photo).css("padding", "10px");
     $(photo).removeClass("ui-draggable-helper");
 
-    var ul = $(document.createElement("ul"))
-    var div = $(document.createElement("div"))
+    var ul = $(document.createElement("ul"));
+    var div = $(document.createElement("div"));
     div.text("x");
     ul.attr("data-photo-id", photoId);
     div.attr("data-photo-id", photoId);
 
     $(ul).append(div);
-    $(ul).append(photo)
+    $(ul).append(photo);
 
     this._ids.push($(photo).data("photo-id"));
 
@@ -104,4 +104,4 @@ Capstone.Album = Backbone.CompositeView.extend({
 
     $(event.target).append(photo);
   },
-})
+});

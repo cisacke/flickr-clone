@@ -3,7 +3,7 @@ Capstone.Models.Favorite = Backbone.Model.extend({
 
   photos: function() {
     if (!this._photos) {
-      this._photos = new Capstone.Collections.Photos([], { favorite: this })
+      this._photos = new Capstone.Collections.Photos([], { favorite: this });
     }
 
     return this._photos;
@@ -15,4 +15,4 @@ Capstone.Models.Favorite = Backbone.Model.extend({
       delete resp.photos;
     }
   }
-})
+});
