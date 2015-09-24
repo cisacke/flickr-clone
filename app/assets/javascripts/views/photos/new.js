@@ -7,7 +7,7 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
   },
 
   initialize: function(options) {
-    this.user = options.user
+    this.user = options.user;
   },
 
   render: function() {
@@ -33,8 +33,8 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
         var x = this.width;
         var y = this.height;
         that._updatePreview(reader.result, x, y);
-      }
-    }
+      };
+    };
 
     if (file) {
       reader.readAsDataURL(file);
@@ -47,15 +47,12 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
     // debugger
     this.$el.find(".photostream-thumbnail").attr("src", src);
     this.$el.find(".photostream-thumbnail").attr("data-x", x);
-    this.$el.find(".photostream-thumbnail").attr("data-y", y)
+    this.$el.find(".photostream-thumbnail").attr("data-y", y);
   },
 
 
   submit: function(e) {
     e.preventDefault();
-
-    debugger
-
     $("html, body").css("height", "auto");
     $("html, body").css("overflow", "visible");
 
@@ -72,12 +69,15 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
     data.append("photo[description]", description);
     data.append("photo[image]", file);
     data.append("photo[x_pixels]", x_pixels);
-    data.append("photo[y_pixels]", y_pixels)
+    data.append("photo[y_pixels]", y_pixels);
     var that = this;
     this.model.saveFormData(data, {
       success: function() {
-        that.user.photostream().createPhotostreamAssociation({
-          photo: that.model
+        $.ajax({
+          url: "/api/photos/photostream",
+          type: method,
+          data: {photostream_id: that.user.photostream().id,
+                photo_id: that.photo.id},
         });
         that.user.photostream().photos().add(that.model);
         Capstone.Models.currentUser.fetch();
@@ -86,4 +86,4 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
       }
     });
   }
-})
+});

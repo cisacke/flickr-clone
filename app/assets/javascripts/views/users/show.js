@@ -10,8 +10,8 @@ Capstone.Views.UserShow = Backbone.View.extend({
   },
 
   initialize: function(options) {
-    this.listenTo(this.model, "sync", this.render)
-    this.edit = options.edit
+    this.listenTo(this.model, "sync", this.render);
+    this.edit = options.edit;
   },
 
   render: function() {
@@ -22,9 +22,9 @@ Capstone.Views.UserShow = Backbone.View.extend({
 
     this.$el.html(content);
     if (this.model.escape("is_followed") === "true") {
-      this.$(".toggle-follow").text("Unfollow")
+      this.$(".toggle-follow").text("Unfollow");
     } else {
-      this.$(".toggle-follow").text("Follow")
+      this.$(".toggle-follow").text("Follow");
     }
     return this;
   },
@@ -77,8 +77,8 @@ Capstone.Views.UserShow = Backbone.View.extend({
                   success: function(model, resp, options) {
                     $(e.currentTarget).removeClass("toggling");
                   }
-                  })
-                })
+                });
+              });
     }
 
       var method = (this.model.escape("is_followed") === "true") ? "DELETE" : "POST";
