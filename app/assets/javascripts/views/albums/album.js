@@ -19,12 +19,13 @@ Capstone.Album = Backbone.CompositeView.extend({
   },
 
   removePhotoPreview: function(e) {
+    debugger
     var id = $(e.currentTarget).data("photo-id");
     var idx = this._ids.indexOf(id);
     this._ids.splice(idx, 1);
 
     var target = this.$(".album-selected-photos").find("ul").filter(function() {
-      return $(this).attr('data-photo-id').match(id);
+      return $(this).attr('data-photo-id') == id;
     });
 
     if (target.data("photo-id") === this.$(".album-cover-photo-preview").find("img").data("photo-id")) {

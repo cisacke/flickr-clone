@@ -8,12 +8,12 @@
   <form class="new-session-form" action="<%= session_url %>" method="post">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <h5>sign in</h5>
-    <input type="text" name="user[email]" value=" email">
+    <input type="text" name="user[email]" placeholder="email">
     <br>
-    <input type="password" name="user[password]" value="">
+    <input type="password" name="user[password]" placeholder="password">
     <br>
     <button>sign in</button>
-    <button><a href="/auth/facebook">Login with Facebook</a></button>
+    <button><a href="/auth/facebook">sign in with Facebook</a></button>
   </form>
 
 </div>

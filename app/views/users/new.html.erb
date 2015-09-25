@@ -9,15 +9,16 @@
     <form class="new-user-form" action="<%= users_url %>" method="post">
       <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
       <h5>sign up</h5>
-      <input type="text" name="user[f_name]" value=" first name">
+      <input type="text" name="user[f_name]" placeholder="first name">
       <br>
-      <input type="text" name="user[l_name]" value=" last name">
+      <input type="text" name="user[l_name]" placeholder="last name">
       <br>
-      <input type="text" name="user[email]" value=" email">
+      <input type="text" name="user[email]" placeholder="email">
       <br>
-      <input type="password" name="user[password]" value="">
+      <input type="password" name="user[password]" placeholder="password">
       <br>
-      <button>sign in</button>
+      <button>sign up</button>
+      <button><a href="/auth/facebook">sign up with Facebook</a></button>
     </form>
 
   </div>

@@ -325,14 +325,9 @@ div h3.follow-button {
   padding: 2px;
 }
 
-::-webkit-input-placeholder {
-  color: white;
-}
-
 .mini-thumbnail {
   height: 30px;
   width: 30px;
-  background: yellow;
   position: absolute;
   bottom: 15px;
   left: 25px;
@@ -341,15 +336,12 @@ div h3.follow-button {
 li.favorite-button {
   width: 30px;
   height: 30px;
-  // margin-right: 60px;
-  // background: red
 }
 
 li.delete-photo-button {
   width: 30px;
   height: 30px;
   margin-right: 100px;
-  // background: red;
 }
 
 div.delete-photo-button-pic {

@@ -28,7 +28,9 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
   },
 
   fileInputChange: function(e) {
+
     var files = e.currentTarget.files
+    this.$(".custom-file-uploads").attr("disabled", "disabled");
     for (var i = 0; i < files.length; i++) {
       var file = files[i]
       file.id = i;
@@ -88,12 +90,12 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
 
   submit: function(e) {
     e.preventDefault();
+    this.$(".new-photos-save").attr("disabled", "disabled");
 
     var files = this.$("#input-photo-image")[0].files;
     var titles = this.$(".input-photo-title");
     var descriptions = this.$(".input-photo-description");
     var albumIds = this.$(".preview-photo");
-
 
     for (var i = 0; i < files.length; i++) {
       var title = $(titles).filter(function() {return $(this).attr("id").match(i)})
