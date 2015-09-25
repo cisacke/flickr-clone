@@ -11,6 +11,16 @@ Capstone.Models.Photo = Backbone.Model.extend({
       data: formData,
       processData: false,
       contentType: false,
+      xhr: function(){
+        // get the native XmlHttpRequest object
+        var xhr = $.ajaxSettings.xhr() ;
+        // set the onprogress event handler
+        xhr.upload.onprogress = function(evt){ console.log('progress', evt.loaded/evt.total*100) } ;
+        // set the onload event handler
+        xhr.upload.onload = function(){ console.log('DONE!') } ;
+        // return the customized object
+        return xhr ;
+    },
       success: function(resp){
         model.set(model.parse(resp));
         model.trigger('sync', model, resp, options);
