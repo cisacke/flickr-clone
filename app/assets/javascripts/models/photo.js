@@ -27,7 +27,6 @@ Capstone.Models.Photo = Backbone.Model.extend({
         // set the onprogress event handler
         xhr.upload.onprogress = function(evt) {
           var pc = parseInt(evt.loaded / evt.total * 100);
-          debugger
           progress.progressbar("value", pc);
 
           console.log('progress', evt.loaded/evt.total*100);
