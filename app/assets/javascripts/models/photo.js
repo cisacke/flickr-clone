@@ -1,9 +1,19 @@
 Capstone.Models.Photo = Backbone.Model.extend({
   urlRoot: "/api/photos",
 
+  progressBar: function() {
+
+  },
+
   saveFormData: function(formData, options) {
     var method = this.isNew() ? "POST" : "PUT";
     var model = this;
+    var progress = options.that.$("#progress").progressbar();
+    options.that.$(".ui-progressbar-value").css("background", "green");
+    options.that.$(".ui-progressbar-value").css("height", "20px");
+    // debugger
+    // var progress = o.appendChild(document.createElement("p"));
+    // progress.appendChild(document.createTextNode("upload"));
 
     $.ajax({
       url: _.result(model, "url"),
@@ -15,9 +25,17 @@ Capstone.Models.Photo = Backbone.Model.extend({
         // get the native XmlHttpRequest object
         var xhr = $.ajaxSettings.xhr() ;
         // set the onprogress event handler
-        xhr.upload.onprogress = function(evt){ console.log('progress', evt.loaded/evt.total*100) } ;
+        xhr.upload.onprogress = function(evt) {
+          var pc = parseInt(evt.loaded / evt.total * 100);
+          debugger
+          progress.progressbar("value", pc);
+
+          console.log('progress', evt.loaded/evt.total*100);
+        } ;
         // set the onload event handler
-        xhr.upload.onload = function(){ console.log('DONE!') } ;
+        xhr.upload.onload = function() {
+          console.log('DONE!');
+        } ;
         // return the customized object
         return xhr ;
     },

@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#progress p {
+#progress {
   display: block;
   width: 240px;
   padding: 2px 5px;
@@ -10,11 +10,15 @@
   border: 1px inset #446;
   border-radius: 5px;
 }
+//
+// #progress p.success {
+// 	background: #0c0 none 0 0 no-repeat;
+// }
+//
+// #progress p.failed {
+// 	background: #c00 none 0 0 no-repeat;
+// }
 
-#progress p.success {
-	background: #0c0 none 0 0 no-repeat;
-}
-
-#progress p.failed {
-	background: #c00 none 0 0 no-repeat;
-}
+// #progress.ui-progressbar-value {
+//   height: 20px;
+// }

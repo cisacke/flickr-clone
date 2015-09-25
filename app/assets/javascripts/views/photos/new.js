@@ -61,18 +61,7 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
     var file = this.$("#input-photo-image")[0].files[0];
     var x_pixels = this.$("img").data("x");
     var y_pixels = this.$("img").data("y");
-    // debugger
-    var xhr = new XMLHttpRequest();
-    if (xhr.upload && file.type) {
-      var o = this.$("#progress")[0];
-      var progress = o.appendChild(document.createElement("p"));
-      progress.appendChild(document.createTextNode("upload" + file.name));
-    }
 
-    xhr.upload.addEventListener("progress", function(e) {
-      var pc = parseInt(100 - (e.loaded / e.total * 100));
-      progress.style.backgroundPosition = pc + "% 0";
-    });
 
     var data = new FormData();
     data.append("photo[title]", title);
@@ -93,7 +82,7 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
         Capstone.Models.currentUser.fetch();
 
         Backbone.history.navigate("", {trigger: true});
-      }
+      }, that: this
     });
   }
 });
