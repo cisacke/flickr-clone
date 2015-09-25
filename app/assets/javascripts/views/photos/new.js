@@ -55,6 +55,8 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
     e.preventDefault();
     $("html, body").css("height", "auto");
     $("html, body").css("overflow", "visible");
+    this.$(".new-photo-save").remove();
+    this.$(".photostream-progress-bar").attr("id", "progress")
 
     var title = this.$("#input-photo-title").val();
     var description = this.$("#input-photo-description").val();

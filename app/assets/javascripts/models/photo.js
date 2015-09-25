@@ -8,8 +8,8 @@ Capstone.Models.Photo = Backbone.Model.extend({
   saveFormData: function(formData, options) {
     var method = this.isNew() ? "POST" : "PUT";
     var model = this;
-    var progress = options.that.$("#progress").progressbar();
-    options.that.$(".ui-progressbar-value").css("background", "green");
+    var progress = options.that.$("#progress-multiple").progressbar();
+    options.that.$(".ui-progressbar-value").css("background", "#f6546a");
     options.that.$(".ui-progressbar-value").css("height", "20px");
     // debugger
     // var progress = o.appendChild(document.createElement("p"));

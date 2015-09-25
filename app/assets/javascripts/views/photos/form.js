@@ -77,8 +77,10 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
     title.attr("data-y", y);
     var description = $(document.createElement("textarea")).addClass("input-photo-description")
     description.attr("placeholder", "description").attr("id", idx);
+    var progressbar = $(document.createElement("p")).attr("id", idx);
 
     previewPhoto.append(thumbnail);
+    previewPhoto.append(progressbar);
     previewPhoto.append(title);
     previewPhoto.append(description);
     this.$el.find(".preview-photos-wrapper").append(previewPhoto);
@@ -94,15 +96,15 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
 
 
     for (var i = 0; i < files.length; i++) {
-      // var xhr = new XMLHttpRequest();
-      // if (xhr.upload && files[i].type == "image/jpeg") {
-      //   var o = $id("progress");
-      //   var progress = o.appendChild(document.createElement("p"));
-      //   progress.appendChild(document.createTextNode("upload " + file.name));
-      // }
       var title = $(titles).filter(function() {return $(this).attr("id").match(i)})
       var description = $(descriptions).filter(function() {return $(this).attr("id").match(i)})
+      title.remove();
+      description.remove();
       debugger
+      var progressbar = this.$(".preview-photos-wrapper")
+                            .find("p")
+                            .filter(function() {return $(this).attr("id").match(i)});
+      progressbar.attr("id", "progress-multiple");
 
       var photo = new Capstone.Models.Photo();
       var data = new FormData();
@@ -121,8 +123,8 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
                     photo_id: model.id}
             albumPhoto.save(data);
           }
-        Backbone.history.navigate("#/users/" + Capstone.Models.currentUser.id + "/albums", {trigger: true})
-        }, albumId: albumId
+        // Backbone.history.navigate("#/users/" + Capstone.Models.currentUser.id + "/albums", {trigger: true})
+      }, albumId: albumId, that: this
       })
     }
   },
