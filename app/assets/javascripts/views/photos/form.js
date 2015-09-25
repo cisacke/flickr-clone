@@ -77,7 +77,7 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
     title.attr("data-y", y);
     var description = $(document.createElement("textarea")).addClass("input-photo-description")
     description.attr("placeholder", "description").attr("id", idx);
-    var progressbar = $(document.createElement("p")).attr("id", idx);
+    var progressbar = $(document.createElement("p")).attr("pid", idx);
 
     previewPhoto.append(thumbnail);
     previewPhoto.append(progressbar);
@@ -103,8 +103,9 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
       debugger
       var progressbar = this.$(".preview-photos-wrapper")
                             .find("p")
-                            .filter(function() {return $(this).attr("id").match(i)});
-      progressbar.attr("id", "progress-multiple");
+                            .filter(function() {return $(this).attr("pid").match(i)});
+      progressbar.attr("id", "progress");
+      // progressbar.css("width", "")
 
       var photo = new Capstone.Models.Photo();
       var data = new FormData();
