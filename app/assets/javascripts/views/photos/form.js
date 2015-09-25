@@ -105,7 +105,9 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
                             .find("p")
                             .filter(function() {return $(this).attr("pid").match(i)});
       progressbar.attr("id", "progress");
-      // progressbar.css("width", "")
+      progressbar.progressbar();
+      this.$(".ui-progressbar-value").css("background", "#f6546a");
+      this.$(".ui-progressbar-value").css("height", "20px");
 
       var photo = new Capstone.Models.Photo();
       var data = new FormData();
@@ -124,8 +126,9 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
                     photo_id: model.id}
             albumPhoto.save(data);
           }
-        // Backbone.history.navigate("#/users/" + Capstone.Models.currentUser.id + "/albums", {trigger: true})
-      }, albumId: albumId, that: this
+          Backbone.history.navigate("#/users/" + Capstone.Models.currentUser.id + "/albums", {trigger: true})
+
+      }, albumId: albumId, progress: progressbar
       })
     }
   },

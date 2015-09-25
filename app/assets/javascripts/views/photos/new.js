@@ -56,7 +56,10 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
     $("html, body").css("height", "auto");
     $("html, body").css("overflow", "visible");
     this.$(".new-photo-save").remove();
-    this.$(".photostream-progress-bar").attr("id", "progress")
+    progressbar = this.$(".photostream-progress-bar").attr("id", "progress")
+    progressbar.progressbar();
+    this.$(".ui-progressbar-value").css("background", "#f6546a");
+    this.$(".ui-progressbar-value").css("height", "20px");
 
     var title = this.$("#input-photo-title").val();
     var description = this.$("#input-photo-description").val();
@@ -84,7 +87,7 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
         Capstone.Models.currentUser.fetch();
 
         Backbone.history.navigate("", {trigger: true});
-      }, that: this
+      }, progress: progressbar
     });
   }
 });
