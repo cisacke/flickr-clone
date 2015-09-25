@@ -1,0 +1,10 @@
+<div class="users-index-eighty">
+  <% users.models.forEach(function(user) { %>
+    <ul class="group">
+      <div class="users-index-profile-pic">
+        <a href="#/users/<%= user.id %>"><img src="<%= user.escape("avatar") %>" alt="user profile picture" /></a>
+      </div>
+      <a href="#/users/<%= user.id %>"><li class="users-index-name"><%= user.escape("f_name") %> <%= user.escape("l_name") %></li></a>
+    </ul>
+  <%  } ) %>
+</div>
