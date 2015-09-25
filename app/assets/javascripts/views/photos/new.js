@@ -72,12 +72,12 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
     data.append("photo[y_pixels]", y_pixels);
     var that = this;
     this.model.saveFormData(data, {
-      success: function() {
+      success: function(model, resp, options) {
         $.ajax({
           url: "/api/photos/photostream",
           type: "POST",
           data: {photostream_id: that.user.photostream().id,
-                photo_id: that.photo.id},
+                photo_id: model.id},
         });
         that.user.photostream().photos().add(that.model);
         Capstone.Models.currentUser.fetch();
