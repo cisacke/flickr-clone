@@ -1,4 +1,6 @@
 Capstone.Collections.Photostreams = Backbone.Collection.extend({
-  url: "/api/photostream",
-  model: Capstone.Models.Photostream
+  url: function() {
+    return "/api/photostream";
+  },
+  model: Capstone.Models.Photos
 });

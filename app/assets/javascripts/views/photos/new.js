@@ -56,7 +56,7 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
     $("html, body").css("height", "auto");
     $("html, body").css("overflow", "visible");
     this.$(".new-photo-save").remove();
-    progressbar = this.$(".photostream-progress-bar").attr("id", "progress")
+    progressbar = this.$(".photostream-progress-bar").attr("id", "progress");
     progressbar.progressbar();
     this.$(".ui-progressbar-value").css("background", "#f6546a");
     this.$(".ui-progressbar-value").css("height", "20px");
@@ -80,7 +80,7 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
         $.ajax({
           url: "/api/photos/photostream",
           type: "POST",
-          data: {photostream_id: that.user.photostream().id,
+          data: {user_id: that.user.id,
                 photo_id: model.id},
         });
         that.user.photostream().photos().add(that.model);

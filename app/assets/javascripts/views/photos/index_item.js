@@ -3,8 +3,8 @@ Capstone.Views.PhotoIndexItem = Backbone.CompositeView.extend({
   tagName: "li",
 
   initialize: function(options) {
-    this.photostream = options.photostream
-    this.user = options.user
+    this.photostream = options.photostream;
+    this.user = options.user;
   },
 
   render: function() {
@@ -12,9 +12,9 @@ Capstone.Views.PhotoIndexItem = Backbone.CompositeView.extend({
       photo: this.model,
       photostream: this.photostream,
       user: this.user
-    })
+    });
 
     this.$el.html(content);
     return this;
   }
-})
+});

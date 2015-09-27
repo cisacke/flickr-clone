@@ -14,25 +14,48 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
   },
 
   initialize: function(options) {
-    this.$rootEl = options.$rootEl
+    this.$rootEl = options.$rootEl;
     this.currentUser = Capstone.Models.currentUser;
-    this.currentUser.fetch();
+    // this.currentUser.fetch();
   },
 
   root: function() {
-    var photostream = this.currentUser.photostream()
+    this.currentUser.fetch( {
+      success: function(model, resp, options) {
+        var photostream = new Capstone.Models.Photostream({ id: model.id });
+        photostream.fetch();
+
+        var photostreamShow = new Capstone.Views.PhotostreamShow({
+          user: model,
+          model: photostream,
+          edit: true,
+          private: true
+        });
+
+        this._swapView(photostreamShow);
+      }.bind(this)
+    } );
+  },
+
+  userShow: function(id) {
+    var user = new Capstone.Models.User({id: id});
+    user.fetch();
+
+    var photostream = new Capstone.Models.Photostream({id: id});
+    photostream.fetch();
 
     var photostreamShow = new Capstone.Views.PhotostreamShow({
-      user: this.currentUser,
+      user: user,
       model: photostream,
-      edit: true,
-      private: true
-    })
+      edit: false,
+      private: false
+    });
 
     this._swapView(photostreamShow);
   },
 
   photoShow: function(id) {
+    this.currentUser.fetch();
     var photo = new Capstone.Models.Photo({id: id});
     photo.fetch();
 
@@ -41,7 +64,7 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
     var photoShow = new Capstone.Views.PhotoShow({
       user: this.currentUser,
       model: photo
-    })
+    });
 
     this._swapView(photoShow);
   },
@@ -52,7 +75,7 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
 
     var albumShow = new Capstone.Views.AlbumShow({
       model: album
-    })
+    });
 
     this._swapView(albumShow);
   },
@@ -62,31 +85,14 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
     album.fetch();
 
     var photos = new Capstone.Collections.Photos();
-    photos.fetch()
+    photos.fetch();
 
     var albumEdit = new Capstone.Views.AlbumEdit({
       model: album,
       collection: photos
-    })
+    });
 
     this._swapView(albumEdit);
-  },
-
-  userShow: function(id) {
-
-    var user = new Capstone.Models.User({id: id});
-    user.fetch();
-
-    var photostream = user.photostream();
-
-    var photostreamShow = new Capstone.Views.PhotostreamShow({
-      user: user,
-      model: photostream,
-      edit: false,
-      private: false
-    })
-
-    this._swapView(photostreamShow);
   },
 
   albumsIndex: function(id) {
@@ -97,13 +103,13 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
     var albumIndex = new Capstone.Views.AlbumIndex({
       user: user,
       model: albums
-    })
+    });
 
     this._swapView(albumIndex);
   },
 
   photosNew: function() {
-    var newPhotosForm = new Capstone.Views.PhotosForm({})
+    var newPhotosForm = new Capstone.Views.PhotosForm({});
     this._swapView(newPhotosForm);
   },
 
@@ -111,12 +117,12 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
     var user = new Capstone.Models.CurrentUser();
     user.fetch();
     var photos = new Capstone.Collections.Photos();
-    photos.fetch()
+    photos.fetch();
 
     var newAlbum = new Capstone.Views.AlbumNew({
       user: user,
       collection: photos
-    })
+    });
 
     this._swapView(newAlbum);
   },
@@ -125,14 +131,14 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
     var user = new Capstone.Models.User({id: id});
     user.fetch({
       success: function(model, resp, options) {
-        var favorite = new Capstone.Models.Favorite({id: user.escape("favorite_id")})
+        var favorite = new Capstone.Models.Favorite({id: user.escape("favorite_id")});
         favorite.fetch();
         var userFavorites = new Capstone.Views.FavoritesIndex({
           user: model,
           model: favorite
-        })
+        });
 
-        this._swapView(userFavorites)
+        this._swapView(userFavorites);
       }.bind(this)
     });
 
@@ -144,14 +150,14 @@ Capstone.Routers.AppRouter = Backbone.Router.extend({
 
     var usersIndex = new Capstone.Views.UsersIndex({
       collection: users
-    })
+    });
 
     this._swapView(usersIndex);
   },
 
   _swapView: function(view) {
     this._currentView && this._currentView.remove();
-    this._currentView = view
-    this.$rootEl.html(view.render().$el)
+    this._currentView = view;
+    this.$rootEl.html(view.render().$el);
   }
-})
+});

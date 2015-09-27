@@ -12,7 +12,7 @@ module Api
 
     private
       def photostream_photo_params
-        params.require(:photostream_photo).permit(:photo_id, :photostream_id)
+        params.require(:photostream_photo).permit(:photo_id, :user_id)
       end
   end
 end

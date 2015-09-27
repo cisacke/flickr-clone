@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      Photostream.create!(user_id: @user.id)
+      # Photostream.create!(user_id: @user.id)
       Favorite.create!(user_id: @user.id)
       sign_in!(@user)
       redirect_to root_url

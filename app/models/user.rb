@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :comments,
     foreign_key: :author_id,
     dependent: :destroy
-  has_one :photostream, dependent: :destroy
+
   has_one :favorite, dependent: :destroy
   has_many :photos, dependent: :destroy
   has_many :follower_users,
@@ -21,6 +21,9 @@ class User < ActiveRecord::Base
 
   has_many :followers, through: :follower_users, source: :follower
   has_many :follows, through: :followed_users, source: :followed
+
+  has_many :photostream_photos, dependent: :destroy
+  has_many :photos_in_photostream, through: :photostream_photos, source: :photo
 
   has_attached_file :cover, default_url: "default_cover.png"
   validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/
@@ -49,7 +52,7 @@ class User < ActiveRecord::Base
         l_name: auth_hash[:info][:name].split.last,
         email: auth_hash[:info][:name],
         password: SecureRandom::urlsafe_base64)
-        Photostream.create!(user_id: user.id)
+        # Photostream.create!(user_id: user.id)
         Favorite.create!(user_id: user.id)
     end
 
