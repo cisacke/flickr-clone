@@ -49,7 +49,7 @@ module Api
     end
 
     def new_photostream
-      @photostream = PhotostreamPhoto.new({ user_id: currently_signed_in.id,
+      @photostream = PhotostreamPhoto.new({ user_id: params[:user_id],
                                             photo_id: params[:photo_id] })
 
       if @photostream.save
@@ -60,7 +60,7 @@ module Api
     end
 
     def delete_photostream
-      @photostream = PhotostreamPhoto.where({ user_id: currently_signed_in.id,
+      @photostream = PhotostreamPhoto.where({ user_id: params[:user_id],
                                             photo_id: params[:photo_id] })
       @photostream[0].destroy
       render json: @photostream

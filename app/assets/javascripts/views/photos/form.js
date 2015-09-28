@@ -29,14 +29,14 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
 
   fileInputChange: function(e) {
 
-    var files = e.currentTarget.files
+    var files = e.currentTarget.files;
     this.$(".custom-file-uploads").attr("disabled", "disabled");
     for (var i = 0; i < files.length; i++) {
-      var file = files[i]
+      var file = files[i];
       file.id = i;
       var reader = new FileReader();
       reader.id = i;
-      var that = this
+      var that = this;
 
       reader.onload = function(e) {
         var image = new Image();
@@ -44,40 +44,40 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
         image.onload = function() {
           var x = this.width;
           var y = this.height;
-          that._updatePreview(e.target.result, e.target.id, x, y)
-        }
-        that._idx += 1
-      }
+          that._updatePreview(e.target.result, e.target.id, x, y);
+        };
+        that._idx += 1;
+      };
 
       if (file) {
         reader.readAsDataURL(file);
       } else {
         that._updatePreview("");
-      };
+      }
     }
   },
 
   assignAlbum: function(e) {
     this.$(".selected").find(".mini-thumbnail").remove();
 
-    var albumId = $(e.currentTarget).data("album-id")
+    var albumId = $(e.currentTarget).data("album-id");
     this.$(".selected").attr("data-album_id", albumId);
     var album = this.albums.where({id: albumId});
     var miniThumbnail = $(document.createElement("img")).addClass("mini-thumbnail");
-    miniThumbnail.attr("src", album[0].escape("image_url"))
+    miniThumbnail.attr("src", album[0].escape("image_url"));
     this.$(".selected").append(miniThumbnail);
     this.clearOut();
   },
 
   _updatePreview: function(src, idx, x, y) {
     var previewPhoto = $(document.createElement("ul")).addClass("preview-photo");
-    var thumbnail = $(document.createElement("img")).addClass("preview-photo-thumbnail")
+    var thumbnail = $(document.createElement("img")).addClass("preview-photo-thumbnail");
     thumbnail.attr("src", src).attr("id", idx);
     var title = $(document.createElement("input")).addClass("input-photo-title");
     title.attr("placeholder", "title").attr("id", idx);
     title.attr("data-x", x);
     title.attr("data-y", y);
-    var description = $(document.createElement("textarea")).addClass("input-photo-description")
+    var description = $(document.createElement("textarea")).addClass("input-photo-description");
     description.attr("placeholder", "description").attr("id", idx);
     var progressbar = $(document.createElement("p")).attr("pid", idx);
 
@@ -102,7 +102,6 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
       var description = $(descriptions).filter(function() {return $(this).attr("id").match(i)})
       title.remove();
       description.remove();
-      debugger
       var progressbar = this.$(".preview-photos-wrapper")
                             .find("p")
                             .filter(function() {return $(this).attr("pid").match(i)});
@@ -118,20 +117,23 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
       data.append("photo[image]", files[i]);
       data.append("photo[x_pixels]", title.data("x"));
       data.append("photo[y_pixels]", title.data("y"));
-      var albumId = $(albumIds[i]).data("album_id")
+      var albumId = $(albumIds[i]).data("album_id");
 
       photo.saveFormData(data, {
         success: function(model, resp, options) {
         if (options.albumId) {
             var albumPhoto = new Capstone.Models.AlbumPhoto();
             data = {album_id: options.albumId,
-                    photo_id: model.id}
+                    photo_id: model.id};
             albumPhoto.save(data);
           }
-          Backbone.history.navigate("#/users/" + Capstone.Models.currentUser.id + "/albums", {trigger: true})
 
-      }, albumId: albumId, progress: progressbar
-      })
+          if (options.idx == (options.files - 1)) {
+            Backbone.history.navigate("#/users/" + Capstone.Models.currentUser.id + "/albums", {trigger: true});
+          }
+
+      }, albumId: albumId, progress: progressbar, files: files.length, idx: i
+    });
     }
   },
 
@@ -141,7 +143,7 @@ Capstone.Views.PhotosForm = Backbone.CompositeView.extend({
     }
 
     $(e.currentTarget).find(".preview-photo-thumbnail").css("border", "3px solid #f6546a");
-    $(e.currentTarget).addClass("selected")
+    $(e.currentTarget).addClass("selected");
 
   },
 

@@ -45,7 +45,6 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
   },
 
   _updatePreview: function(src, x, y) {
-    // debugger
     this.$el.find(".photostream-thumbnail").attr("src", src);
     this.$el.find(".photostream-thumbnail").attr("data-x", x);
     this.$el.find(".photostream-thumbnail").attr("data-y", y);
@@ -84,6 +83,16 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
           data: {user_id: that.user.id,
                 photo_id: model.id},
         });
+
+      that.user.get("followers").forEach(function(follower) {
+        $.ajax({
+          url: "/api/photos/photostream",
+          type: "POST",
+          data: {user_id: follower.id,
+                photo_id: model.id},
+        });
+      });
+      
         that.photostream.photos().add(that.model);
         that.photostream.fetch();
         // Capstone.Models.currentUser.fetch();
