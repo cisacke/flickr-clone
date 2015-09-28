@@ -8,6 +8,7 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
 
   initialize: function(options) {
     this.user = options.user;
+    this.photostream = options.photostream;
   },
 
   render: function() {
@@ -83,9 +84,10 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
           data: {user_id: that.user.id,
                 photo_id: model.id},
         });
-        that.user.photostream().photos().add(that.model);
-        Capstone.Models.currentUser.fetch();
-
+        that.photostream.photos().add(that.model);
+        that.photostream.fetch();
+        // Capstone.Models.currentUser.fetch();
+        // that.user.fetch();
         Backbone.history.navigate("", {trigger: true});
       }, progress: progressbar
     });

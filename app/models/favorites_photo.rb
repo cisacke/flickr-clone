@@ -1,6 +1,6 @@
 class FavoritesPhoto < ActiveRecord::Base
-  validates :favorite_id, :photo_id, presence: true
+  validates :user_id, :photo_id, presence: true
 
   belongs_to :photo
-  belongs_to :favorite
+  belongs_to :user
 end

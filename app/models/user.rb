@@ -25,6 +25,9 @@ class User < ActiveRecord::Base
   has_many :photostream_photos, dependent: :destroy
   has_many :photos_in_photostream, through: :photostream_photos, source: :photo
 
+  has_many :favorites_photos, dependent: :destroy
+  has_many :photos_in_favorites, through: :favorites_photos, source: :photo
+
   has_attached_file :cover, default_url: "default_cover.png"
   validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/
 

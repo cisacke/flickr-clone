@@ -11,29 +11,29 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
   },
 
   initialize: function(options) {
-    this.user = options.user
-    this.listenTo(this.user, "sync", this.render)
-    this.listenTo(this.model, "sync add change", this.render)
+    this.user = options.user;
+    this.listenTo(this.user, "sync", this.render);
+    this.listenTo(this.model, "sync add change", this.render);
   },
 
   render: function() {
     var content = this.template({
       photo: this.model,
       user: this.user
-    })
+    });
     this.$el.html(content);
     if (this.model.escape("is_favorite") === "true") {
-      this.$(".favorite-button-pic").addClass("favorited")
+      this.$(".favorite-button-pic").addClass("favorited");
     } else {
-      this.$(".favorite-button-pic").addClass("add-to-favorites")
-    };
+      this.$(".favorite-button-pic").addClass("add-to-favorites");
+    }
 
     this.model.comments().each(function(comment) {
       var commentIndexItem = new Capstone.Views.CommentIndexItem({
         model: comment
-      })
+      });
       this.addSubview(".photo-comments-wrapper", commentIndexItem);
-    }.bind(this))
+    }.bind(this));
 
     var newCommentForm = new Capstone.Views.CommentForm({
       user: this.user,
@@ -45,28 +45,21 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
   },
 
   addDescription: function(e) {
-    // $(this.el).find(".edited-title").remove();
-    // this.$(".photo-show-title").find("p").remove()
-    // var p = $(document.createElement("p"));
-    // p.text(this.model.escape("title"));
-    // this.$(".photo-show-title").addClass("edit-title")
-    // this.$(".photo-show-title").append(p);
-
     $(e.currentTarget).find("p").remove();
-    $(e.currentTarget).removeClass("add-a-description")
-    var input = $(document.createElement("textarea"))
+    $(e.currentTarget).removeClass("add-a-description");
+    var input = $(document.createElement("textarea"));
     input.attr("name", "photo[description]");
-    input.css("border", "1px solid black")
-    input.val(this.model.escape("description"))
-    input.addClass("edited-description")
+    input.css("border", "1px solid black");
+    input.val(this.model.escape("description"));
+    input.addClass("edited-description");
     $(e.currentTarget).append(input);
   },
 
   editDescription: function(e) {
     if(e.which == 13) {
       e.preventDefault();
-      this.model.set("description", $(e.currentTarget).val())
-      this.model.save()
+      this.model.set("description", $(e.currentTarget).val());
+      this.model.save();
     }
   },
 
@@ -75,27 +68,19 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
       e.preventDefault();
       this.model.set("title", $(e.currentTarget).val());
       this.model.save({error: function() {
-        debugger
       }
     });
     }
   },
 
   addTitle: function(e) {
-    // $(this.el).find(".edited-description").remove();
-    // this.$(".add-a-description").find("p").remove()
-    // var p = $(document.createElement("p"));
-    // p.text(this.model.escape("description"));
-    // this.$(".re-add-description").addClass("add-a-description")
-    // this.$(".re-add-description").append(p);
-
     $(e.currentTarget).find("p").remove();
-    $(e.currentTarget).removeClass("edit-title")
+    $(e.currentTarget).removeClass("edit-title");
     var input = $(document.createElement("input"));
     input.attr("name", "photo[title]");
-    input.css("border", "1px solid black")
-    input.val(this.model.escape("title"))
-    input.addClass("edited-title")
+    input.css("border", "1px solid black");
+    input.val(this.model.escape("title"));
+    input.addClass("edited-title");
     $(e.currentTarget).append(input);
   },
 
@@ -108,13 +93,13 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
       url: "/api/photos/favorite",
       type: method,
       data: {photo_id: this.model.id,
-            favorite_id: this.user.escape("favorite_id")},
+            user_id: this.user.id},
       success: function(model, resp, options) {
         $(e.currentTarget).removeClass("toggling");
         this.user.fetch();
         Backbone.history.navigate("#/photos/" + this.model.id, {trigger: true});
       }.bind(this)
-      })
+    });
     }
   },
 
@@ -122,8 +107,8 @@ Capstone.Views.PhotoShow = Backbone.CompositeView.extend({
     this.model.destroy({
       success: function() {
         Capstone.Models.currentUser.fetch();
-        Backbone.history.navigate("#", {trigger:true})
+        Backbone.history.navigate("#", {trigger:true});
       }
     });
   }
-})
+});

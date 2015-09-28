@@ -58,7 +58,8 @@ Capstone.Views.PhotostreamShow = Backbone.CompositeView.extend({
     var newPhoto = new Capstone.Models.Photo();
     var photosNew = new Capstone.Views.PhotosNew({
       model: newPhoto,
-      user: this.user
+      user: this.user,
+      photostream: this.model
     });
     this.$el.append(photosNew.render().el);
   }

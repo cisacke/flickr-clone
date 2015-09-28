@@ -33,7 +33,7 @@ module Api
 
     def new_favorite
       @favorite_photo = FavoritesPhoto.new({ photo_id: params[:photo_id],
-                                             favorite_id: params[:favorite_id]})
+                                             user_id: params[:user_id]})
       if @favorite_photo.save
         render json: @favorite_photo
       else
@@ -43,7 +43,7 @@ module Api
 
     def delete_favorite
       @favorite_photo = FavoritesPhoto.where({ photo_id: params[:photo_id],
-                                             favorite_id: params[:favorite_id]})
+                                             user_id: params[:user_id]})
       @favorite_photo[0].destroy
       render json: @favorite_photo
     end

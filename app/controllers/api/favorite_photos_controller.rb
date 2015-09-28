@@ -20,7 +20,7 @@ module Api
     private
 
       def favorite_photo_params
-        params.require(:favorite_photo).permit(:favorite_id, :photo_id)
+        params.require(:favorite_photo).permit(:user_id, :photo_id)
       end
   end
 end

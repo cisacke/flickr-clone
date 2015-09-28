@@ -23,13 +23,13 @@ Capstone.Views.FavoritesIndex = Backbone.CompositeView.extend({
     var photos = this.model.photos().models;
     for (var i = 0; i < photos.length; i+=3) {
       // 1. get aspect ratios
-      var ratios = this.aspectRatios(photos[i], photos[i+1], photos[i+2])
+      var ratios = this.aspectRatios(photos[i], photos[i+1], photos[i+2]);
       // 2. create a div
-      var div = $(document.createElement("div"))
+      var div = $(document.createElement("div"));
 
-      var a1 = $(document.createElement("a")).attr("href", "#/photos/" + photos[i].id)
-      var img1 = $(document.createElement("img")).attr("src", photos[i].escape("image_url"))
-      img1.css("width", (ratios.p1 * 100) + "%")
+      var a1 = $(document.createElement("a")).attr("href", "#/photos/" + photos[i].id);
+      var img1 = $(document.createElement("img")).attr("src", photos[i].escape("image_url"));
+      img1.css("width", (ratios.p1 * 100) + "%");
       a1.append(img1);
 
       if (photos[i+1]) {
