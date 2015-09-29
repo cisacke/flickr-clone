@@ -1,26 +1,41 @@
-# Flickr Clone
+# Pixie
+A clone of Flickr built on Rails and Backbone
 
-[Heroku link][heroku]
+[pixie]: http://www.pix-ie.xyz
 
-[heroku]: http://github.com/cisacke/flickr-clone-plan
-
-## Minimum Viable Product
-This Flickr clone is built on Rails and Backbone. Users can:
+# Features
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
-- [ ] Create an account
-- [ ] Log in
-- [ ] Create albums
-- [ ] Upload photos to an album
-- [ ] Upload photo to photostream
-- [ ] View photos in a photostream
-- [ ] View photos in an album
-- [ ] Follow other users
-- [ ] 'Favorite' a photo and comment on it
-- [ ] View favorited photos
-- [ ] Search for users
-- [ ] Search for photos by keyword
+- Create an account
+- Sign in
+- Sign in using Facebook
+- Upload single photos to their photostream
+- Upload multiple photos and assign them to albums
+- View Photostreams, Albums, and Favorites Pages
+- Favorite a photo
+- Comment on a photo
+- Follow another user
+
+# Languages
+- Ruby
+- Javascript
+- HTML
+- CSS
+
+# Frameworks
+- Rails
+- Backbone
+
+# Libraries
+- Paperclip
+- AWS
+- OmniAuth
+- jBuilder
+- JQuery
+- Underscore
+- JQuery UI Draggable
+- JQuery UI Droppable
 
 ## Design Docs
 * [View Wireframes][views]
