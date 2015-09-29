@@ -10,13 +10,17 @@ A clone of Flickr built on Rails and Backbone
 - Create an account
 - Sign in
 - Sign in using Facebook
+<br>
 <img src="./docs/images/sign-in.png"/>
 - Upload single photos to their photostream
-<img src="./docs/add-to-photostream.png"/>
+<br>
+<img src="./docs/images/add-to-photostream.png"/>
 - Create albums
-<img src="./docs/new-album.png"/>
+<br>
+<img src="./docs/images/new-album.png"/>
 - Upload multiple photos and assign them to albums
-<img src="./docs/upload-photos.png"/>
+<br>
+<img src="./docs/images/upload-photos.png"/>
 - View Photostreams, Albums, and Favorites Pages
 - Favorite a photo
 - Comment on a photo
