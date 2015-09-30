@@ -26,7 +26,6 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
     var file = e.currentTarget.files[0];
     var reader = new FileReader();
 
-
     reader.onloadend = function(_file) {
       var image = new Image();
       image.src = _file.target.result;
@@ -92,11 +91,9 @@ Capstone.Views.PhotosNew = Backbone.View.extend({
                 photo_id: model.id},
         });
       });
-      
+
         that.photostream.photos().add(that.model);
         that.photostream.fetch();
-        // Capstone.Models.currentUser.fetch();
-        // that.user.fetch();
         Backbone.history.navigate("", {trigger: true});
       }, progress: progressbar
     });

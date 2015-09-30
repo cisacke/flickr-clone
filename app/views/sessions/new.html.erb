@@ -6,16 +6,34 @@
   </h1>
 
   <form class="new-session-form" action="<%= session_url %>" method="post">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden"
+           name="authenticity_token"
+           value="<%= form_authenticity_token %>">
     <h5>sign in</h5>
-    <input type="text" name="user[email]" placeholder="email">
+    <input type="text"
+           name="user[email]"
+           placeholder="email"
+           class="user-email">
     <br>
-    <input type="password" name="user[password]" placeholder="password">
+    <input type="password"
+           name="user[password]"
+           placeholder="password"
+           class="user-password">
     <br>
-    <button>sign in</button>
+    <button class="demo-sign-in">sign in</button>
     <button><a href="/auth/facebook">sign in with Facebook</a></button>
+    <button class="sign-in-as-guest">sign in as guest</button>
   </form>
 
 </div>
+
+<script>
+  this.$(".sign-in-as-guest").on("click", function(e) {
+    e.preventDefault();
+    this.$(".user-email").val("demo@user.com")
+    this.$(".user-password").val("password")
+    this.$(".demo-sign-in").click()
+  }.bind(this))
+</script>
 
 <%= render partial: "layouts/footer" %>

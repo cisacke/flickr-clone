@@ -55,8 +55,6 @@ class User < ActiveRecord::Base
         l_name: auth_hash[:info][:name].split.last,
         email: auth_hash[:info][:name],
         password: SecureRandom::urlsafe_base64)
-        # Photostream.create!(user_id: user.id)
-        Favorite.create!(user_id: user.id)
     end
 
     user
