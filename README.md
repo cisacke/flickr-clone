@@ -26,7 +26,7 @@ A clone of Flickr built on Rails and Backbone
 - Comment on a photo
 - Follow another user
 
-# Languages
+# Technologies
 - Ruby
 - Javascript
 - HTML
